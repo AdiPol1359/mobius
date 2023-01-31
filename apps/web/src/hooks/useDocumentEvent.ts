@@ -1,14 +1,14 @@
 import { useEffect } from 'react';
 
-export const useDocumentEvent = <T extends keyof DocumentEventMap>(
+export const useDocumentEvent = <T extends keyof WindowEventMap>(
 	type: T,
-	handler: (event: DocumentEventMap[T]) => unknown
+	handler: (event: WindowEventMap[T]) => unknown
 ) => {
 	useEffect(() => {
-		document.addEventListener(type, handler);
+		window.addEventListener(type, handler);
 
 		return () => {
-			document.removeEventListener(type, handler);
+			window.removeEventListener(type, handler);
 		};
 	}, [type, handler]);
 };
