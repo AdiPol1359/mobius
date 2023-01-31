@@ -16,7 +16,6 @@ export const calculateMenuPosition = ({
 }>) => {
 	const positionX = buttonX - (menuWidth - buttonWidth) / 2;
 	const menuSize = positionX + menuWidth - screenWidth;
-
 	const x =
 		positionX < 0 ? 0 : menuSize > 0 ? screenWidth - menuWidth : positionX;
 	const y = buttonY + buttonHeight + 6;
