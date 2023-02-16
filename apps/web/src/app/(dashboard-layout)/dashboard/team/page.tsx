@@ -1,7 +1,7 @@
 import { PageTitle } from '@/components/PageTitle';
 import { TeamList } from '@/components/TeamList/TeamList';
 
-export default function DashboardTeamPage() {
+export default function DashboardTeamListPage() {
 	return (
 		<>
 			<PageTitle>Teams</PageTitle>
