@@ -1,5 +1,5 @@
 @import url('./tailwind.css');
 
 body {
-	@apply flex min-h-screen flex-col;
+	@apply flex h-screen flex-col;
 }

@@ -1,9 +1,11 @@
 import { PageTitle } from '@/components/PageTitle';
+import { TeamList } from '@/components/TeamList/TeamList';
 
-export default function DashboardTeamPage() {
+export default function DashboardTeamsPage() {
 	return (
 		<>
-			<PageTitle>Team</PageTitle>
+			<PageTitle>Teams</PageTitle>
+			<TeamList />
 		</>
 	);
 }

@@ -5,5 +5,5 @@ type PageTitleProps = Readonly<{
 }>;
 
 export const PageTitle = ({ children }: PageTitleProps) => (
-	<h2 className="text-lg font-medium">{children}</h2>
+	<h2 className="mb-6 text-lg font-medium">{children}</h2>
 );

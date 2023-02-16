@@ -11,9 +11,9 @@ export default function DashboardLayout({
 	return (
 		<>
 			<DashboardHeader />
-			<div className="flex grow">
+			<div className="flex grow overflow-auto">
 				<DashboardNavigation />
-				<main className="grow bg-gray-100 p-6">{children}</main>
+				<main className="grow overflow-auto bg-gray-100 p-6">{children}</main>
 			</div>
 		</>
 	);
