@@ -1,10 +1,10 @@
-import { PageTitle } from '@/components/PageTitle';
 import { TeamList } from '@/components/TeamList/TeamList';
+import { TeamsHeader } from '@/components/TeamsHeader';
 
 export default function DashboardTeamsPage() {
 	return (
 		<>
-			<PageTitle>Teams</PageTitle>
+			<TeamsHeader />
 			<TeamList />
 		</>
 	);
