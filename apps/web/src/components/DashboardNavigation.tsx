@@ -18,7 +18,7 @@ const items = [
 		icon: <AiOutlineBook />,
 	},
 	{
-		href: '/dashboard/team',
+		href: '/dashboard/teams',
 		icon: <AiOutlineTeam />,
 	},
 	{
