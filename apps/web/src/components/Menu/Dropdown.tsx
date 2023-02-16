@@ -59,7 +59,7 @@ export const Dropdown = ({ top, children }: DropdownProps) => {
 			leaveFrom="opacity-100 scale-100"
 			leaveTo="opacity-0 scale-90"
 			beforeEnter={setMenuPosition}
-			className="absolute z-50 w-fit rounded-md border bg-white p-2 text-black shadow-sm"
+			className="fixed z-50 w-fit rounded-md border bg-white p-2 text-black shadow-sm"
 		>
 			{children}
 		</Transition>
