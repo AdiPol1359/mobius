@@ -8,7 +8,7 @@ export const TeamsHeader = () => (
 		<PageTitle>Teams</PageTitle>
 		<Button type="button">
 			<AiOutlineTeam className="text-xl" />
-			Dołącz do zespołu
+			Join the team
 		</Button>
 	</header>
 );
