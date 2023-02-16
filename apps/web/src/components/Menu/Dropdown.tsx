@@ -4,7 +4,7 @@ import { Transition } from '@headlessui/react';
 import type { ReactNode } from 'react';
 import { useCallback, useRef } from 'react';
 
-import { useDocumentEvent } from '@/hooks/useDocumentEvent';
+import { useWindowEvent } from '@/hooks/useWindowEvent';
 import { calculateMenuPosition } from '@/lib/menu';
 
 import { useMenuContext } from './MenuProvider';
@@ -37,13 +37,13 @@ export const Dropdown = ({ top, children }: DropdownProps) => {
 		ref.current.style.top = `${top ?? y}px`;
 	}, [buttonId, top]);
 
-	useDocumentEvent('click', (event) => {
+	useWindowEvent('click', (event) => {
 		if (ref.current && !event.composedPath().includes(ref.current)) {
 			closeMenu();
 		}
 	});
 
-	useDocumentEvent('resize', setMenuPosition);
+	useWindowEvent('resize', setMenuPosition);
 
 	return (
 		<Transition
