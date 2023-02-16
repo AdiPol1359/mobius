@@ -1,5 +1,6 @@
 import Link from 'next/link';
-import { VscEllipsis } from 'react-icons/vsc';
+
+import { TeamMenu } from './TeamMenu';
 
 type TeamProps = Readonly<{
 	name: string;
@@ -7,12 +8,7 @@ type TeamProps = Readonly<{
 
 export const Team = ({ name }: TeamProps) => (
 	<article className="relative h-60 rounded-md bg-white shadow-sm transition-colors duration-100 hover:bg-neutral-50">
-		<button
-			type="button"
-			className="absolute right-3.5 top-3 text-xl text-gray-500 hover:text-indigo-600"
-		>
-			<VscEllipsis />
-		</button>
+		<TeamMenu />
 		<Link
 			href="/dashboard/team/foo"
 			className="flex h-full flex-col items-center justify-center"
