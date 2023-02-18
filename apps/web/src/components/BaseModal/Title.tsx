@@ -5,5 +5,5 @@ type TitleProps = Readonly<{
 }>;
 
 export const Title = ({ children }: TitleProps) => (
-	<h2 className="mb-1 text-lg font-medium text-gray-900">{children}</h2>
+	<h2 className="mb-1.5 text-lg font-medium text-gray-900">{children}</h2>
 );
