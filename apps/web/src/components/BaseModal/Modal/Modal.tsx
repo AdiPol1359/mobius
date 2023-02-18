@@ -1,9 +1,10 @@
 import { Transition } from '@headlessui/react';
 import type { MouseEvent, ReactNode } from 'react';
 import { createPortal } from 'react-dom';
-import { MdClose } from 'react-icons/md';
 
 import { useOnKeydown } from '@/hooks/useOnKeydown';
+
+import { CloseButton } from './CloseButton';
 
 type ModalProps = Readonly<{
 	isOpen: boolean;
@@ -43,14 +44,7 @@ export const Modal = ({ isOpen, children, onClose }: ModalProps) => {
 					className="relative w-full rounded-lg bg-white p-6 shadow-xl"
 					onClick={handleModalClick}
 				>
-					<button
-						type="button"
-						aria-label="Close modal"
-						onClick={onClose}
-						className="absolute right-3 top-3.5 text-lg text-gray-900 hover:text-gray-800"
-					>
-						<MdClose />
-					</button>
+					<CloseButton onClick={onClose} />
 					{children}
 				</Transition.Child>
 			</div>
