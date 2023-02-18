@@ -14,7 +14,7 @@ export const JoinTeamButton = () => {
 		<>
 			<Button type="button" onClick={openModal}>
 				<AiOutlineTeam className="text-xl" />
-				Join the team
+				Join or create team
 			</Button>
 			<JoinTeamModal isOpen={isOpen} onClose={closeModal} />
 		</>
