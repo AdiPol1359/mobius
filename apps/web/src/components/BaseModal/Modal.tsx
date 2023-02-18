@@ -34,12 +34,12 @@ export const Modal = ({ isOpen, children, onClose }: ModalProps) => {
 		>
 			<div className="mx-auto flex min-h-full w-full max-w-xl items-center">
 				<Transition.Child
-					enter="transition-all duration-200"
-					enterFrom="scale-95 opacity-0"
-					enterTo="scale-100 opacity-100"
+					enter="transition-all duration-300"
+					enterFrom="opacity-0 -translate-y-5"
+					enterTo="opacity-100 translate-y-0"
 					leave="transition-all duration-150"
-					leaveFrom="scale-100 opacity-100"
-					leaveTo="scale-95 opacity-0"
+					leaveFrom="translate-y-0 opacity-100"
+					leaveTo="translate-y-5 opacity-0"
 					className="relative w-full rounded-lg bg-white p-6 shadow-xl"
 					onClick={handleModalClick}
 				>
