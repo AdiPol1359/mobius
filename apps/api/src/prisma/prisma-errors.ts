@@ -1,9 +1,9 @@
 import { Prisma } from '@prisma/client';
 
-export const prismaErrorCodes = {
+export const prismaErrorCode = {
 	UniqueKeyViolation: 'P2002',
 } as const;
 
 export interface PrismaError extends Prisma.PrismaClientKnownRequestError {
-	readonly code: (typeof prismaErrorCodes)[keyof typeof prismaErrorCodes];
+	readonly code: (typeof prismaErrorCode)[keyof typeof prismaErrorCode];
 }

@@ -4,7 +4,7 @@ import * as bcrypt from 'bcrypt';
 
 import { PRISMA_TOKEN } from '@/prisma/prisma.module';
 import { isPrismaError } from '@/prisma/prisma.utils';
-import { prismaErrorCodes } from '@/prisma/prisma-errors';
+import { prismaErrorCode } from '@/prisma/prisma-errors';
 
 import { CreateUserDto } from './dto/create-user.dto';
 import { AppUser } from './users.types';
@@ -32,7 +32,7 @@ export class UsersService {
 		} catch (err) {
 			if (
 				isPrismaError(err) &&
-				err.code === prismaErrorCodes.UniqueKeyViolation
+				err.code === prismaErrorCode.UniqueKeyViolation
 			) {
 				throw new ConflictException('User already exists.');
 			}
