@@ -21,7 +21,7 @@ module.exports = {
 			typescript: {
 				typescript: true,
 				node: true,
-				project: ['apps/*/tsconfig.json', 'packages/*/tsconfig.json'],
+				project: ['apps/**/tsconfig.json', 'packages/**/tsconfig.json'],
 			},
 		},
 	},
