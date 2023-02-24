@@ -4,9 +4,11 @@ import {
 	Injectable,
 	NotFoundException,
 } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import { Prisma, PrismaClient } from '@prisma/client';
 import * as bcrypt from 'bcrypt';
 
+import { AppConfigService } from '@/app.configuration';
 import { PRISMA_TOKEN } from '@/prisma/prisma.module';
 import { isPrismaError } from '@/prisma/prisma.utils';
 import { prismaErrorCode } from '@/prisma/prisma-errors';
@@ -24,13 +26,16 @@ export const select = {
 
 @Injectable()
 export class UsersService {
-	constructor(@Inject(PRISMA_TOKEN) private readonly prisma: PrismaClient) {}
+	constructor(
+		@Inject(PRISMA_TOKEN) private readonly prisma: PrismaClient,
+		@Inject(ConfigService) private readonly configService: AppConfigService
+	) {}
 
 	async createUser({ password, ...rest }: CreateUserDto): Promise<AppUser> {
 		try {
 			return await this.prisma.user.create({
 				data: {
-					password: await bcrypt.hash(password, 10),
+					password: await this.hashPassword(password),
 					...rest,
 				},
 				select,
@@ -58,5 +63,9 @@ export class UsersService {
 		}
 
 		return user;
+	}
+
+	private hashPassword(password: string): Promise<string> {
+		return bcrypt.hash(password, this.configService.get('SALT_OR_ROUNDS'));
 	}
 }

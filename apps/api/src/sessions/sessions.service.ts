@@ -1,6 +1,12 @@
-import { Injectable, InternalServerErrorException } from '@nestjs/common';
+import {
+	Inject,
+	Injectable,
+	InternalServerErrorException,
+} from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import { Response } from 'express';
 
+import { AppConfigService } from '@/app.configuration';
 import { AuthService } from '@/auth/auth.service';
 import { AppUser } from '@/users/users.types';
 
@@ -9,7 +15,10 @@ import { ExpressSession } from './sessions.types';
 
 @Injectable()
 export class SessionsService {
-	constructor(private readonly authService: AuthService) {}
+	constructor(
+		@Inject(ConfigService) private readonly configService: AppConfigService,
+		private readonly authService: AuthService
+	) {}
 
 	async createSession(
 		{ email, password }: CreateSessionDto,
@@ -31,7 +40,7 @@ export class SessionsService {
 					return reject(new InternalServerErrorException());
 				}
 
-				response.clearCookie('sessionId');
+				response.clearCookie(this.configService.get('SESSION_COOKIE_NAME'));
 				resolve();
 			});
 		});
