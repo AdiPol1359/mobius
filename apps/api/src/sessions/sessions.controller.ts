@@ -9,10 +9,16 @@ import {
 	Res,
 	Session,
 } from '@nestjs/common';
+import {
+	ApiNotFoundResponse,
+	ApiTags,
+	ApiUnauthorizedResponse,
+} from '@nestjs/swagger';
 import { Response } from 'express';
 
 import { Auth } from '@/auth/auth.decorator';
 import { User } from '@/common/decorators/user.decorator';
+import { OpenAPIHttpException } from '@/common/exceptions/openapi-http.exception';
 import { UserDto } from '@/users/dto/user.dto';
 import { userToUserDto } from '@/users/users.mapper';
 import { AppUser } from '@/users/users.types';
@@ -22,6 +28,7 @@ import { SessionsService } from './sessions.service';
 import { ExpressSession } from './sessions.types';
 
 @Controller('sessions')
+@ApiTags('Sessions')
 export class SessionsController {
 	constructor(private readonly sessionsService: SessionsService) {}
 
@@ -32,6 +39,14 @@ export class SessionsController {
 	}
 
 	@Post()
+	@ApiNotFoundResponse({
+		description: 'User not found.',
+		type: OpenAPIHttpException,
+	})
+	@ApiUnauthorizedResponse({
+		description: 'Incorrect email or password.',
+		type: OpenAPIHttpException,
+	})
 	async createSession(
 		@Body() createSessionDto: CreateSessionDto,
 		@Session() session: ExpressSession
