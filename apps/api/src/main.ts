@@ -7,10 +7,13 @@ import ms from 'ms';
 
 import { AppConfigService } from './app.configuration';
 import { AppModule } from './app.module';
+import { swaggerSetup } from './common/setups/swagger.setup';
 
 async function bootstrap() {
 	const app = await NestFactory.create<NestExpressApplication>(AppModule);
 	const configService = app.get<AppConfigService>(ConfigService);
+
+	swaggerSetup(app, configService);
 
 	app.use(
 		session({
