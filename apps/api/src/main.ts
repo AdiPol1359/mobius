@@ -15,6 +15,11 @@ async function bootstrap() {
 
 	swaggerSetup(app, configService);
 
+	app.enableCors({
+		origin: configService.get('CORS_ORIGIN'),
+		credentials: true,
+	});
+
 	app.use(
 		session({
 			name: configService.get('SESSION_COOKIE_NAME'),

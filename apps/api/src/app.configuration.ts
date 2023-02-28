@@ -10,6 +10,7 @@ const AppConfigSchema = z.object({
 		z.string().regex(NUMBER_REGEX).transform(Number),
 		z.string(),
 	]),
+	CORS_ORIGIN: z.string().min(1),
 	SESSION_COOKIE_NAME: z.string().min(1),
 	SESSION_COOKIE_SECRET: z.string().min(1),
 	SESSION_COOKIE_MAX_AGE: z.string().min(1),
