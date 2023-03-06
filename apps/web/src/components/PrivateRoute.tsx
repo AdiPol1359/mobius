@@ -5,6 +5,7 @@ import type { ReactNode } from 'react';
 import { useEffect } from 'react';
 
 import { useUser } from '@/hooks/useUser';
+import { DASHBOARD_PATH, SIGN_IN_PATH } from '@/lib/constants';
 
 type PrivateRouteProps = Readonly<{
 	loggedIn?: boolean;
@@ -20,7 +21,7 @@ export const PrivateRoute = ({
 
 	useEffect(() => {
 		if (!isLoading && Boolean(user) !== loggedIn) {
-			router.replace(loggedIn ? '/sign-in' : '/dashboard');
+			router.replace(loggedIn ? SIGN_IN_PATH : DASHBOARD_PATH);
 		}
 	}, [user, router, loggedIn, isLoading]);
 
