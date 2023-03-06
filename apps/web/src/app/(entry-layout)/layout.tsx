@@ -6,8 +6,8 @@ export default function EntryLayout({
 	readonly children: ReactNode;
 }) {
 	return (
-		<main className="my-auto p-1.5">
-			<div className="mx-auto w-full max-w-xl">{children}</div>
+		<main className="my-auto p-3">
+			<div className="mx-auto w-full max-w-xl space-y-6">{children}</div>
 		</main>
 	);
 }

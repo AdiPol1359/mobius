@@ -1,7 +1,11 @@
 'use client';
 
+import { useAlert } from '@/hooks/useAlert';
+import { useUser } from '@/hooks/useUser';
 import { useZodForm } from '@/hooks/useZodForm';
+import { createUser } from '@/services/users.service';
 
+import { Alert } from '../Alert';
 import { Checkbox } from '../Checkbox';
 import { EntryForm } from '../EntryForm';
 import { Input } from '../Input';
@@ -9,56 +13,85 @@ import { PasswordInput } from '../PasswordInput';
 import { signUpFormSchema } from './SignUpForm.schemas';
 
 export const SignUpForm = () => {
+	const { alert, showAlert, hideAlert } = useAlert();
+	const { registerMutation } = useUser();
 	const {
 		handleFormSubmit,
 		register,
+		reset,
 		formState: { errors },
 	} = useZodForm(signUpFormSchema, {
-		onSubmit: (data) => {
-			console.log('sign up form handler', data);
+		onSubmit: ({ email, password, firstName, lastName }) => {
+			registerMutation.mutate(
+				{ email, password, firstName, lastName },
+				{
+					onSuccess: () => {
+						reset();
+						showAlert({
+							variant: 'success',
+							content: 'Your account has been successfully created!',
+						});
+					},
+					onError: (err) => {
+						if (err instanceof createUser.Error) {
+							showAlert({
+								variant: 'error',
+								content: err.getActualType().data.message,
+							});
+						}
+					},
+				}
+			);
 		},
 	});
 
 	return (
-		<EntryForm title="Sign up" onSubmit={handleFormSubmit}>
-			<Input
-				type="text"
-				label="First name"
-				placeholder="Your first name"
-				error={errors.firstName?.message}
-				{...register('firstName')}
-			/>
-			<Input
-				type="text"
-				label="Last name"
-				placeholder="Your last name"
-				error={errors.lastName?.message}
-				{...register('lastName')}
-			/>
-			<Input
-				type="email"
-				label="Email address"
-				placeholder="Your email"
-				error={errors.email?.message}
-				{...register('email')}
-			/>
-			<PasswordInput
-				label="Password"
-				placeholder="Your password"
-				error={errors.password?.message}
-				{...register('password')}
-			/>
-			<PasswordInput
-				label="Confirm password"
-				placeholder="Confirm your password"
-				error={errors.confirmPassword?.message}
-				{...register('confirmPassword')}
-			/>
-			<Checkbox
-				label="I accept the Terms and Conditions"
-				error={errors?.acceptRules?.message}
-				{...register('acceptRules')}
-			/>
-		</EntryForm>
+		<>
+			{alert && (
+				<Alert variant={alert.variant} onClose={hideAlert}>
+					{alert.content}
+				</Alert>
+			)}
+			<EntryForm title="Sign up" onSubmit={handleFormSubmit}>
+				<Input
+					type="text"
+					label="First name"
+					placeholder="Your first name"
+					error={errors.firstName?.message}
+					{...register('firstName')}
+				/>
+				<Input
+					type="text"
+					label="Last name"
+					placeholder="Your last name"
+					error={errors.lastName?.message}
+					{...register('lastName')}
+				/>
+				<Input
+					type="email"
+					label="Email address"
+					placeholder="Your email"
+					error={errors.email?.message}
+					{...register('email')}
+				/>
+				<PasswordInput
+					label="Password"
+					placeholder="Your password"
+					error={errors.password?.message}
+					{...register('password')}
+				/>
+				<PasswordInput
+					label="Confirm password"
+					placeholder="Confirm your password"
+					error={errors.confirmPassword?.message}
+					{...register('confirmPassword')}
+				/>
+				<Checkbox
+					label="I accept the Terms and Conditions"
+					error={errors?.acceptRules?.message}
+					{...register('acceptRules')}
+				/>
+			</EntryForm>
+		</>
 	);
 };
