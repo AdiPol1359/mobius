@@ -12,7 +12,7 @@ export const signUpFormSchema = z
 		lastName: z.string().min(1, 'Please enter your last name'),
 		email: z.string().regex(EMAIL_REGEX, EMAIL_ERROR_MESSAGE),
 		password: z.string().regex(PASSWORD_REGEX, PASSWORD_ERROR_MESSAGE),
-		confirmPassword: z.string().min(1, PASSWORD_ERROR_MESSAGE),
+		confirmPassword: z.string().regex(PASSWORD_REGEX, PASSWORD_ERROR_MESSAGE),
 		acceptRules: z.literal(true, {
 			errorMap: () => ({ message: 'Please accept the terms and conditions' }),
 		}),
