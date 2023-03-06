@@ -23,7 +23,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
 							ref={ref}
 							aria-invalid={Boolean(error)}
 							type="checkbox"
-							className="hidden [&+div]:checked:border-indigo-500 [&+div]:checked:bg-indigo-600 [&+div>svg]:checked:opacity-100"
+							className="hidden [&+div>svg]:checked:opacity-100 [&+div]:checked:border-indigo-500 [&+div]:checked:bg-indigo-600"
 							{...props}
 						/>
 						<div
