@@ -34,7 +34,7 @@ const items = [
 		label: 'Settings',
 		icon: <AiOutlineSetting />,
 	},
-];
+] as const;
 
 export const DashboardNavigation = () => (
 	<nav className="w-14 border-r bg-white">
