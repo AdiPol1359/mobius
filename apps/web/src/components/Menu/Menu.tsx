@@ -2,6 +2,7 @@ import type { ReactNode } from 'react';
 
 import { Button } from './Button';
 import { Dropdown } from './Dropdown';
+import { Item } from './Item';
 import { MenuProvider } from './MenuProvider';
 
 type MenuProps = Readonly<{
@@ -14,3 +15,4 @@ export const Menu = ({ children }: MenuProps) => (
 
 Menu.Button = Button;
 Menu.Dropdown = Dropdown;
+Menu.Item = Item;

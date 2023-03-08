@@ -1,5 +1,5 @@
 import { NotificationsMenu } from './NotificationsMenu';
-import { UserMenu } from './UserMenu';
+import { UserMenu } from './UserMenu/UserMenu';
 
 export const HEADER_MENU_TOP = 55;
 

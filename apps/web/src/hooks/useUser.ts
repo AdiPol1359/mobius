@@ -1,6 +1,10 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 
-import { createSession, getMeSession } from '@/services/sessions.service';
+import {
+	createSession,
+	deleteSession,
+	getMeSession,
+} from '@/services/sessions.service';
 import { createUser } from '@/services/users.service';
 
 const QUERY_KEY = ['user'];
@@ -38,5 +42,12 @@ export const useUser = () => {
 		},
 	});
 
-	return { user, registerMutation, loginMutation, ...rest };
+	const logoutMutation = useMutation({
+		mutationFn: deleteSession,
+		onSuccess: () => {
+			queryClient.setQueryData(QUERY_KEY, null);
+		},
+	});
+
+	return { user, registerMutation, loginMutation, logoutMutation, ...rest };
 };
