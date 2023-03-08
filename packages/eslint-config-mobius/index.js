@@ -19,10 +19,9 @@ module.exports = {
 	settings: {
 		'import/resolver': {
 			typescript: {
-				typescript: true,
-				node: true,
 				project: ['apps/*/tsconfig.json', 'packages/*/tsconfig.json'],
 			},
+			node: true,
 		},
 	},
 };
