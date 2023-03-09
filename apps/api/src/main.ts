@@ -4,14 +4,19 @@ import { NestFactory } from '@nestjs/core';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import session from 'express-session';
 import ms from 'ms';
+import { RedisClientType } from 'redis';
 
 import { AppConfigService } from './app.configuration';
 import { AppModule } from './app.module';
 import { swaggerSetup } from './common/setups/swagger.setup';
+import { REDIS_TOKEN } from './redis/redis.module';
+import { RedisStore } from './sessions/stores/redis.store';
 
 async function bootstrap() {
 	const app = await NestFactory.create<NestExpressApplication>(AppModule);
+
 	const configService = app.get<AppConfigService>(ConfigService);
+	const redis = app.get<RedisClientType>(REDIS_TOKEN);
 
 	swaggerSetup(app, configService);
 
@@ -27,6 +32,7 @@ async function bootstrap() {
 			rolling: true,
 			resave: false,
 			saveUninitialized: false,
+			store: new RedisStore(redis),
 			cookie: {
 				maxAge: ms(configService.get<string>('SESSION_COOKIE_MAX_AGE')),
 			},
