@@ -8,13 +8,42 @@ datasource db {
 }
 
 model User {
-  id        Int      @id @default(autoincrement())
-  email     String   @unique
-  password  String   @unique
-  firstName String   @map("first_name")
-  lastName  String   @map("last_name")
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @updatedAt @map("updated_at")
+  id         Int          @id @default(autoincrement())
+  email      String       @unique
+  password   String       @unique
+  firstName  String       @map("first_name")
+  lastName   String       @map("last_name")
+  createdAt  DateTime     @default(now()) @map("created_at")
+  updatedAt  DateTime     @updatedAt @map("updated_at")
+  teamMember TeamMember[]
 
   @@map("user")
+}
+
+model Team {
+  id         String       @id @default(uuid())
+  name       String
+  createdAt  DateTime     @default(now()) @map("created_at")
+  updatedAt  DateTime     @updatedAt @map("updated_at")
+  teamMember TeamMember[]
+
+  @@map("team")
+}
+
+model TeamMember {
+  user   User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId Int              @map("user_id")
+  team   Team             @relation(fields: [teamId], references: [id], onDelete: Cascade)
+  teamId String           @map("team_id")
+  roles  TeamMemberRole[]
+
+  @@id([userId, teamId])
+  @@map("team_member")
+}
+
+enum TeamMemberRole {
+  OWNER
+  MEMBER
+
+  @@map("team_member_role")
 }

@@ -14,6 +14,9 @@ export interface paths {
 		post: operations['SessionsController_createSession'];
 		delete: operations['SessionsController_deleteSession'];
 	};
+	'/teams': {
+		post: operations['TeamsController_createTeam'];
+	};
 }
 
 export type webhooks = Record<string, never>;
@@ -50,6 +53,16 @@ export interface components {
 			email: string;
 			/** @example Pass123! */
 			password: string;
+		};
+		CreateTeamDto: {
+			/** @example FooTeam */
+			name: string;
+		};
+		TeamDto: {
+			/** @example be756869-0cbe-4be9-8e28-4abbde7bc3fa */
+			id: string;
+			/** @example FooTeam */
+			name: string;
 		};
 	};
 	responses: never;
@@ -126,6 +139,26 @@ export interface operations {
 	SessionsController_deleteSession: {
 		responses: {
 			204: never;
+			/** @description Incorrect authentication credentials. */
+			401: {
+				content: {
+					'application/json': components['schemas']['OpenAPIHttpException'];
+				};
+			};
+		};
+	};
+	TeamsController_createTeam: {
+		requestBody: {
+			content: {
+				'application/json': components['schemas']['CreateTeamDto'];
+			};
+		};
+		responses: {
+			201: {
+				content: {
+					'application/json': components['schemas']['TeamDto'];
+				};
+			};
 			/** @description Incorrect authentication credentials. */
 			401: {
 				content: {
