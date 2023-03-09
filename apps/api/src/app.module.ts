@@ -5,6 +5,7 @@ import { validate } from './app.configuration';
 import { PrismaModule } from './prisma/prisma.module';
 import { RedisModule } from './redis/redis.module';
 import { SessionsModule } from './sessions/sessions.module';
+import { TeamsModule } from './teams/teams.module';
 import { UsersModule } from './users/users.module';
 
 @Module({
@@ -14,6 +15,7 @@ import { UsersModule } from './users/users.module';
 		RedisModule,
 		UsersModule,
 		SessionsModule,
+		TeamsModule,
 	],
 })
 export class AppModule {}
