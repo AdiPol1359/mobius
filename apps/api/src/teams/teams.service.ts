@@ -17,7 +17,7 @@ export class TeamsService {
 		return this.prisma.team.create({
 			data: {
 				name,
-				TeamMember: { create: { userId: user.id, roles: ['OWNER'] } },
+				teamMember: { create: { userId: user.id, roles: ['OWNER'] } },
 			},
 			select,
 		});
