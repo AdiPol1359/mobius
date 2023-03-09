@@ -3,6 +3,7 @@ import { ConfigModule } from '@nestjs/config';
 
 import { validate } from './app.configuration';
 import { PrismaModule } from './prisma/prisma.module';
+import { RedisModule } from './redis/redis.module';
 import { SessionsModule } from './sessions/sessions.module';
 import { UsersModule } from './users/users.module';
 
@@ -10,6 +11,7 @@ import { UsersModule } from './users/users.module';
 	imports: [
 		ConfigModule.forRoot({ isGlobal: true, validate }),
 		PrismaModule,
+		RedisModule,
 		UsersModule,
 		SessionsModule,
 	],

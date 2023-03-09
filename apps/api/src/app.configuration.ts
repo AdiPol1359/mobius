@@ -14,6 +14,7 @@ const AppConfigSchema = z.object({
 	SESSION_COOKIE_NAME: z.string().min(1),
 	SESSION_COOKIE_SECRET: z.string().min(1),
 	SESSION_COOKIE_MAX_AGE: z.string().min(1),
+	REDIS_URL: z.string().min(1),
 });
 
 export const validate = (data: Record<string, unknown>) =>
