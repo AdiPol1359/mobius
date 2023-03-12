@@ -16,7 +16,6 @@ export const useTeams = () => {
 		staleTime: Infinity,
 		cacheTime: Infinity,
 	});
-
 	const createTeamMutation = useMutation({
 		mutationFn: createTeam,
 		onSuccess: () => {
