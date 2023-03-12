@@ -7,8 +7,8 @@ const QUERY_KEY = ['teams'];
 
 export const useTeams = () => {
 	const router = useRouter();
-
 	const queryClient = useQueryClient();
+
 	const result = useQuery({
 		queryKey: QUERY_KEY,
 		queryFn: () => getAllTeams({}),
