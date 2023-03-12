@@ -1,14 +1,31 @@
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { useRouter } from 'next/navigation';
 
-import { getAllTeams } from '@/services/teams.service';
+import { createTeam, getAllTeams } from '@/services/teams.service';
+
+const QUERY_KEY = ['teams'];
 
 export const useTeams = () => {
+	const router = useRouter();
+	const queryClient = useQueryClient();
+
 	const result = useQuery({
-		queryKey: ['teams'],
+		queryKey: QUERY_KEY,
 		queryFn: () => getAllTeams({}),
 		staleTime: Infinity,
 		cacheTime: Infinity,
 	});
 
-	return result;
+	const createTeamMutation = useMutation({
+		mutationFn: createTeam,
+		onSuccess: () => {
+			queryClient.invalidateQueries({ queryKey: QUERY_KEY });
+		},
+	});
+
+	const navigateToTeam = (id: string) => {
+		router.push(`/dashboard/teams/${id}`);
+	};
+
+	return { createTeamMutation, navigateToTeam, ...result };
 };
