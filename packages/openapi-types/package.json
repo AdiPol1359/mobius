@@ -8,6 +8,6 @@
 		"generate": "openapi-typescript http://localhost:8080/docs-json --output types.ts"
 	},
 	"devDependencies": {
-		"openapi-typescript": "6.1.1"
+		"openapi-typescript": "6.2.0"
 	}
 }
