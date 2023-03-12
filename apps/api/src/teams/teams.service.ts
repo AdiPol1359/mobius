@@ -13,6 +13,13 @@ export const select = { id: true, name: true } satisfies Prisma.TeamSelect;
 export class TeamsService {
 	constructor(@Inject(PRISMA_TOKEN) private readonly prisma: PrismaClient) {}
 
+	getAllTeams(user: AppUser): Promise<Team[]> {
+		return this.prisma.team.findMany({
+			where: { teamMember: { every: { userId: user.id } } },
+			select,
+		});
+	}
+
 	createTeam({ name }: CreateTeamDto, user: AppUser): Promise<Team> {
 		return this.prisma.team.create({
 			data: {

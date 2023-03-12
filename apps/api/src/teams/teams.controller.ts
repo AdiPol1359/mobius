@@ -1,4 +1,4 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 
 import { Auth } from '@/auth/auth.decorator';
@@ -14,6 +14,11 @@ import { TeamsService } from './teams.service';
 @Controller('teams')
 export class TeamsController {
 	constructor(private readonly teamsService: TeamsService) {}
+
+	@Get()
+	getAllTeams(@User() user: AppUser): Promise<TeamDto[]> {
+		return this.teamsService.getAllTeams(user);
+	}
 
 	@Post()
 	createTeam(

@@ -15,6 +15,7 @@ export interface paths {
 		delete: operations['SessionsController_deleteSession'];
 	};
 	'/teams': {
+		get: operations['TeamsController_getAllTeams'];
 		post: operations['TeamsController_createTeam'];
 	};
 }
@@ -54,13 +55,13 @@ export interface components {
 			/** @example Pass123! */
 			password: string;
 		};
-		CreateTeamDto: {
-			/** @example FooTeam */
-			name: string;
-		};
 		TeamDto: {
 			/** @example be756869-0cbe-4be9-8e28-4abbde7bc3fa */
 			id: string;
+			/** @example FooTeam */
+			name: string;
+		};
+		CreateTeamDto: {
 			/** @example FooTeam */
 			name: string;
 		};
@@ -139,6 +140,21 @@ export interface operations {
 	SessionsController_deleteSession: {
 		responses: {
 			204: never;
+			/** @description Incorrect authentication credentials. */
+			401: {
+				content: {
+					'application/json': components['schemas']['OpenAPIHttpException'];
+				};
+			};
+		};
+	};
+	TeamsController_getAllTeams: {
+		responses: {
+			200: {
+				content: {
+					'application/json': components['schemas']['TeamDto'][];
+				};
+			};
 			/** @description Incorrect authentication credentials. */
 			401: {
 				content: {
