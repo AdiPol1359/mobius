@@ -7,7 +7,7 @@
 		"build": "nest build",
 		"format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
 		"start": "nest start",
-		"start:dev": "wait-on tcp:5432 && prisma generate && prisma migrate dev && nest start --watch",
+		"start:dev": "wait-on tcp:5432 tcp:6379 && prisma generate && prisma migrate dev && nest start --watch",
 		"start:debug": "nest start --debug --watch",
 		"start:prod": "node dist/main",
 		"start:db": "docker compose up",
