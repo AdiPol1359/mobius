@@ -1,16 +1,18 @@
 import Link from 'next/link';
 
-import { TeamMenu } from './TeamMenu';
+import type { Team } from '@/types';
+
+import { SingleTeamMenu } from './SingleTeamMenu';
 
 type TeamProps = Readonly<{
-	name: string;
+	team: Team;
 }>;
 
-export const Team = ({ name }: TeamProps) => (
+export const SingleTeam = ({ team: { id, name } }: TeamProps) => (
 	<article className="relative h-60 rounded-md bg-white shadow-sm transition-colors duration-100 hover:bg-neutral-50">
-		<TeamMenu />
+		<SingleTeamMenu />
 		<Link
-			href="/dashboard/teams/foo"
+			href={`/dashboard/teams/${id}`}
 			className="flex h-full flex-col items-center justify-center"
 		>
 			<div className="flex h-20 w-20 items-center justify-center rounded-md bg-indigo-600 text-white">
