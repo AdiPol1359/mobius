@@ -5,9 +5,9 @@ import { useUser } from '@/hooks/useUser';
 import { useZodForm } from '@/hooks/useZodForm';
 import { createSession } from '@/services/sessions.service';
 
-import { Alert } from '../Alert';
+import { Alert } from '../Alert/Alert';
 import { EntryForm } from '../EntryForm';
-import { Input } from '../Input';
+import { Input } from '../Input/Input';
 import { PasswordInput } from '../PasswordInput';
 import { signInFormSchema } from './SignInForm.schemas';
 

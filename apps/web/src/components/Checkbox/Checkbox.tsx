@@ -2,7 +2,7 @@ import { forwardRef, useId } from 'react';
 import { FaCheck } from 'react-icons/fa';
 import { twMerge } from 'tailwind-merge';
 
-import { InputError } from './InputError';
+import { InputError } from '../InputError';
 
 type CheckboxProps = Readonly<{
 	label?: string;
