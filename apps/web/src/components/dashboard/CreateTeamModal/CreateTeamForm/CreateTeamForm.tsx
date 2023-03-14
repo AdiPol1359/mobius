@@ -1,7 +1,7 @@
 'use client';
 
-import { Button } from '@/components/Button/Button';
-import { Input } from '@/components/Input/Input';
+import { Button } from '@/components/common/Button/Button';
+import { Input } from '@/components/common/Input/Input';
 import { useTeams } from '@/hooks/useTeams';
 import { useZodForm } from '@/hooks/useZodForm';
 

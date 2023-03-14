@@ -1,6 +1,7 @@
 import type { ComponentProps } from 'react';
 
-import { BaseModal } from '../BaseModal/BaseModal';
+import { BaseModal } from '@/components/common/BaseModal/BaseModal';
+
 import { CreateTeamForm } from './CreateTeamForm/CreateTeamForm';
 
 export const CreateTeamModal = (props: ComponentProps<typeof BaseModal>) => {

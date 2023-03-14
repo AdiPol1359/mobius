@@ -2,7 +2,7 @@
 
 import { BiLogOut } from 'react-icons/bi';
 
-import { Menu } from '@/components/Menu/Menu';
+import { Menu } from '@/components/common/Menu/Menu';
 import { useUser } from '@/hooks/useUser';
 
 export const LogoutButton = () => {

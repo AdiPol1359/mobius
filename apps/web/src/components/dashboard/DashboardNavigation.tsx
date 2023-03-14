@@ -6,7 +6,7 @@ import {
 	AiOutlineTeam,
 } from 'react-icons/ai';
 
-import { ActiveLink } from '@/components/ActiveLink';
+import { ActiveLink } from '@/components/common/ActiveLink';
 
 const items = [
 	{

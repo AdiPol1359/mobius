@@ -1,15 +1,15 @@
 'use client';
 
+import { Alert } from '@/components/common/Alert/Alert';
+import { Checkbox } from '@/components/common/Checkbox/Checkbox';
+import { Input } from '@/components/common/Input/Input';
+import { PasswordInput } from '@/components/common/PasswordInput';
 import { useAlert } from '@/hooks/useAlert';
 import { useUser } from '@/hooks/useUser';
 import { useZodForm } from '@/hooks/useZodForm';
 import { createUser } from '@/services/users.service';
 
-import { Alert } from '../Alert/Alert';
-import { Checkbox } from '../Checkbox/Checkbox';
 import { EntryForm } from '../EntryForm';
-import { Input } from '../Input/Input';
-import { PasswordInput } from '../PasswordInput';
 import { signUpFormSchema } from './SignUpForm.schemas';
 
 export const SignUpForm = () => {

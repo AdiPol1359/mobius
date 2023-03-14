@@ -1,5 +1,4 @@
-import { PageTitle } from '@/components/PageTitle';
-
+import { PageTitle } from '../PageTitle';
 import { JoinOrCreateTeamButton } from './JoinOrCreateTeamButton';
 
 export const TeamsHeader = () => (

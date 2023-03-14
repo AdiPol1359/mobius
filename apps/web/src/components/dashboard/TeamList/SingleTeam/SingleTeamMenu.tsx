@@ -2,7 +2,7 @@
 
 import { VscEllipsis } from 'react-icons/vsc';
 
-import { Menu } from '@/components/Menu/Menu';
+import { Menu } from '@/components/common/Menu/Menu';
 
 export const SingleTeamMenu = () => (
 	<Menu>

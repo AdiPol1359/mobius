@@ -1,9 +1,8 @@
 import type { ComponentProps } from 'react';
 
-import { BaseModal } from '@/components/BaseModal/BaseModal';
-
-import { Button } from './Button/Button';
-import { Input } from './Input/Input';
+import { BaseModal } from '../common/BaseModal/BaseModal';
+import { Button } from '../common/Button/Button';
+import { Input } from '../common/Input/Input';
 
 type JoinTeamModalProps = Readonly<{
 	onButtonClick: () => void;
