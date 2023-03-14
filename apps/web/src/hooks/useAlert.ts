@@ -1,6 +1,6 @@
 import { useCallback, useState } from 'react';
 
-import type { Variant } from '@/components/Alert/Alert';
+import type { Variant } from '@/components/common/Alert/Alert';
 
 interface Alert {
 	readonly variant: Variant;
