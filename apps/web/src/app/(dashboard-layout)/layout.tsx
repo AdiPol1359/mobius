@@ -1,8 +1,8 @@
 import type { ReactNode } from 'react';
 
-import { DashboardHeader } from '@/components/DashboardHeader/DashboardHeader';
-import { DashboardNavigation } from '@/components/DashboardNavigation';
-import { PrivateRoute } from '@/components/PrivateRoute';
+import { PrivateRoute } from '@/components/common/PrivateRoute';
+import { DashboardHeader } from '@/components/dashboard/DashboardHeader/DashboardHeader';
+import { DashboardNavigation } from '@/components/dashboard/DashboardNavigation';
 
 export default function DashboardLayout({
 	children,

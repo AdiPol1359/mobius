@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 
-import { Button } from './Button/Button';
+import { Button } from '../common/Button/Button';
 
 type EntryFormProps = Readonly<{
 	title: string;

@@ -2,7 +2,7 @@
 
 import { RiNotificationLine } from 'react-icons/ri';
 
-import { Menu } from '@/components/Menu/Menu';
+import { Menu } from '@/components/common/Menu/Menu';
 
 import { HEADER_MENU_TOP } from './DashboardHeader';
 

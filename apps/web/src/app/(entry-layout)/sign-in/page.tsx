@@ -1,5 +1,5 @@
-import { PrivateRoute } from '@/components/PrivateRoute';
-import { SignInForm } from '@/components/SignInForm/SignInForm';
+import { PrivateRoute } from '@/components/common/PrivateRoute';
+import { SignInForm } from '@/components/entry/SignInForm/SignInForm';
 
 export default function SignInPage() {
 	return (
