@@ -37,7 +37,7 @@ export const useUser = () => {
 
 	const loginMutation = useMutation({
 		mutationFn: createSession,
-		onSuccess: (data) => {
+		onSuccess: ({ data }) => {
 			queryClient.setQueryData(QUERY_KEY, data);
 		},
 	});
