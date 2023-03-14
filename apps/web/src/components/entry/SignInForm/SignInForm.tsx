@@ -2,7 +2,7 @@
 
 import { Alert } from '@/components/common/Alert/Alert';
 import { Input } from '@/components/common/Input/Input';
-import { PasswordInput } from '@/components/common/PasswordInput';
+import { PasswordInput } from '@/components/common/PasswordInput/PasswordInput';
 import { useAlert } from '@/hooks/useAlert';
 import { useUser } from '@/hooks/useUser';
 import { useZodForm } from '@/hooks/useZodForm';

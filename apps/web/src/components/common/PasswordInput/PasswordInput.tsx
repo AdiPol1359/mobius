@@ -5,7 +5,7 @@ import { forwardRef, useState } from 'react';
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 import { twMerge } from 'tailwind-merge';
 
-import { Input } from './Input/Input';
+import { Input } from '../Input/Input';
 
 export const PasswordInput = forwardRef<
 	HTMLInputElement,
