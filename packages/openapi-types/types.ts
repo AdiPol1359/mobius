@@ -18,6 +18,9 @@ export interface paths {
 		get: operations['TeamsController_getAllTeams'];
 		post: operations['TeamsController_createTeam'];
 	};
+	'/teams/join': {
+		post: operations['TeamsController_joinTeam'];
+	};
 }
 
 export type webhooks = Record<string, never>;
@@ -64,6 +67,10 @@ export interface components {
 		CreateTeamDto: {
 			/** @example FooTeam */
 			name: string;
+		};
+		JoinTeamDto: {
+			/** @example ABCD1234 */
+			code: string;
 		};
 	};
 	responses: never;
@@ -177,6 +184,28 @@ export interface operations {
 			};
 			/** @description Incorrect authentication credentials. */
 			401: {
+				content: {
+					'application/json': components['schemas']['OpenAPIHttpException'];
+				};
+			};
+		};
+	};
+	TeamsController_joinTeam: {
+		requestBody: {
+			content: {
+				'application/json': components['schemas']['JoinTeamDto'];
+			};
+		};
+		responses: {
+			204: never;
+			/** @description Incorrect authentication credentials. */
+			401: {
+				content: {
+					'application/json': components['schemas']['OpenAPIHttpException'];
+				};
+			};
+			/** @description Team code not found. */
+			404: {
 				content: {
 					'application/json': components['schemas']['OpenAPIHttpException'];
 				};
