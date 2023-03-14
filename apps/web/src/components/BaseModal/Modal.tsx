@@ -2,7 +2,7 @@ import { Transition } from '@headlessui/react';
 import type { MouseEvent, ReactNode } from 'react';
 import { createPortal } from 'react-dom';
 
-import { CloseButton } from '@/components/CloseButton';
+import { CloseButton } from '@/components/CloseButton/CloseButton';
 import { useOnKeydown } from '@/hooks/useOnKeydown';
 
 type ModalProps = Readonly<{

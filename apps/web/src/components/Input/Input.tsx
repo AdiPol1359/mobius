@@ -1,7 +1,7 @@
 import { forwardRef, useId } from 'react';
 import { twMerge } from 'tailwind-merge';
 
-import { InputError } from './InputError';
+import { InputError } from '../InputError';
 
 type InputProps = Readonly<{
 	label?: string;

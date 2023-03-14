@@ -4,7 +4,7 @@ import { AiOutlineTeam } from 'react-icons/ai';
 
 import { useModal } from '@/hooks/useModal';
 
-import { Button } from '../Button';
+import { Button } from '../Button/Button';
 import { CreateTeamModal } from '../CreateTeamModal/CreateTeamModal';
 import { JoinTeamModal } from '../JoinTeamModal';
 

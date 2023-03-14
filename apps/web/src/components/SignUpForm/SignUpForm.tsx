@@ -5,10 +5,10 @@ import { useUser } from '@/hooks/useUser';
 import { useZodForm } from '@/hooks/useZodForm';
 import { createUser } from '@/services/users.service';
 
-import { Alert } from '../Alert';
-import { Checkbox } from '../Checkbox';
+import { Alert } from '../Alert/Alert';
+import { Checkbox } from '../Checkbox/Checkbox';
 import { EntryForm } from '../EntryForm';
-import { Input } from '../Input';
+import { Input } from '../Input/Input';
 import { PasswordInput } from '../PasswordInput';
 import { signUpFormSchema } from './SignUpForm.schemas';
 
