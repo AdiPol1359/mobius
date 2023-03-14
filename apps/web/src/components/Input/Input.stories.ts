@@ -6,7 +6,8 @@ const meta = {
 	title: 'Input',
 	component: Input,
 	args: {
-		value: 'input',
+		type: 'text',
+		defaultValue: 'input',
 	},
 } satisfies Meta<typeof Input>;
 
