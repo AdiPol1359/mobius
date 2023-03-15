@@ -1,7 +1,8 @@
 import type { ComponentProps } from 'react';
 
-import { BaseModal } from '../../common/BaseModal/BaseModal';
-import { Button } from '../../common/Button/Button';
+import { BaseModal } from '@/components/common/BaseModal/BaseModal';
+import { Button } from '@/components/common/Button/Button';
+
 import { JoinTeamForm } from './JoinTeamForm/JoinTeamForm';
 
 type JoinTeamModalProps = Readonly<{
