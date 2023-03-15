@@ -197,7 +197,11 @@ export interface operations {
 			};
 		};
 		responses: {
-			204: never;
+			201: {
+				content: {
+					'application/json': components['schemas']['TeamDto'];
+				};
+			};
 			/** @description Incorrect authentication credentials. */
 			401: {
 				content: {

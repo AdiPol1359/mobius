@@ -54,13 +54,16 @@ export class TeamsService {
 		return teamCode;
 	}
 
-	async joinTeam(user: AppUser, { code }: JoinTeamDto): Promise<void> {
+	async joinTeam(user: AppUser, { code }: JoinTeamDto): Promise<Team> {
 		const { teamId } = await this.getTeamCodeByCode(code);
 
 		try {
-			await this.prisma.teamMember.create({
+			const { team } = await this.prisma.teamMember.create({
 				data: { teamId, userId: user.id, roles: ['MEMBER'] },
+				select: { team: { select } },
 			});
+
+			return team;
 		} catch (err) {
 			if (
 				isPrismaError(err) &&

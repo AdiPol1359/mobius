@@ -1,11 +1,4 @@
-import {
-	Body,
-	Controller,
-	Get,
-	HttpCode,
-	HttpStatus,
-	Post,
-} from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 import { ApiNotFoundResponse, ApiTags } from '@nestjs/swagger';
 
 import { Auth } from '@/auth/auth.decorator';
@@ -38,15 +31,14 @@ export class TeamsController {
 	}
 
 	@Post('join')
-	@HttpCode(HttpStatus.NO_CONTENT)
 	@ApiNotFoundResponse({
 		description: 'Team code not found.',
 		type: OpenAPIHttpException,
 	})
-	async joinTeam(
+	joinTeam(
 		@User() user: AppUser,
 		@Body() joinTeamDto: JoinTeamDto
-	): Promise<void> {
-		await this.teamsService.joinTeam(user, joinTeamDto);
+	): Promise<TeamDto> {
+		return this.teamsService.joinTeam(user, joinTeamDto);
 	}
 }
