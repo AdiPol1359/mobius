@@ -21,12 +21,12 @@ model User {
 }
 
 model Team {
-  id           String         @id @default(uuid())
-  name         String
-  createdAt    DateTime       @default(now()) @map("created_at")
-  updatedAt    DateTime       @updatedAt @map("updated_at")
-  teamMember   TeamMember[]
-  teamJoinCode TeamJoinCode[]
+  id         String       @id @default(uuid())
+  name       String
+  createdAt  DateTime     @default(now()) @map("created_at")
+  updatedAt  DateTime     @updatedAt @map("updated_at")
+  teamMember TeamMember[]
+  teamCode   TeamCode[]
 
   @@map("team")
 }
@@ -42,13 +42,13 @@ model TeamMember {
   @@map("team_member")
 }
 
-model TeamJoinCode {
+model TeamCode {
   id     Int    @id @default(autoincrement())
   teamId String @map("team_id")
   code   String @unique
   team   Team   @relation(fields: [teamId], references: [id], onDelete: Cascade)
 
-  @@map("team_join_code")
+  @@map("team_code")
 }
 
 enum TeamMemberRole {

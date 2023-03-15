@@ -6,7 +6,7 @@ import {
 	Injectable,
 	NotFoundException,
 } from '@nestjs/common';
-import { Prisma, PrismaClient, TeamJoinCode } from '@prisma/client';
+import { Prisma, PrismaClient, TeamCode } from '@prisma/client';
 import { TEAM_CODE_LENGTH } from 'common';
 
 import { PRISMA_TOKEN } from '@/prisma/prisma.module';
@@ -36,14 +36,14 @@ export class TeamsService {
 			data: {
 				name,
 				teamMember: { create: { userId: user.id, roles: ['OWNER'] } },
-				teamJoinCode: { create: { code: this.generateJoinCode() } },
+				teamCode: { create: { code: this.generateJoinCode() } },
 			},
 			select,
 		});
 	}
 
-	async getTeamJoinCodeByCode(code: string): Promise<TeamJoinCode> {
-		const teamCode = await this.prisma.teamJoinCode.findUnique({
+	async getTeamCodeByCode(code: string): Promise<TeamCode> {
+		const teamCode = await this.prisma.teamCode.findUnique({
 			where: { code },
 		});
 
@@ -55,7 +55,7 @@ export class TeamsService {
 	}
 
 	async joinTeam(user: AppUser, { code }: JoinTeamDto): Promise<void> {
-		const { teamId } = await this.getTeamJoinCodeByCode(code);
+		const { teamId } = await this.getTeamCodeByCode(code);
 
 		try {
 			await this.prisma.teamMember.create({
