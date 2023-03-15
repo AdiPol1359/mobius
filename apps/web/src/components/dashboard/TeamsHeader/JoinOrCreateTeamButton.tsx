@@ -6,7 +6,7 @@ import { Button } from '@/components/common/Button/Button';
 import { useModal } from '@/hooks/useModal';
 
 import { CreateTeamModal } from '../CreateTeamModal/CreateTeamModal';
-import { JoinTeamModal } from '../JoinTeamModal';
+import { JoinTeamModal } from '../JoinTeamModal/JoinTeamModal';
 
 export const JoinOrCreateTeamButton = () => {
 	const {
