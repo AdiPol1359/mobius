@@ -7,6 +7,7 @@ import {
 	NotFoundException,
 } from '@nestjs/common';
 import { Prisma, PrismaClient, TeamJoinCode } from '@prisma/client';
+import { TEAM_CODE_LENGTH } from 'common';
 
 import { PRISMA_TOKEN } from '@/prisma/prisma.module';
 import { isPrismaError } from '@/prisma/prisma.utils';
@@ -73,6 +74,6 @@ export class TeamsService {
 	}
 
 	private generateJoinCode(): string {
-		return crypto.randomBytes(4).toString('hex');
+		return crypto.randomBytes(TEAM_CODE_LENGTH / 2).toString('hex');
 	}
 }
