@@ -32,11 +32,15 @@ export class TeamsService {
 	}
 
 	createTeam(user: AppUser, { name }: CreateTeamDto): Promise<Team> {
+		const code = this.generateJoinCode();
+
+		console.log(`TEAM CODE: ${code}`);
+
 		return this.prisma.team.create({
 			data: {
 				name,
 				teamMember: { create: { userId: user.id, roles: ['OWNER'] } },
-				teamCode: { create: { code: this.generateJoinCode() } },
+				teamCode: { create: { code } },
 			},
 			select,
 		});
