@@ -2,7 +2,6 @@ import crypto from 'node:crypto';
 
 import {
 	ConflictException,
-	ForbiddenException,
 	Inject,
 	Injectable,
 	NotFoundException,
@@ -33,26 +32,18 @@ export class TeamsService {
 	}
 
 	createTeam(user: AppUser, { name }: CreateTeamDto): Promise<Team> {
+		const code = this.generateJoinCode();
+
+		console.log(`TEAM CODE: ${code}`);
+
 		return this.prisma.team.create({
 			data: {
 				name,
 				teamMember: { create: { userId: user.id, roles: ['OWNER'] } },
-				teamCode: { create: { code: this.generateJoinCode() } },
+				teamCode: { create: { code } },
 			},
 			select,
 		});
-	}
-
-	async deleteTeam(user: AppUser, id: string): Promise<void> {
-		const member = await this.prisma.teamMember.findFirst({
-			where: { userId: user.id, teamId: id, roles: { has: 'OWNER' } },
-		});
-
-		if (!member) {
-			throw new ForbiddenException();
-		}
-
-		await this.prisma.team.delete({ where: { id } });
 	}
 
 	async getTeamCodeByCode(code: string): Promise<TeamCode> {
