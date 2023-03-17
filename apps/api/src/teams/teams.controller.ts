@@ -1,4 +1,12 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import {
+	Body,
+	Controller,
+	Delete,
+	Get,
+	Param,
+	ParseUUIDPipe,
+	Post,
+} from '@nestjs/common';
 import { ApiNotFoundResponse, ApiTags } from '@nestjs/swagger';
 
 import { Auth } from '@/auth/auth.decorator';
@@ -28,6 +36,14 @@ export class TeamsController {
 		@Body() createTeamDto: CreateTeamDto
 	): Promise<TeamDto> {
 		return this.teamsService.createTeam(user, createTeamDto);
+	}
+
+	@Delete(':id')
+	deleteTeam(
+		@User() user: AppUser,
+		@Param('id', ParseUUIDPipe) id: string
+	): any {
+		return this.teamsService.deleteTeam(user, id);
 	}
 
 	@Post('join')
