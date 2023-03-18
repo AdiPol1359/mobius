@@ -1,5 +1,7 @@
 import type { Prisma } from '@prisma/client';
 
-import { select } from './teams.service';
+import { createTeamSelect } from './teams.utils';
 
-export type Team = Prisma.TeamGetPayload<{ select: typeof select }>;
+export type Team = Prisma.TeamGetPayload<{
+	select: ReturnType<typeof createTeamSelect>;
+}>;

@@ -15,6 +15,7 @@ import { CreateTeamDto } from './dto/create-team.dto';
 import { DeleteTeamDto } from './dto/delete-team.dto';
 import { JoinTeamDto } from './dto/join-team.dto';
 import { TeamDto } from './dto/team.dto';
+import { mapTeamsToTeamDtos, mapTeamToTeamDto } from './teams.mapper';
 import { TeamsService } from './teams.service';
 
 @Auth()
@@ -24,16 +25,18 @@ export class TeamsController {
 	constructor(private readonly teamsService: TeamsService) {}
 
 	@Get()
-	getAllTeams(@User() user: AppUser): Promise<TeamDto[]> {
-		return this.teamsService.getAllTeams(user);
+	async getAllTeams(@User() user: AppUser): Promise<TeamDto[]> {
+		return mapTeamsToTeamDtos(await this.teamsService.getAllTeams(user));
 	}
 
 	@Post()
-	createTeam(
+	async createTeam(
 		@User() user: AppUser,
 		@Body() createTeamDto: CreateTeamDto
 	): Promise<TeamDto> {
-		return this.teamsService.createTeam(user, createTeamDto);
+		return mapTeamToTeamDto(
+			await this.teamsService.createTeam(user, createTeamDto)
+		);
 	}
 
 	@Delete(':teamId')
@@ -46,7 +49,9 @@ export class TeamsController {
 		@Param('teamId') id: string,
 		@Body() deleteTeamDto: DeleteTeamDto
 	): Promise<TeamDto> {
-		return this.teamsService.deleteTeam(id, deleteTeamDto);
+		return mapTeamToTeamDto(
+			await this.teamsService.deleteTeam(id, deleteTeamDto)
+		);
 	}
 
 	@Post('join')
@@ -54,10 +59,12 @@ export class TeamsController {
 		description: 'Team code not found.',
 		type: OpenAPIHttpException,
 	})
-	joinTeam(
+	async joinTeam(
 		@User() user: AppUser,
 		@Body() joinTeamDto: JoinTeamDto
 	): Promise<TeamDto> {
-		return this.teamsService.joinTeam(user, joinTeamDto);
+		return mapTeamToTeamDto(
+			await this.teamsService.joinTeam(user, joinTeamDto)
+		);
 	}
 }
