@@ -1,5 +1,3 @@
-import crypto from 'node:crypto';
-
 import {
 	BadRequestException,
 	ConflictException,
@@ -8,7 +6,6 @@ import {
 	NotFoundException,
 } from '@nestjs/common';
 import { PrismaClient, TeamCode, TeamMember } from '@prisma/client';
-import { TEAM_CODE_LENGTH } from 'common';
 
 import { PRISMA_TOKEN } from '@/prisma/prisma.module';
 import { isPrismaError } from '@/prisma/prisma.utils';
@@ -17,7 +14,7 @@ import { AppUser } from '@/users/users.types';
 
 import { CreateTeamDto } from './dto/create-team.dto';
 import { Team } from './teams.types';
-import { createTeamSelect } from './teams.utils';
+import { createTeamSelect, generateJoinCode } from './teams.utils';
 
 @Injectable()
 export class TeamsService {
@@ -35,7 +32,7 @@ export class TeamsService {
 			data: {
 				name,
 				teamMember: { create: { userId: id, roles: ['OWNER'] } },
-				teamCode: { create: { code: this.generateJoinCode() } },
+				teamCode: { create: { code: generateJoinCode() } },
 			},
 			select: createTeamSelect(id),
 		});
@@ -101,9 +98,5 @@ export class TeamsService {
 		}
 
 		return teamCode;
-	}
-
-	private generateJoinCode(): string {
-		return crypto.randomBytes(TEAM_CODE_LENGTH / 2).toString('hex');
 	}
 }
