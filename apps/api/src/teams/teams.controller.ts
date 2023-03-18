@@ -47,11 +47,9 @@ export class TeamsController {
 	})
 	async deleteTeam(
 		@Param('teamId') id: string,
-		@Body() deleteTeamDto: DeleteTeamDto
+		@Body() { name }: DeleteTeamDto
 	): Promise<TeamDto> {
-		return mapTeamToTeamDto(
-			await this.teamsService.deleteTeam(id, deleteTeamDto)
-		);
+		return mapTeamToTeamDto(await this.teamsService.deleteTeam(id, name));
 	}
 
 	@Post('join')
@@ -61,10 +59,8 @@ export class TeamsController {
 	})
 	async joinTeam(
 		@User() user: AppUser,
-		@Body() joinTeamDto: JoinTeamDto
+		@Body() { code }: JoinTeamDto
 	): Promise<TeamDto> {
-		return mapTeamToTeamDto(
-			await this.teamsService.joinTeam(user, joinTeamDto)
-		);
+		return mapTeamToTeamDto(await this.teamsService.joinTeam(code, user));
 	}
 }

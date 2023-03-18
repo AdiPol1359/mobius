@@ -16,8 +16,6 @@ import { prismaErrorCode } from '@/prisma/prisma-errors';
 import { AppUser } from '@/users/users.types';
 
 import { CreateTeamDto } from './dto/create-team.dto';
-import { DeleteTeamDto } from './dto/delete-team.dto';
-import { JoinTeamDto } from './dto/join-team.dto';
 import { Team } from './teams.types';
 import { createTeamSelect } from './teams.utils';
 
@@ -43,7 +41,7 @@ export class TeamsService {
 		});
 	}
 
-	async deleteTeam(id: string, { name }: DeleteTeamDto): Promise<Team> {
+	async deleteTeam(id: string, name: string): Promise<Team> {
 		const team = await this.prisma.team.findFirst({
 			where: { id, name },
 			select: createTeamSelect(),
@@ -57,6 +55,28 @@ export class TeamsService {
 			where: { id },
 			select: createTeamSelect(),
 		});
+	}
+
+	async joinTeam(code: string, { id }: AppUser): Promise<Team> {
+		const { teamId } = await this.getTeamCodeByCode(code);
+
+		try {
+			const { team } = await this.prisma.teamMember.create({
+				data: { teamId, userId: id, roles: ['MEMBER'] },
+				select: { team: { select: createTeamSelect(id) } },
+			});
+
+			return team;
+		} catch (err) {
+			if (
+				isPrismaError(err) &&
+				err.code === prismaErrorCode.UniqueKeyViolation
+			) {
+				throw new ConflictException('You are already in this team.');
+			}
+
+			throw err;
+		}
 	}
 
 	async getTeamMember(userId: number, teamId: string): Promise<TeamMember> {
@@ -81,28 +101,6 @@ export class TeamsService {
 		}
 
 		return teamCode;
-	}
-
-	async joinTeam({ id }: AppUser, { code }: JoinTeamDto): Promise<Team> {
-		const { teamId } = await this.getTeamCodeByCode(code);
-
-		try {
-			const { team } = await this.prisma.teamMember.create({
-				data: { teamId, userId: id, roles: ['MEMBER'] },
-				select: { team: { select: createTeamSelect(id) } },
-			});
-
-			return team;
-		} catch (err) {
-			if (
-				isPrismaError(err) &&
-				err.code === prismaErrorCode.UniqueKeyViolation
-			) {
-				throw new ConflictException('You are already in this team.');
-			}
-
-			throw err;
-		}
 	}
 
 	private generateJoinCode(): string {
