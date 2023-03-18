@@ -54,7 +54,7 @@ export class TeamsService {
 			throw new BadRequestException('Incorrect team name.');
 		}
 
-		return await this.prisma.team.delete({ where: { id }, select });
+		return this.prisma.team.delete({ where: { id }, select });
 	}
 
 	async getTeamMember(userId: number, teamId: string): Promise<TeamMember> {
