@@ -18,6 +18,9 @@ export interface paths {
 		get: operations['TeamsController_getAllTeams'];
 		post: operations['TeamsController_createTeam'];
 	};
+	'/teams/{teamId}': {
+		delete: operations['TeamsController_deleteTeam'];
+	};
 	'/teams/join': {
 		post: operations['TeamsController_joinTeam'];
 	};
@@ -65,6 +68,10 @@ export interface components {
 			name: string;
 		};
 		CreateTeamDto: {
+			/** @example FooTeam */
+			name: string;
+		};
+		DeleteTeamDto: {
 			/** @example FooTeam */
 			name: string;
 		};
@@ -184,6 +191,43 @@ export interface operations {
 			};
 			/** @description Incorrect authentication credentials. */
 			401: {
+				content: {
+					'application/json': components['schemas']['OpenAPIHttpException'];
+				};
+			};
+		};
+	};
+	TeamsController_deleteTeam: {
+		parameters: {
+			path: {
+				teamId: string;
+			};
+		};
+		requestBody: {
+			content: {
+				'application/json': components['schemas']['DeleteTeamDto'];
+			};
+		};
+		responses: {
+			200: {
+				content: {
+					'application/json': components['schemas']['TeamDto'];
+				};
+			};
+			/** @description Incorrect team name. */
+			400: {
+				content: {
+					'application/json': components['schemas']['OpenAPIHttpException'];
+				};
+			};
+			/** @description Incorrect authentication credentials. */
+			401: {
+				content: {
+					'application/json': components['schemas']['OpenAPIHttpException'];
+				};
+			};
+			/** @description Missing role in the team. */
+			403: {
 				content: {
 					'application/json': components['schemas']['OpenAPIHttpException'];
 				};
