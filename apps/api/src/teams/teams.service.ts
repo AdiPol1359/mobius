@@ -7,7 +7,7 @@ import {
 	Injectable,
 	NotFoundException,
 } from '@nestjs/common';
-import { Prisma, PrismaClient, TeamCode, TeamMember } from '@prisma/client';
+import { PrismaClient, TeamCode, TeamMember } from '@prisma/client';
 import { TEAM_CODE_LENGTH } from 'common';
 
 import { PRISMA_TOKEN } from '@/prisma/prisma.module';
@@ -19,42 +19,44 @@ import { CreateTeamDto } from './dto/create-team.dto';
 import { DeleteTeamDto } from './dto/delete-team.dto';
 import { JoinTeamDto } from './dto/join-team.dto';
 import { Team } from './teams.types';
-
-export const select = { id: true, name: true } satisfies Prisma.TeamSelect;
+import { createTeamSelect } from './teams.utils';
 
 @Injectable()
 export class TeamsService {
 	constructor(@Inject(PRISMA_TOKEN) private readonly prisma: PrismaClient) {}
 
-	getAllTeams(user: AppUser): Promise<Team[]> {
+	getAllTeams({ id }: AppUser): Promise<Team[]> {
 		return this.prisma.team.findMany({
-			where: { teamMember: { some: { userId: user.id } } },
-			select,
+			where: { teamMember: { some: { userId: id } } },
+			select: createTeamSelect(id),
 		});
 	}
 
-	createTeam(user: AppUser, { name }: CreateTeamDto): Promise<Team> {
+	createTeam({ id }: AppUser, { name }: CreateTeamDto): Promise<Team> {
 		return this.prisma.team.create({
 			data: {
 				name,
-				teamMember: { create: { userId: user.id, roles: ['OWNER'] } },
+				teamMember: { create: { userId: id, roles: ['OWNER'] } },
 				teamCode: { create: { code: this.generateJoinCode() } },
 			},
-			select,
+			select: createTeamSelect(id),
 		});
 	}
 
 	async deleteTeam(id: string, { name }: DeleteTeamDto): Promise<Team> {
 		const team = await this.prisma.team.findFirst({
 			where: { id, name },
-			select,
+			select: createTeamSelect(),
 		});
 
 		if (!team) {
 			throw new BadRequestException('Incorrect team name.');
 		}
 
-		return this.prisma.team.delete({ where: { id }, select });
+		return this.prisma.team.delete({
+			where: { id },
+			select: createTeamSelect(),
+		});
 	}
 
 	async getTeamMember(userId: number, teamId: string): Promise<TeamMember> {
@@ -81,13 +83,13 @@ export class TeamsService {
 		return teamCode;
 	}
 
-	async joinTeam(user: AppUser, { code }: JoinTeamDto): Promise<Team> {
+	async joinTeam({ id }: AppUser, { code }: JoinTeamDto): Promise<Team> {
 		const { teamId } = await this.getTeamCodeByCode(code);
 
 		try {
 			const { team } = await this.prisma.teamMember.create({
-				data: { teamId, userId: user.id, roles: ['MEMBER'] },
-				select: { team: { select } },
+				data: { teamId, userId: id, roles: ['MEMBER'] },
+				select: { team: { select: createTeamSelect(id) } },
 			});
 
 			return team;
