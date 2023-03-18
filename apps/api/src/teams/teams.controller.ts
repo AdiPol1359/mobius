@@ -1,12 +1,18 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
-import { ApiNotFoundResponse, ApiTags } from '@nestjs/swagger';
+import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
+import {
+	ApiBadRequestResponse,
+	ApiNotFoundResponse,
+	ApiTags,
+} from '@nestjs/swagger';
 
 import { Auth } from '@/auth/auth.decorator';
 import { User } from '@/common/decorators/user.decorator';
 import { OpenAPIHttpException } from '@/common/exceptions/openapi-http.exception';
 import { AppUser } from '@/users/users.types';
 
+import { TeamRole } from './decorators/team-role.decorator';
 import { CreateTeamDto } from './dto/create-team.dto';
+import { DeleteTeamDto } from './dto/delete-team.dto';
 import { JoinTeamDto } from './dto/join-team.dto';
 import { TeamDto } from './dto/team.dto';
 import { TeamsService } from './teams.service';
@@ -28,6 +34,19 @@ export class TeamsController {
 		@Body() createTeamDto: CreateTeamDto
 	): Promise<TeamDto> {
 		return this.teamsService.createTeam(user, createTeamDto);
+	}
+
+	@Delete(':teamId')
+	@TeamRole('OWNER')
+	@ApiBadRequestResponse({
+		description: 'Incorrect team name.',
+		type: OpenAPIHttpException,
+	})
+	async deleteTeam(
+		@Param('teamId') id: string,
+		@Body() deleteTeamDto: DeleteTeamDto
+	): Promise<TeamDto> {
+		return this.teamsService.deleteTeam(id, deleteTeamDto);
 	}
 
 	@Post('join')

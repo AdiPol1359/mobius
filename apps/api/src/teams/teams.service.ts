@@ -1,12 +1,13 @@
 import crypto from 'node:crypto';
 
 import {
+	BadRequestException,
 	ConflictException,
 	Inject,
 	Injectable,
 	NotFoundException,
 } from '@nestjs/common';
-import { Prisma, PrismaClient, TeamCode } from '@prisma/client';
+import { Prisma, PrismaClient, TeamCode, TeamMember } from '@prisma/client';
 import { TEAM_CODE_LENGTH } from 'common';
 
 import { PRISMA_TOKEN } from '@/prisma/prisma.module';
@@ -15,6 +16,7 @@ import { prismaErrorCode } from '@/prisma/prisma-errors';
 import { AppUser } from '@/users/users.types';
 
 import { CreateTeamDto } from './dto/create-team.dto';
+import { DeleteTeamDto } from './dto/delete-team.dto';
 import { JoinTeamDto } from './dto/join-team.dto';
 import { Team } from './teams.types';
 
@@ -40,6 +42,31 @@ export class TeamsService {
 			},
 			select,
 		});
+	}
+
+	async deleteTeam(id: string, { name }: DeleteTeamDto): Promise<Team> {
+		const team = await this.prisma.team.findFirst({
+			where: { id, name },
+			select,
+		});
+
+		if (!team) {
+			throw new BadRequestException('Incorrect team name.');
+		}
+
+		return this.prisma.team.delete({ where: { id }, select });
+	}
+
+	async getTeamMember(userId: number, teamId: string): Promise<TeamMember> {
+		const member = await this.prisma.teamMember.findUnique({
+			where: { userId_teamId: { userId, teamId } },
+		});
+
+		if (!member) {
+			throw new NotFoundException('Team not found.');
+		}
+
+		return member;
 	}
 
 	async getTeamCodeByCode(code: string): Promise<TeamCode> {
