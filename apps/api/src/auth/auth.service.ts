@@ -9,7 +9,7 @@ export class AuthService {
 	constructor(private readonly usersService: UsersService) {}
 
 	async authenticate(email: string, password: string): Promise<AppUser> {
-		const user = await this.usersService.getUniqueUser({ email });
+		const user = await this.usersService.getUser({ email });
 
 		if (!(await bcrypt.compare(password, user.password))) {
 			throw new UnauthorizedException('Incorrect email or password.');

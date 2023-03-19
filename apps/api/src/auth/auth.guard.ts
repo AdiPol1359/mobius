@@ -20,7 +20,7 @@ export class AuthGuard implements CanActivate {
 			throw new UnauthorizedException();
 		}
 
-		request.user = await this.usersService.getUniqueUser({
+		request.user = await this.usersService.getUser({
 			id: userId,
 		});
 

@@ -52,7 +52,7 @@ export class UsersService {
 		}
 	}
 
-	async getUniqueUser(where: Prisma.UserWhereUniqueInput): Promise<AppUser> {
+	async getUser(where: Prisma.UserWhereUniqueInput): Promise<AppUser> {
 		const user = await this.prisma.user.findUnique({
 			where,
 			select,
