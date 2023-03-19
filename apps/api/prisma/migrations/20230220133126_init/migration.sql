@@ -1,7 +1,10 @@
+-- Create case_insensitive Collation
+CREATE COLLATION case_insensitive (provider = icu, locale = 'und-u-ks-level2', deterministic = false);
+
 -- CreateTable
 CREATE TABLE "user" (
     "id" SERIAL NOT NULL,
-    "email" TEXT NOT NULL,
+    "email" TEXT COLLATE case_insensitive NOT NULL,
     "password" TEXT NOT NULL,
     "first_name" TEXT NOT NULL,
     "last_name" TEXT NOT NULL,
