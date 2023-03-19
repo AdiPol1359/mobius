@@ -5,7 +5,7 @@ import {
 	Injectable,
 	NotFoundException,
 } from '@nestjs/common';
-import { PrismaClient, TeamCode, TeamMember } from '@prisma/client';
+import { PrismaClient, TeamMember } from '@prisma/client';
 
 import { PRISMA_TOKEN } from '@/prisma/prisma.module';
 import { isPrismaError } from '@/prisma/prisma.utils';
@@ -55,7 +55,7 @@ export class TeamsService {
 	}
 
 	async joinTeam(code: string, { id }: AppUser): Promise<Team> {
-		const { teamId } = await this.getTeamCodeByCode(code);
+		const { id: teamId } = await this.getTeamByCode(code);
 
 		try {
 			const { team } = await this.prisma.teamMember.create({
@@ -82,21 +82,22 @@ export class TeamsService {
 		});
 
 		if (!member) {
-			throw new NotFoundException('Team not found.');
+			throw new NotFoundException('Team member not found.');
 		}
 
 		return member;
 	}
 
-	async getTeamCodeByCode(code: string): Promise<TeamCode> {
-		const teamCode = await this.prisma.teamCode.findUnique({
-			where: { code },
+	async getTeamByCode(code: string): Promise<Team> {
+		const team = await this.prisma.team.findFirst({
+			where: { teamCode: { some: { code } } },
+			select: createTeamSelect(),
 		});
 
-		if (!teamCode) {
+		if (!team) {
 			throw new NotFoundException('Team code not found.');
 		}
 
-		return teamCode;
+		return team;
 	}
 }
