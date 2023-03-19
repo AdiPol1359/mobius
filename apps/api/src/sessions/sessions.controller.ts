@@ -20,7 +20,7 @@ import { Auth } from '@/auth/auth.decorator';
 import { User } from '@/common/decorators/user.decorator';
 import { OpenAPIHttpException } from '@/common/exceptions/openapi-http.exception';
 import { UserDto } from '@/users/dto/user.dto';
-import { userToUserDto } from '@/users/users.mapper';
+import { mapUserToUserDto } from '@/users/users.mapper';
 import { AppUser } from '@/users/users.types';
 
 import { CreateSessionDto } from './dto/create-session.dto';
@@ -35,7 +35,7 @@ export class SessionsController {
 	@Get('me')
 	@Auth()
 	getMeSession(@User() user: AppUser): UserDto {
-		return userToUserDto(user);
+		return mapUserToUserDto(user);
 	}
 
 	@Post()
@@ -51,7 +51,7 @@ export class SessionsController {
 		@Body() createSessionDto: CreateSessionDto,
 		@Session() session: ExpressSession
 	): Promise<UserDto> {
-		return userToUserDto(
+		return mapUserToUserDto(
 			await this.sessionsService.createSession(createSessionDto, session)
 		);
 	}

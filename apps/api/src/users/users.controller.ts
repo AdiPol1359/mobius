@@ -5,7 +5,7 @@ import { OpenAPIHttpException } from '@/common/exceptions/openapi-http.exception
 
 import { CreateUserDto } from './dto/create-user.dto';
 import { UserDto } from './dto/user.dto';
-import { userToUserDto } from './users.mapper';
+import { mapUserToUserDto } from './users.mapper';
 import { UsersService } from './users.service';
 
 @Controller('users')
@@ -19,6 +19,6 @@ export class UsersController {
 		type: OpenAPIHttpException,
 	})
 	async createUser(@Body() createUserDto: CreateUserDto): Promise<UserDto> {
-		return userToUserDto(await this.usersService.createUser(createUserDto));
+		return mapUserToUserDto(await this.usersService.createUser(createUserDto));
 	}
 }
