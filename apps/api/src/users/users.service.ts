@@ -31,12 +31,19 @@ export class UsersService {
 		@Inject(ConfigService) private readonly configService: AppConfigService
 	) {}
 
-	async createUser({ password, ...rest }: CreateUserDto): Promise<AppUser> {
+	async createUser({
+		email,
+		firstName,
+		lastName,
+		password,
+	}: CreateUserDto): Promise<AppUser> {
 		try {
 			return await this.prisma.user.create({
 				data: {
+					email,
+					firstName,
+					lastName,
 					password: await this.hashPassword(password),
-					...rest,
 				},
 				select,
 			});
