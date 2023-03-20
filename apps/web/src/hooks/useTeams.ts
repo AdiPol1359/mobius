@@ -1,7 +1,12 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 
-import { createTeam, getAllTeams, joinTeam } from '@/services/teams.service';
+import {
+	createTeam,
+	deleteTeam,
+	getAllTeams,
+	joinTeam,
+} from '@/services/teams.service';
 
 const QUERY_KEY = ['teams'];
 
@@ -30,9 +35,22 @@ export const useTeams = () => {
 		},
 	});
 
+	const deleteTeamMutation = useMutation({
+		mutationFn: deleteTeam,
+		onSuccess: () => {
+			queryClient.invalidateQueries({ queryKey: QUERY_KEY });
+		},
+	});
+
 	const navigateToTeam = (id: string) => {
 		router.push(`/dashboard/teams/${id}`);
 	};
 
-	return { createTeamMutation, joinTeamMutation, navigateToTeam, ...result };
+	return {
+		createTeamMutation,
+		joinTeamMutation,
+		deleteTeamMutation,
+		navigateToTeam,
+		...result,
+	};
 };
