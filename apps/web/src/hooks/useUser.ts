@@ -2,7 +2,7 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 
 import {
 	createSession,
-	deleteSession,
+	deleteMeSession,
 	getMeSession,
 } from '@/services/sessions.service';
 import { createUser } from '@/services/users.service';
@@ -43,7 +43,7 @@ export const useUser = () => {
 	});
 
 	const logoutMutation = useMutation({
-		mutationFn: deleteSession,
+		mutationFn: deleteMeSession,
 		onSuccess: () => {
 			queryClient.setQueryData(QUERY_KEY, null);
 		},

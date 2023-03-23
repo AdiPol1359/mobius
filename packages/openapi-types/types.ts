@@ -9,10 +9,10 @@ export interface paths {
 	};
 	'/sessions/me': {
 		get: operations['SessionsController_getMeSession'];
+		delete: operations['SessionsController_deleteSession'];
 	};
 	'/sessions': {
 		post: operations['SessionsController_createSession'];
-		delete: operations['SessionsController_deleteSession'];
 	};
 	'/teams': {
 		get: operations['TeamsController_getAllTeams'];
@@ -129,6 +129,17 @@ export interface operations {
 			};
 		};
 	};
+	SessionsController_deleteSession: {
+		responses: {
+			204: never;
+			/** @description Incorrect authentication credentials. */
+			401: {
+				content: {
+					'application/json': components['schemas']['OpenAPIHttpException'];
+				};
+			};
+		};
+	};
 	SessionsController_createSession: {
 		requestBody: {
 			content: {
@@ -149,17 +160,6 @@ export interface operations {
 			};
 			/** @description User not found. */
 			404: {
-				content: {
-					'application/json': components['schemas']['OpenAPIHttpException'];
-				};
-			};
-		};
-	};
-	SessionsController_deleteSession: {
-		responses: {
-			204: never;
-			/** @description Incorrect authentication credentials. */
-			401: {
 				content: {
 					'application/json': components['schemas']['OpenAPIHttpException'];
 				};

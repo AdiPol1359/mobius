@@ -56,7 +56,7 @@ export class SessionsController {
 		);
 	}
 
-	@Delete()
+	@Delete('me')
 	@Auth()
 	@HttpCode(HttpStatus.NO_CONTENT)
 	async deleteSession(
