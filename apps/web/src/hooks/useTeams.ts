@@ -17,8 +17,6 @@ export const useTeams = () => {
 	const result = useQuery({
 		queryKey: QUERY_KEY,
 		queryFn: () => getAllTeams({}),
-		staleTime: Infinity,
-		cacheTime: Infinity,
 	});
 
 	const createTeamMutation = useMutation({
