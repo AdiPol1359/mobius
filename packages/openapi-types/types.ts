@@ -262,6 +262,12 @@ export interface operations {
 					'application/json': components['schemas']['OpenAPIHttpException'];
 				};
 			};
+			/** @description You are already in this team. */
+			409: {
+				content: {
+					'application/json': components['schemas']['OpenAPIHttpException'];
+				};
+			};
 		};
 	};
 	TeamsController_leaveTeam: {

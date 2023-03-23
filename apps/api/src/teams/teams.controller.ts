@@ -1,6 +1,7 @@
 import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
 import {
 	ApiBadRequestResponse,
+	ApiConflictResponse,
 	ApiNotFoundResponse,
 	ApiTags,
 } from '@nestjs/swagger';
@@ -55,6 +56,10 @@ export class TeamsController {
 	@Post('join')
 	@ApiNotFoundResponse({
 		description: 'Team code not found.',
+		type: OpenAPIHttpException,
+	})
+	@ApiConflictResponse({
+		description: 'You are already in this team.',
 		type: OpenAPIHttpException,
 	})
 	async joinTeam(
