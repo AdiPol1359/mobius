@@ -24,6 +24,9 @@ export interface paths {
 	'/teams/join': {
 		post: operations['TeamsController_joinTeam'];
 	};
+	'/teams/{teamId}/leave': {
+		post: operations['TeamsController_leaveTeam'];
+	};
 }
 
 export type webhooks = Record<string, never>;
@@ -249,6 +252,38 @@ export interface operations {
 			};
 			/** @description Incorrect authentication credentials. */
 			401: {
+				content: {
+					'application/json': components['schemas']['OpenAPIHttpException'];
+				};
+			};
+			/** @description Team code not found. */
+			404: {
+				content: {
+					'application/json': components['schemas']['OpenAPIHttpException'];
+				};
+			};
+		};
+	};
+	TeamsController_leaveTeam: {
+		parameters: {
+			path: {
+				teamId: string;
+			};
+		};
+		responses: {
+			201: {
+				content: {
+					'application/json': components['schemas']['TeamDto'];
+				};
+			};
+			/** @description Incorrect authentication credentials. */
+			401: {
+				content: {
+					'application/json': components['schemas']['OpenAPIHttpException'];
+				};
+			};
+			/** @description Missing role in the team. */
+			403: {
 				content: {
 					'application/json': components['schemas']['OpenAPIHttpException'];
 				};

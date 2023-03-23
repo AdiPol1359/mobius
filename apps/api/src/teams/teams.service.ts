@@ -76,6 +76,16 @@ export class TeamsService {
 		}
 	}
 
+	async leaveTeam(teamId: string, { id }: AppUser): Promise<Team> {
+		const { userId } = await this.getTeamMember(id, teamId);
+		const { team } = await this.prisma.teamMember.delete({
+			where: { userId_teamId: { teamId, userId } },
+			select: { team: { select: createTeamSelect(id) } },
+		});
+
+		return team;
+	}
+
 	async getTeamMember(userId: number, teamId: string): Promise<TeamMember> {
 		const member = await this.prisma.teamMember.findUnique({
 			where: { userId_teamId: { userId, teamId } },

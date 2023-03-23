@@ -63,4 +63,17 @@ export class TeamsController {
 	): Promise<TeamDto> {
 		return mapTeamToTeamDto(await this.teamsService.joinTeam(code, user));
 	}
+
+	@Post(':teamId/leave')
+	@TeamRole('MEMBER')
+	@ApiNotFoundResponse({
+		description: 'Team code not found.',
+		type: OpenAPIHttpException,
+	})
+	async leaveTeam(
+		@User() user: AppUser,
+		@Param('teamId') id: string
+	): Promise<TeamDto> {
+		return mapTeamToTeamDto(await this.teamsService.leaveTeam(id, user));
+	}
 }
