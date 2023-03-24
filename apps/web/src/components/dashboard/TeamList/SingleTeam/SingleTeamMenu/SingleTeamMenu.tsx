@@ -6,6 +6,7 @@ import { Menu } from '@/components/common/Menu/Menu';
 import type { Team } from '@/types';
 
 import { DeleteTeamButton } from './DeleteTeamButton';
+import { LeaveTeamButton } from './LeaveTeamButton';
 
 type SingleTeamMenuProps = Readonly<{
 	team: Team;
@@ -20,6 +21,7 @@ export const SingleTeamMenu = ({
 		</Menu.Button>
 		<Menu.Dropdown>
 			{roles?.includes('OWNER') && <DeleteTeamButton teamId={id} />}
+			{roles?.includes('MEMBER') && <LeaveTeamButton teamId={id} />}
 		</Menu.Dropdown>
 	</Menu>
 );

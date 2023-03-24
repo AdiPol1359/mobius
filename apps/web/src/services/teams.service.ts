@@ -7,3 +7,7 @@ export const deleteTeam = fetcher
 	.path('/teams/{teamId}')
 	.method('delete')
 	.create();
+export const leaveTeam = fetcher
+	.path('/teams/{teamId}/leave')
+	.method('post')
+	.create();
