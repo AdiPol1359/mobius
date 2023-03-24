@@ -6,6 +6,7 @@ import {
 	deleteTeam,
 	getAllTeams,
 	joinTeam,
+	leaveTeam,
 } from '@/services/teams.service';
 
 const QUERY_KEY = ['teams'];
@@ -19,25 +20,28 @@ export const useTeams = () => {
 		queryFn: () => getAllTeams({}),
 	});
 
+	const invalidateTeams = () => {
+		queryClient.invalidateQueries({ queryKey: QUERY_KEY });
+	};
+
 	const createTeamMutation = useMutation({
 		mutationFn: createTeam,
-		onSuccess: () => {
-			queryClient.invalidateQueries({ queryKey: QUERY_KEY });
-		},
+		onSuccess: invalidateTeams,
 	});
 
 	const joinTeamMutation = useMutation({
 		mutationFn: joinTeam,
-		onSuccess: () => {
-			queryClient.invalidateQueries({ queryKey: QUERY_KEY });
-		},
+		onSuccess: invalidateTeams,
 	});
 
 	const deleteTeamMutation = useMutation({
 		mutationFn: deleteTeam,
-		onSuccess: () => {
-			queryClient.invalidateQueries({ queryKey: QUERY_KEY });
-		},
+		onSuccess: invalidateTeams,
+	});
+
+	const leaveTeamMutation = useMutation({
+		mutationFn: leaveTeam,
+		onSuccess: invalidateTeams,
 	});
 
 	const navigateToTeam = (id: string) => {
@@ -48,6 +52,7 @@ export const useTeams = () => {
 		createTeamMutation,
 		joinTeamMutation,
 		deleteTeamMutation,
+		leaveTeamMutation,
 		navigateToTeam,
 		...result,
 	};
