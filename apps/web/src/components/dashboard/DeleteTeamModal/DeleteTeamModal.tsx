@@ -1,17 +1,17 @@
 import type { ComponentProps } from 'react';
 
-import { BaseModal } from '@/components/common/BaseModal/BaseModal';
+import { Modal } from '@/components/common/Modal/Modal';
 
 import { DeleteTeamForm } from './DeleteTeamForm/DeleteTeamForm';
 
 type DeleteTeamModalProps = Readonly<{
 	teamId: string;
 }> &
-	ComponentProps<typeof BaseModal>;
+	ComponentProps<typeof Modal>;
 
 export const DeleteTeamModal = ({ teamId, ...props }: DeleteTeamModalProps) => (
-	<BaseModal {...props}>
-		<BaseModal.Title>Delete the team</BaseModal.Title>
+	<Modal {...props}>
+		<Modal.Title>Delete the team</Modal.Title>
 		<DeleteTeamForm teamId={teamId} />
-	</BaseModal>
+	</Modal>
 );

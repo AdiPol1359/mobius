@@ -1,21 +1,21 @@
 import type { ComponentProps } from 'react';
 
-import { BaseModal } from '@/components/common/BaseModal/BaseModal';
 import { Button } from '@/components/common/Button/Button';
+import { Modal } from '@/components/common/Modal/Modal';
 
 import { JoinTeamForm } from './JoinTeamForm/JoinTeamForm';
 
 type JoinTeamModalProps = Readonly<{
 	onButtonClick: () => void;
 }> &
-	ComponentProps<typeof BaseModal>;
+	ComponentProps<typeof Modal>;
 
 export const JoinTeamModal = ({
 	onButtonClick,
 	...props
 }: JoinTeamModalProps) => (
-	<BaseModal {...props}>
-		<BaseModal.Title>Join or create team</BaseModal.Title>
+	<Modal {...props}>
+		<Modal.Title>Join or create team</Modal.Title>
 		<JoinTeamForm onSuccess={props.onClose} />
 		<div className="my-3.5 flex items-center text-sm text-neutral-700 before:mr-2.5 before:block before:h-[1px] before:grow before:bg-neutral-200 after:ml-2.5 after:block after:h-[1px] after:grow after:bg-neutral-200">
 			Don&apos;t have a team code?
@@ -30,5 +30,5 @@ export const JoinTeamModal = ({
 		>
 			Create your own team
 		</Button>
-	</BaseModal>
+	</Modal>
 );
