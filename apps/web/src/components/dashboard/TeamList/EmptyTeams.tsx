@@ -1,4 +1,4 @@
-import Empty from '#/empty.svg';
+import Empty from '@/assets/svg/empty.svg';
 
 export const EmptyTeams = () => (
 	<div className="my-auto flex flex-col items-center">
