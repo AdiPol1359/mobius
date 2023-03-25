@@ -6,13 +6,13 @@ import { useOnKeydown } from '@/hooks/useOnKeydown';
 
 import { CloseButton } from '../CloseButton/CloseButton';
 
-type ModalProps = Readonly<{
+type BaseModalProps = Readonly<{
 	isOpen: boolean;
 	children?: ReactNode;
 	onClose: () => void;
 }>;
 
-export const Modal = ({ isOpen, children, onClose }: ModalProps) => {
+export const BaseModal = ({ isOpen, children, onClose }: BaseModalProps) => {
 	const handleModalClick = (event: MouseEvent<HTMLDivElement>) => {
 		event.stopPropagation();
 	};

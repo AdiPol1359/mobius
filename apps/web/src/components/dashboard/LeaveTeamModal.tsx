@@ -5,13 +5,13 @@ import { useTeams } from '@/hooks/useTeams';
 import { DEFAULT_ERROR_MESSAGE } from '@/lib/constants';
 import { leaveTeam } from '@/services/teams.service';
 
-import type { BaseModal } from '../common/BaseModal/BaseModal';
 import { ConfirmModal } from '../common/ConfirmModal';
+import type { Modal } from '../common/Modal/Modal';
 
 type LeaveTeamModalProps = Readonly<{
 	teamId: string;
 }> &
-	ComponentProps<typeof BaseModal>;
+	ComponentProps<typeof Modal>;
 
 export const LeaveTeamModal = ({ teamId, ...props }: LeaveTeamModalProps) => {
 	const { leaveTeamMutation } = useTeams();
