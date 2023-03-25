@@ -1,6 +1,7 @@
 import Link from 'next/link';
 
 import type { Team } from '@/types';
+import { getFirstLetter } from '@/utils/string';
 
 import { SingleTeamMenu } from './SingleTeamMenu/SingleTeamMenu';
 
@@ -19,7 +20,7 @@ export const SingleTeam = ({ team }: TeamProps) => {
 				className="flex h-full flex-col items-center justify-center"
 			>
 				<div className="flex h-20 w-20 items-center justify-center rounded-md bg-indigo-600 text-white">
-					{name[0].toUpperCase()}
+					{getFirstLetter(name)}
 				</div>
 				<h3 className="mt-2.5 text-lg font-medium">{name}</h3>
 			</Link>
