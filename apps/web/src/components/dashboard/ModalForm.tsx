@@ -2,17 +2,17 @@ import type { ReactNode } from 'react';
 
 import { Button } from '../common/Button/Button';
 
-type TeamModalFormProps = Readonly<{
+type ModalFormProps = Readonly<{
 	buttonText: string;
 	onSubmit: () => void;
 	children: ReactNode;
 }>;
 
-export const TeamModalForm = ({
+export const ModalForm = ({
 	buttonText,
 	onSubmit,
 	children,
-}: TeamModalFormProps) => (
+}: ModalFormProps) => (
 	<form onSubmit={onSubmit}>
 		<div className="mb-2.5 space-y-2">{children}</div>
 		<Button type="submit" variant="primary" onSubmit={onSubmit} fullWidth>

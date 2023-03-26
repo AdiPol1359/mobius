@@ -8,7 +8,7 @@ import { useZodForm } from '@/hooks/useZodForm';
 import { DEFAULT_ERROR_MESSAGE } from '@/lib/constants';
 import { joinTeam } from '@/services/teams.service';
 
-import { TeamModalForm } from '../../TeamModalForm';
+import { ModalForm } from '../../ModalForm';
 import { joinTeamFormSchema } from './JoinTeamForm.schemas';
 
 type JoinTeamFormProps = Readonly<{
@@ -48,7 +48,7 @@ export const JoinTeamForm = ({ onSuccess }: JoinTeamFormProps) => {
 	});
 
 	return (
-		<TeamModalForm buttonText="Join the team" onSubmit={handleFormSubmit}>
+		<ModalForm buttonText="Join the team" onSubmit={handleFormSubmit}>
 			<Input
 				type="text"
 				placeholder="Enter team code"
@@ -57,6 +57,6 @@ export const JoinTeamForm = ({ onSuccess }: JoinTeamFormProps) => {
 				error={errors.code?.message}
 				{...register('code')}
 			/>
-		</TeamModalForm>
+		</ModalForm>
 	);
 };

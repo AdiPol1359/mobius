@@ -7,7 +7,7 @@ import { useTeams } from '@/hooks/useTeams';
 import { useZodForm } from '@/hooks/useZodForm';
 import { DEFAULT_ERROR_MESSAGE } from '@/lib/constants';
 
-import { TeamModalForm } from '../../TeamModalForm';
+import { ModalForm } from '../../ModalForm';
 import { createTeamFormSchema } from './CreateTeamForm.schemas';
 
 type CreateTeamFormProps = Readonly<{
@@ -41,7 +41,7 @@ export const CreateTeamForm = ({ onSuccess }: CreateTeamFormProps) => {
 	});
 
 	return (
-		<TeamModalForm buttonText="Create a new team" onSubmit={handleFormSubmit}>
+		<ModalForm buttonText="Create a new team" onSubmit={handleFormSubmit}>
 			<Input
 				type="text"
 				placeholder="Enter team name"
@@ -50,6 +50,6 @@ export const CreateTeamForm = ({ onSuccess }: CreateTeamFormProps) => {
 				error={errors.name?.message}
 				{...register('name')}
 			/>
-		</TeamModalForm>
+		</ModalForm>
 	);
 };
