@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { AiOutlineFacebook, AiOutlineTwitter } from 'react-icons/ai';
 
 import { Input } from './Input';
 
@@ -26,5 +27,12 @@ export const Label: Story = {
 export const Error: Story = {
 	args: {
 		error: 'Error',
+	},
+};
+
+export const Icons: Story = {
+	args: {
+		leftIcon: <AiOutlineTwitter />,
+		rightIcon: <AiOutlineFacebook />,
 	},
 };
