@@ -2,12 +2,12 @@
 
 import { toast } from 'react-hot-toast';
 
-import { Button } from '@/components/common/Button/Button';
 import { Input } from '@/components/common/Input/Input';
 import { useTeams } from '@/hooks/useTeams';
 import { useZodForm } from '@/hooks/useZodForm';
 import { DEFAULT_ERROR_MESSAGE } from '@/lib/constants';
 
+import { TeamModalForm } from '../../TeamModalForm';
 import { createTeamFormSchema } from './CreateTeamForm.schemas';
 
 type CreateTeamFormProps = Readonly<{
@@ -41,7 +41,7 @@ export const CreateTeamForm = ({ onSuccess }: CreateTeamFormProps) => {
 	});
 
 	return (
-		<form onSubmit={handleFormSubmit}>
+		<TeamModalForm buttonText="Create a new team" onSubmit={handleFormSubmit}>
 			<Input
 				type="text"
 				placeholder="Enter team name"
@@ -50,9 +50,6 @@ export const CreateTeamForm = ({ onSuccess }: CreateTeamFormProps) => {
 				error={errors.name?.message}
 				{...register('name')}
 			/>
-			<Button type="submit" variant="primary" className="mt-2 w-full">
-				Create a new team
-			</Button>
-		</form>
+		</TeamModalForm>
 	);
 };
