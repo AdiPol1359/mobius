@@ -2,7 +2,7 @@ import { forwardRef, useId } from 'react';
 import { FaCheck } from 'react-icons/fa';
 import { twMerge } from 'tailwind-merge';
 
-import { InputError } from '../InputError';
+import { ErrorMessage } from '../ErrorMessage';
 
 type CheckboxProps = Readonly<{
 	label?: string;
@@ -44,7 +44,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
 						</label>
 					)}
 				</div>
-				<InputError error={error} />
+				<ErrorMessage error={error} />
 			</div>
 		);
 	}

@@ -1,7 +1,7 @@
 import { forwardRef, useId } from 'react';
 import { twMerge } from 'tailwind-merge';
 
-import { InputError } from '../InputError';
+import { ErrorMessage } from '../ErrorMessage';
 
 type InputProps = Readonly<{
 	label?: string;
@@ -40,7 +40,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
 					/>
 					{children}
 				</div>
-				<InputError error={error} />
+				<ErrorMessage error={error} />
 			</div>
 		);
 	}
