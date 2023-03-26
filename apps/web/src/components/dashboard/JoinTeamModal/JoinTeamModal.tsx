@@ -22,11 +22,11 @@ export const JoinTeamModal = ({
 		</div>
 		<Button
 			type="button"
-			className="w-full"
 			onClick={() => {
 				props.onClose();
 				onButtonClick();
 			}}
+			fullWidth
 		>
 			Create your own team
 		</Button>

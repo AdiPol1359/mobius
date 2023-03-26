@@ -2,13 +2,13 @@
 
 import { toast } from 'react-hot-toast';
 
-import { Button } from '@/components/common/Button/Button';
 import { Input } from '@/components/common/Input/Input';
 import { useTeams } from '@/hooks/useTeams';
 import { useZodForm } from '@/hooks/useZodForm';
 import { DEFAULT_ERROR_MESSAGE } from '@/lib/constants';
 import { joinTeam } from '@/services/teams.service';
 
+import { ModalForm } from '../../ModalForm';
 import { joinTeamFormSchema } from './JoinTeamForm.schemas';
 
 type JoinTeamFormProps = Readonly<{
@@ -48,7 +48,7 @@ export const JoinTeamForm = ({ onSuccess }: JoinTeamFormProps) => {
 	});
 
 	return (
-		<form onSubmit={handleFormSubmit}>
+		<ModalForm buttonText="Join the team" onSubmit={handleFormSubmit}>
 			<Input
 				type="text"
 				placeholder="Enter team code"
@@ -57,9 +57,6 @@ export const JoinTeamForm = ({ onSuccess }: JoinTeamFormProps) => {
 				error={errors.code?.message}
 				{...register('code')}
 			/>
-			<Button type="submit" variant="primary" className="mt-2 w-full">
-				Join the team
-			</Button>
-		</form>
+		</ModalForm>
 	);
 };

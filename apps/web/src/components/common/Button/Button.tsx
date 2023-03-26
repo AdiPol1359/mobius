@@ -7,11 +7,13 @@ const variants = {
 
 type ButtonProps = Readonly<{
 	variant?: keyof typeof variants;
+	fullWidth?: boolean;
 }> &
 	JSX.IntrinsicElements['button'];
 
 export const Button = ({
 	variant = 'default',
+	fullWidth,
 	className,
 	...props
 }: ButtonProps) => (
@@ -19,6 +21,7 @@ export const Button = ({
 		className={twMerge(
 			'flex items-center justify-center gap-x-1 rounded-md border px-3 py-1.5 shadow-sm transition-colors',
 			variants[variant],
+			fullWidth ? 'w-full' : 'w-fit',
 			className
 		)}
 		{...props}
