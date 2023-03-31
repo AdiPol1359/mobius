@@ -10,7 +10,7 @@ export const UserMenu = () => (
 		<Dropdown.Button>
 			<UserAvatar />
 		</Dropdown.Button>
-		<Dropdown.Items>
+		<Dropdown.Items position="center">
 			<LogoutButton />
 		</Dropdown.Items>
 	</Dropdown>

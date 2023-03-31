@@ -10,6 +10,6 @@ export const NotificationsMenu = () => (
 			<RiNotificationLine />
 			<div className="absolute top-0 right-0 h-2 w-2 rounded-full bg-red-600" />
 		</Dropdown.Button>
-		<Dropdown.Items>notifications menu</Dropdown.Items>
+		<Dropdown.Items position="right">notifications menu</Dropdown.Items>
 	</Dropdown>
 );
