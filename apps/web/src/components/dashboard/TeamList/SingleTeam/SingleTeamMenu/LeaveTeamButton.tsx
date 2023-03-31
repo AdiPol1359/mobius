@@ -1,6 +1,6 @@
 import { AiOutlineExport } from 'react-icons/ai';
 
-import { Menu } from '@/components/common/Menu/Menu';
+import { Dropdown } from '@/components/common/Dropdown/Dropdown';
 import { LeaveTeamModal } from '@/components/dashboard/LeaveTeamModal';
 import { useModal } from '@/hooks/useModal';
 
@@ -13,9 +13,9 @@ export const LeaveTeamButton = ({ teamId }: LeaveTeamButtonProps) => {
 
 	return (
 		<>
-			<Menu.Item onClick={openModal}>
+			<Dropdown.Item onClick={openModal}>
 				<AiOutlineExport /> Leave team
-			</Menu.Item>
+			</Dropdown.Item>
 			<LeaveTeamModal teamId={teamId} isOpen={isOpen} onClose={closeModal} />
 		</>
 	);

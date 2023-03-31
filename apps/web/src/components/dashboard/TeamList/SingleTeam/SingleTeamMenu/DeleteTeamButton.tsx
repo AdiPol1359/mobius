@@ -2,7 +2,7 @@
 
 import { AiOutlineDelete } from 'react-icons/ai';
 
-import { Menu } from '@/components/common/Menu/Menu';
+import { Dropdown } from '@/components/common/Dropdown/Dropdown';
 import { DeleteTeamModal } from '@/components/dashboard/DeleteTeamModal/DeleteTeamModal';
 import { useModal } from '@/hooks/useModal';
 
@@ -15,10 +15,10 @@ export const DeleteTeamButton = ({ teamId }: DeleteTeamButtonProps) => {
 
 	return (
 		<>
-			<Menu.Item variant="red" onClick={openModal}>
+			<Dropdown.Item variant="red" onClick={openModal}>
 				<AiOutlineDelete />
 				Delete team
-			</Menu.Item>
+			</Dropdown.Item>
 			<DeleteTeamModal teamId={teamId} isOpen={isOpen} onClose={closeModal} />
 		</>
 	);
