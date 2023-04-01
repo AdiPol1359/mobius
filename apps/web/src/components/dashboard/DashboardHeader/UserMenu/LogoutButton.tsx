@@ -2,20 +2,20 @@
 
 import { BiLogOut } from 'react-icons/bi';
 
-import { Menu } from '@/components/common/Menu/Menu';
+import { Dropdown } from '@/components/common/Dropdown/Dropdown';
 import { useUser } from '@/hooks/useUser';
 
 export const LogoutButton = () => {
 	const { logoutMutation } = useUser();
 
 	return (
-		<Menu.Item
+		<Dropdown.Item
 			onClick={() => {
 				logoutMutation.mutate({});
 			}}
 		>
 			<BiLogOut />
 			Log out
-		</Menu.Item>
+		</Dropdown.Item>
 	);
 };
