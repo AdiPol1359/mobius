@@ -1,7 +1,5 @@
 'use client';
 
-import { VscEllipsis } from 'react-icons/vsc';
-
 import { Dropdown } from '@/components/common/Dropdown/Dropdown';
 import { DeleteTeamModal } from '@/components/dashboard/DeleteTeamModal/DeleteTeamModal';
 import { LeaveTeamModal } from '@/components/dashboard/LeaveTeamModal';
@@ -10,6 +8,7 @@ import type { Team } from '@/types';
 
 import { DeleteTeamButton } from './DeleteTeamButton';
 import { LeaveTeamButton } from './LeaveTeamButton';
+import { SingleTeamMenuButton } from './SingleTeamMenuButton';
 
 type SingleTeamMenuProps = Readonly<{
 	team: Team;
@@ -33,9 +32,7 @@ export const SingleTeamMenu = ({
 	return (
 		<>
 			<Dropdown className="absolute right-3.5 top-3">
-				<Dropdown.Button className="text-xl text-gray-500 hover:text-indigo-600">
-					<VscEllipsis />
-				</Dropdown.Button>
+				<SingleTeamMenuButton />
 				<Dropdown.Items position="center">
 					{roles?.includes('OWNER') && (
 						<DeleteTeamButton onClick={openDeleteTeamModal} />
