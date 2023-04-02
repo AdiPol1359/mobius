@@ -27,6 +27,9 @@ export interface paths {
 	'/teams/{teamId}/leave': {
 		post: operations['TeamsController_leaveTeam'];
 	};
+	'/notifications': {
+		get: operations['NotificationsController_getAllNotifications'];
+	};
 }
 
 export type webhooks = Record<string, never>;
@@ -82,6 +85,14 @@ export interface components {
 		JoinTeamDto: {
 			/** @example ABCD1234 */
 			code: string;
+		};
+		NotificationDto: {
+			/** @example 1 */
+			id: number;
+			/** @example Foo */
+			content: string;
+			/** Format: date-time */
+			createdAt: string;
 		};
 	};
 	responses: never;
@@ -218,12 +229,6 @@ export interface operations {
 					'application/json': components['schemas']['TeamDto'];
 				};
 			};
-			/** @description Incorrect team name. */
-			400: {
-				content: {
-					'application/json': components['schemas']['OpenAPIHttpException'];
-				};
-			};
 			/** @description Incorrect authentication credentials. */
 			401: {
 				content: {
@@ -232,6 +237,12 @@ export interface operations {
 			};
 			/** @description Missing role in the team. */
 			403: {
+				content: {
+					'application/json': components['schemas']['OpenAPIHttpException'];
+				};
+			};
+			/** @description Team not found. */
+			404: {
 				content: {
 					'application/json': components['schemas']['OpenAPIHttpException'];
 				};
@@ -296,6 +307,21 @@ export interface operations {
 			};
 			/** @description Team code not found. */
 			404: {
+				content: {
+					'application/json': components['schemas']['OpenAPIHttpException'];
+				};
+			};
+		};
+	};
+	NotificationsController_getAllNotifications: {
+		responses: {
+			200: {
+				content: {
+					'application/json': components['schemas']['NotificationDto'][];
+				};
+			};
+			/** @description Incorrect authentication credentials. */
+			401: {
 				content: {
 					'application/json': components['schemas']['OpenAPIHttpException'];
 				};

@@ -1,6 +1,5 @@
 import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
 import {
-	ApiBadRequestResponse,
 	ApiConflictResponse,
 	ApiNotFoundResponse,
 	ApiTags,
@@ -42,15 +41,16 @@ export class TeamsController {
 
 	@Delete(':teamId')
 	@TeamRole('OWNER')
-	@ApiBadRequestResponse({
-		description: 'Incorrect team name.',
+	@ApiNotFoundResponse({
+		description: 'Team not found.',
 		type: OpenAPIHttpException,
 	})
 	async deleteTeam(
 		@Param('teamId') id: string,
+		@User() user: AppUser,
 		@Body() { name }: DeleteTeamDto
 	): Promise<TeamDto> {
-		return mapTeamToTeamDto(await this.teamsService.deleteTeam(id, name));
+		return mapTeamToTeamDto(await this.teamsService.deleteTeam(user, id, name));
 	}
 
 	@Post('join')

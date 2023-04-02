@@ -1,12 +1,16 @@
 import {
-	BadRequestException,
 	ConflictException,
 	Inject,
 	Injectable,
 	NotFoundException,
 } from '@nestjs/common';
-import { PrismaClient, TeamMember } from '@prisma/client';
+import { EventEmitter2 } from '@nestjs/event-emitter';
+import { Prisma, PrismaClient, TeamMember } from '@prisma/client';
 
+import {
+	CreateNotificationEvent,
+	createNotificationEvent,
+} from '@/notifications/events/create-notification.event';
 import { PRISMA_TOKEN } from '@/prisma/prisma.module';
 import { isPrismaError } from '@/prisma/prisma.utils';
 import { prismaErrorCode } from '@/prisma/prisma-errors';
@@ -18,50 +22,75 @@ import { createTeamSelect, generateJoinCode } from './teams.utils';
 
 @Injectable()
 export class TeamsService {
-	constructor(@Inject(PRISMA_TOKEN) private readonly prisma: PrismaClient) {}
+	constructor(
+		@Inject(PRISMA_TOKEN) private readonly prisma: PrismaClient,
+		private readonly eventEmitter: EventEmitter2
+	) {}
 
-	getAllTeams({ id }: AppUser): Promise<Team[]> {
+	getAllTeams(user: AppUser): Promise<Team[]> {
 		return this.prisma.team.findMany({
-			where: { teamMember: { some: { userId: id } } },
-			select: createTeamSelect(id),
+			where: { teamMember: { some: { userId: user.id } } },
+			select: createTeamSelect(user.id),
 		});
 	}
 
-	createTeam({ id }: AppUser, { name }: CreateTeamDto): Promise<Team> {
-		return this.prisma.team.create({
+	async createTeam(user: AppUser, { name }: CreateTeamDto): Promise<Team> {
+		const team = await this.prisma.team.create({
 			data: {
 				name,
-				teamMember: { create: { userId: id, roles: ['OWNER'] } },
+				teamMember: { create: { userId: user.id, roles: ['OWNER'] } },
 				teamCode: { create: { code: generateJoinCode() } },
 			},
-			select: createTeamSelect(id),
+			select: createTeamSelect(user.id),
 		});
+
+		this.eventEmitter.emit(
+			createNotificationEvent,
+			new CreateNotificationEvent(
+				user,
+				`Team ${team.name} has been successfully created!`
+			)
+		);
+
+		return team;
 	}
 
-	async deleteTeam(id: string, name: string): Promise<Team> {
-		const team = await this.prisma.team.findFirst({
-			where: { id, name },
-			select: createTeamSelect(),
-		});
+	async deleteTeam(user: AppUser, id: string, name: string): Promise<Team> {
+		const team = await this.findTeam({ id, name });
 
-		if (!team) {
-			throw new BadRequestException('Incorrect team name.');
-		}
-
-		return this.prisma.team.delete({
+		await this.prisma.team.delete({
 			where: { id },
-			select: createTeamSelect(),
 		});
+
+		this.eventEmitter.emit(
+			createNotificationEvent,
+			new CreateNotificationEvent(
+				user,
+				`Team ${team.name} has been successfully deleted!`
+			)
+		);
+
+		return team;
 	}
 
-	async joinTeam(code: string, { id }: AppUser): Promise<Team> {
-		const { id: teamId } = await this.getTeamByCode(code);
+	async joinTeam(code: string, user: AppUser): Promise<Team> {
+		const { id: teamId } = await this.findTeam({
+			teamCode: { some: { code } },
+		});
 
 		try {
 			const { team } = await this.prisma.teamMember.create({
-				data: { teamId, userId: id, roles: ['MEMBER'] },
-				select: { team: { select: createTeamSelect(id) } },
+				data: { teamId, userId: user.id, roles: ['MEMBER'] },
+				select: { team: { select: createTeamSelect(user.id) } },
 			});
+
+			this.eventEmitter.emit(
+				createNotificationEvent,
+				new CreateNotificationEvent(
+					user,
+					`You has successfully joined the ${team.name} team!`
+				)
+			);
 
 			return team;
 		} catch (err) {
@@ -76,12 +105,20 @@ export class TeamsService {
 		}
 	}
 
-	async leaveTeam(teamId: string, { id }: AppUser): Promise<Team> {
-		const { userId } = await this.getTeamMember(id, teamId);
+	async leaveTeam(teamId: string, user: AppUser): Promise<Team> {
+		const { userId } = await this.getTeamMember(user.id, teamId);
 		const { team } = await this.prisma.teamMember.delete({
 			where: { userId_teamId: { teamId, userId } },
-			select: { team: { select: createTeamSelect(id) } },
+			select: { team: { select: createTeamSelect(user.id) } },
 		});
+
+		this.eventEmitter.emit(
+			createNotificationEvent,
+			new CreateNotificationEvent(
+				user,
+				`You has successfully left the ${team.name} team!`
+			)
+		);
 
 		return team;
 	}
@@ -98,14 +135,14 @@ export class TeamsService {
 		return member;
 	}
 
-	async getTeamByCode(code: string): Promise<Team> {
+	private async findTeam(where: Prisma.TeamWhereInput): Promise<Team> {
 		const team = await this.prisma.team.findFirst({
-			where: { teamCode: { some: { code } } },
+			where,
 			select: createTeamSelect(),
 		});
 
 		if (!team) {
-			throw new NotFoundException('Team code not found.');
+			throw new NotFoundException('Team not found.');
 		}
 
 		return team;
