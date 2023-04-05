@@ -3,6 +3,7 @@ import type { ReactNode } from 'react';
 import { PrivateRoute } from '@/components/common/PrivateRoute';
 import { DashboardHeader } from '@/components/dashboard/DashboardHeader/DashboardHeader';
 import { DashboardNavigation } from '@/components/dashboard/DashboardNavigation';
+import { DashboardNotifications } from '@/components/dashboard/DashboardNotifications/DashboardNotifications';
 
 export default function DashboardLayout({
 	children,
@@ -18,6 +19,7 @@ export default function DashboardLayout({
 					{children}
 				</main>
 			</div>
+			<DashboardNotifications />
 		</PrivateRoute>
 	);
 }

@@ -1,12 +1,6 @@
-'use client';
-
-import { toast } from 'react-hot-toast';
-
 import { Input } from '@/components/common/Input/Input';
 import { useTeams } from '@/hooks/useTeams';
 import { useZodForm } from '@/hooks/useZodForm';
-import { DEFAULT_ERROR_MESSAGE } from '@/lib/constants';
-import { joinTeam } from '@/services/teams.service';
 
 import { ModalForm } from '../../ModalForm';
 import { joinTeamFormSchema } from './JoinTeamForm.schemas';
@@ -23,7 +17,7 @@ export const JoinTeamForm = ({ onSuccess }: JoinTeamFormProps) => {
 		formState: { errors },
 	} = useZodForm(joinTeamFormSchema, {
 		onSubmit: ({ code }) => {
-			const mutation = joinTeamMutation.mutateAsync(
+			joinTeamMutation.mutate(
 				{ code },
 				{
 					onSuccess: ({ data }) => {
@@ -32,18 +26,6 @@ export const JoinTeamForm = ({ onSuccess }: JoinTeamFormProps) => {
 					},
 				}
 			);
-
-			toast.promise(mutation, {
-				loading: 'Joining a team...',
-				success: ({ data: { name } }) => `Successfully joined to ${name}!`,
-				error: (err) => {
-					if (err instanceof joinTeam.Error) {
-						return err.getActualType().data.message;
-					}
-
-					return DEFAULT_ERROR_MESSAGE;
-				},
-			});
 		},
 	});
 
