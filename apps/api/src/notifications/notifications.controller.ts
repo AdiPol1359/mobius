@@ -17,12 +17,9 @@ export class NotificationsController {
 
 	@Get()
 	getAllNotifications(
-		@Query() paginationQueryDto: PaginationQueryDto,
+		@Query() query: PaginationQueryDto,
 		@User() user: AppUser
 	): Promise<NotificationDto[]> {
-		return this.notificationsService.getAllNotifications(
-			paginationQueryDto,
-			user
-		);
+		return this.notificationsService.getAllNotifications(query, user);
 	}
 }
