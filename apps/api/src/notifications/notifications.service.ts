@@ -1,6 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { Prisma, PrismaClient } from '@prisma/client';
 
+import { PaginationQueryDto } from '@/common/dto/pagination-query.dto';
 import { PRISMA_TOKEN } from '@/prisma/prisma.module';
 import { AppUser } from '@/users/users.types';
 
@@ -16,10 +17,15 @@ export const select = {
 export class NotificationsService {
 	constructor(@Inject(PRISMA_TOKEN) private readonly prisma: PrismaClient) {}
 
-	getAllNotifications(user: AppUser): Promise<Notification[]> {
+	getAllNotifications(
+		{ offset = 0, limit = 4 }: PaginationQueryDto,
+		user: AppUser
+	): Promise<Notification[]> {
 		return this.prisma.notification.findMany({
 			where: { userId: user.id },
 			orderBy: { createdAt: 'desc' },
+			skip: offset,
+			take: limit,
 			select,
 		});
 	}

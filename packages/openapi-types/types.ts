@@ -314,6 +314,12 @@ export interface operations {
 		};
 	};
 	NotificationsController_getAllNotifications: {
+		parameters: {
+			query: {
+				offset?: number;
+				limit?: number;
+			};
+		};
 		responses: {
 			200: {
 				content: {
