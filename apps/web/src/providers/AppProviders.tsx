@@ -17,6 +17,9 @@ export const AppProviders = ({ children }: AppProvidersProps) => (
 	<QueryClientProvider client={queryClient}>
 		{children}
 		<ReactQueryDevtools />
-		<Toaster position="top-right" />
+		<Toaster
+			position="top-right"
+			toastOptions={{ custom: { duration: 2000 } }}
+		/>
 	</QueryClientProvider>
 );
