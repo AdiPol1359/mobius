@@ -20,7 +20,7 @@ export const Items = ({ position, children }: ItemsProps) => (
 	>
 		<Menu.Items
 			className={twMerge(
-				'absolute top-full whitespace-nowrap rounded-md border bg-white p-1 text-sm',
+				'absolute top-full z-50 whitespace-nowrap rounded-md border bg-white p-1 text-sm',
 				position === 'left' && 'left-0',
 				position === 'right' && 'right-0',
 				position === 'center' && 'left-1/2 -translate-x-1/2'

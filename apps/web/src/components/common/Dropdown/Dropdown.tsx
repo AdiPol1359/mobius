@@ -19,7 +19,7 @@ export const Dropdown = ({
 	<Menu
 		as="div"
 		className={twMerge(
-			'relative z-50 flex w-fit items-center',
+			'relative flex w-fit items-center',
 			fullHeight ? 'h-full' : 'h-fit',
 			className
 		)}

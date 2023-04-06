@@ -13,7 +13,7 @@ export const TeamList = () => {
 	}
 
 	return (
-		<ul className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-6">
+		<ul className="custom-scrollbar mt-6 grid grid-cols-1 gap-4 overflow-auto md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-6">
 			{data?.data.map((team) => (
 				<li key={team.id}>
 					<SingleTeam team={team} />

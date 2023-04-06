@@ -25,7 +25,7 @@ export const SendMessageForm = () => {
 	});
 
 	return (
-		<form onSubmit={handleFormSubmit}>
+		<form onSubmit={handleFormSubmit} className="mb-2">
 			<Input
 				type="text"
 				placeholder="Please enter a message"
