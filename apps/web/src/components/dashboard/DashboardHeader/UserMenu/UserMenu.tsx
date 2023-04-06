@@ -2,8 +2,8 @@
 
 import { Dropdown } from '@/components/common/Dropdown/Dropdown';
 
-import { UserAvatar } from '../../UserAvatar';
 import { LogoutButton } from './LogoutButton';
+import { UserAvatar } from './UserAvatar';
 
 export const UserMenu = () => (
 	<Dropdown fullHeight>
