@@ -43,7 +43,11 @@ export const SignInForm = () => {
 					{alert.content}
 				</Alert>
 			)}
-			<EntryForm title="Sign in" onSubmit={handleFormSubmit}>
+			<EntryForm
+				title="Sign in"
+				onSubmit={handleFormSubmit}
+				isLoading={loginMutation.isLoading}
+			>
 				<Input
 					type="text"
 					label="Email address"

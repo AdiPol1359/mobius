@@ -52,7 +52,11 @@ export const SignUpForm = () => {
 					{alert.content}
 				</Alert>
 			)}
-			<EntryForm title="Sign up" onSubmit={handleFormSubmit}>
+			<EntryForm
+				title="Sign up"
+				onSubmit={handleFormSubmit}
+				isLoading={registerMutation.isLoading}
+			>
 				<Input
 					type="text"
 					label="First name"
