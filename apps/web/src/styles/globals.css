@@ -5,5 +5,5 @@ body {
 }
 
 .custom-scrollbar {
-	@apply pr-2 scrollbar scrollbar-thumb-neutral-400/80 scrollbar-thumb-rounded-md scrollbar-w-1.5;
+	@apply pr-2 scrollbar scrollbar-thumb-neutral-400/80 scrollbar-thumb-rounded-md scrollbar-w-1.5 scrollbar-h-1.5;
 }
