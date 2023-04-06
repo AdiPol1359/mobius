@@ -4,5 +4,6 @@ import { z } from 'zod';
 export const joinTeamFormSchema = z.object({
 	code: z
 		.string()
+		.trim()
 		.length(TEAM_CODE_LENGTH, { message: TEAM_CODE_ERROR_MESSAGE }),
 });

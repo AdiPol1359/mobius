@@ -6,12 +6,15 @@ import {
 	PASSWORD_REGEX,
 } from 'common';
 
+import { Trim } from '@/common/decorators/trim.decorator';
+
 export class CreateUserDto {
 	/**
 	 * @example example@example.com
 	 */
 	@IsNotEmpty()
 	@Matches(EMAIL_REGEX, { message: EMAIL_ERROR_MESSAGE })
+	@Trim()
 	email: string;
 
 	/**
@@ -26,6 +29,7 @@ export class CreateUserDto {
 	 */
 	@IsNotEmpty()
 	@IsString()
+	@Trim()
 	firstName: string;
 
 	/**
@@ -33,5 +37,6 @@ export class CreateUserDto {
 	 */
 	@IsNotEmpty()
 	@IsString()
+	@Trim()
 	lastName: string;
 }
