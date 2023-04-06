@@ -1,7 +1,8 @@
-import type { Meta, StoryObj } from '@storybook/react';
 import { AiOutlineFacebook, AiOutlineTwitter } from 'react-icons/ai';
 
 import { Input } from './Input';
+
+import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
 	title: 'Input',

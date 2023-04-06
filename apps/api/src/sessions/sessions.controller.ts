@@ -16,16 +16,16 @@ import {
 } from '@nestjs/swagger';
 import { Response } from 'express';
 
+import { CreateSessionDto } from './dto/create-session.dto';
+import { SessionsService } from './sessions.service';
+import { ExpressSession } from './sessions.types';
+
 import { Auth } from '@/auth/auth.decorator';
 import { User } from '@/common/decorators/user.decorator';
 import { OpenAPIHttpException } from '@/common/exceptions/openapi-http.exception';
 import { UserDto } from '@/users/dto/user.dto';
 import { mapUserToUserDto } from '@/users/users.mapper';
 import { AppUser } from '@/users/users.types';
-
-import { CreateSessionDto } from './dto/create-session.dto';
-import { SessionsService } from './sessions.service';
-import { ExpressSession } from './sessions.types';
 
 @Controller('sessions')
 @ApiTags('Sessions')

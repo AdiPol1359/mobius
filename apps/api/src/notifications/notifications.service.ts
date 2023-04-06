@@ -1,11 +1,11 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { Prisma, PrismaClient } from '@prisma/client';
 
+import { Notification } from './notifications.types';
+
 import { PaginationQueryDto } from '@/common/dto/pagination-query.dto';
 import { PRISMA_TOKEN } from '@/prisma/prisma.module';
 import { AppUser } from '@/users/users.types';
-
-import { Notification } from './notifications.types';
 
 export const select = {
 	id: true,

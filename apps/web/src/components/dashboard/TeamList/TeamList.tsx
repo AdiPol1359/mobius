@@ -1,9 +1,9 @@
 'use client';
 
-import { useTeams } from '@/hooks/useTeams';
-
 import { EmptyTeams } from './EmptyTeams';
 import { SingleTeam } from './SingleTeam/SingleTeam';
+
+import { useTeams } from '@/hooks/useTeams';
 
 export const TeamList = () => {
 	const { data } = useTeams();

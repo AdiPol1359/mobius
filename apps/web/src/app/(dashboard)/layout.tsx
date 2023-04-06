@@ -1,9 +1,9 @@
-import type { ReactNode } from 'react';
-
 import { PrivateRoute } from '@/components/common/PrivateRoute';
 import { DashboardHeader } from '@/components/dashboard/DashboardHeader/DashboardHeader';
 import { DashboardNavigation } from '@/components/dashboard/DashboardNavigation';
 import { DashboardNotifications } from '@/components/dashboard/DashboardNotifications/DashboardNotifications';
+
+import type { ReactNode } from 'react';
 
 export default function DashboardLayout({
 	children,

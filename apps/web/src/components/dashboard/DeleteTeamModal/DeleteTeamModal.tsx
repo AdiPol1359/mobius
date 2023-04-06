@@ -1,8 +1,8 @@
-import type { ComponentProps } from 'react';
+import { DeleteTeamForm } from './DeleteTeamForm/DeleteTeamForm';
 
 import { Modal } from '@/components/common/Modal/Modal';
 
-import { DeleteTeamForm } from './DeleteTeamForm/DeleteTeamForm';
+import type { ComponentProps } from 'react';
 
 type DeleteTeamModalProps = Readonly<{
 	teamId: string;

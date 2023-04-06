@@ -13,8 +13,19 @@ module.exports = {
 		'@typescript-eslint/no-unused-vars': 'error',
 		'import/newline-after-import': 'error',
 		'import/first': 'error',
-		'simple-import-sort/imports': 'error',
 		'simple-import-sort/exports': 'error',
+		'simple-import-sort/imports': [
+			'error',
+			{
+				groups: [
+					['^@?\\w'],
+					['^\\.'],
+					['^@/'],
+					['^(?!@/).+\\u0000$'],
+					['^@/.+\\u0000$'],
+				],
+			},
+		],
 	},
 	settings: {
 		'import/resolver': {

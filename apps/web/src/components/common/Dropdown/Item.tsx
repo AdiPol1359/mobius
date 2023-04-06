@@ -1,6 +1,7 @@
 import { Menu } from '@headlessui/react';
-import type { ReactNode } from 'react';
 import { twMerge } from 'tailwind-merge';
+
+import type { ReactNode } from 'react';
 
 const styles: Record<Variant, string> = {
 	default: 'text-gray-900',

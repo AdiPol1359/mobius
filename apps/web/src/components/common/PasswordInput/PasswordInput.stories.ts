@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from '@storybook/react';
-
 import { PasswordInput } from './PasswordInput';
+
+import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
 	title: 'PasswordInput',

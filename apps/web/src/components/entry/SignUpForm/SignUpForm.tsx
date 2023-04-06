@@ -1,5 +1,8 @@
 'use client';
 
+import { EntryForm } from '../EntryForm';
+import { signUpFormSchema } from './SignUpForm.schemas';
+
 import { Alert } from '@/components/common/Alert/Alert';
 import { Checkbox } from '@/components/common/Checkbox/Checkbox';
 import { Input } from '@/components/common/Input/Input';
@@ -8,9 +11,6 @@ import { useAlert } from '@/hooks/useAlert';
 import { useUser } from '@/hooks/useUser';
 import { useZodForm } from '@/hooks/useZodForm';
 import { createUser } from '@/services/users.service';
-
-import { EntryForm } from '../EntryForm';
-import { signUpFormSchema } from './SignUpForm.schemas';
 
 export const SignUpForm = () => {
 	const { alert, showAlert, hideAlert } = useAlert();

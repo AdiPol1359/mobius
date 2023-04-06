@@ -1,7 +1,6 @@
-import crypto from 'node:crypto';
-
 import { Prisma } from '@prisma/client';
 import { TEAM_CODE_LENGTH } from 'common';
+import crypto from 'node:crypto';
 
 export const createTeamSelect = (userId?: number) =>
 	({

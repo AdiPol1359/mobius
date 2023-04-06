@@ -1,9 +1,10 @@
 import { Menu } from '@headlessui/react';
-import type { ReactNode } from 'react';
 import { twMerge } from 'tailwind-merge';
 
 import { Item } from './Item';
 import { Items } from './Items';
+
+import type { ReactNode } from 'react';
 
 type DropdownProps = Readonly<{
 	fullHeight?: boolean;

@@ -1,6 +1,6 @@
-import type { ReactNode } from 'react';
-
 import { Button } from '../common/Button/Button';
+
+import type { ReactNode } from 'react';
 
 type ModalFormProps = Readonly<{
 	buttonText: string;

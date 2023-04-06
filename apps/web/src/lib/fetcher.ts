@@ -1,5 +1,6 @@
-import type { paths } from 'openapi-types';
 import { Fetcher } from 'openapi-typescript-fetch';
+
+import type { paths } from 'openapi-types';
 
 export const fetcher = Fetcher.for<paths>();
 

@@ -2,9 +2,9 @@ import { applyDecorators, SetMetadata, UseGuards } from '@nestjs/common';
 import { ApiForbiddenResponse } from '@nestjs/swagger';
 import { TeamMemberRole } from '@prisma/client';
 
-import { OpenAPIHttpException } from '@/common/exceptions/openapi-http.exception';
-
 import { TeamGuard } from '../team.guard';
+
+import { OpenAPIHttpException } from '@/common/exceptions/openapi-http.exception';
 
 export const TeamRole = (...roles: TeamMemberRole[]) =>
 	applyDecorators(

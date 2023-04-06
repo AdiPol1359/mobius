@@ -3,10 +3,10 @@
 import { useEffect } from 'react';
 import { toast } from 'react-hot-toast';
 
+import { Notification } from './Notification';
+
 import { useUser } from '@/hooks/useUser';
 import { notificationsSocket } from '@/lib/socket';
-
-import { Notification } from './Notification';
 
 export const DashboardNotifications = () => {
 	const { user } = useUser();

@@ -7,6 +7,10 @@ import {
 import { EventEmitter2 } from '@nestjs/event-emitter';
 import { Prisma, PrismaClient, TeamMember } from '@prisma/client';
 
+import { CreateTeamDto } from './dto/create-team.dto';
+import { Team } from './teams.types';
+import { createTeamSelect, generateJoinCode } from './teams.utils';
+
 import {
 	CreateNotificationEvent,
 	createNotificationEvent,
@@ -15,10 +19,6 @@ import { PRISMA_TOKEN } from '@/prisma/prisma.module';
 import { isPrismaError } from '@/prisma/prisma.utils';
 import { prismaErrorCode } from '@/prisma/prisma-errors';
 import { AppUser } from '@/users/users.types';
-
-import { CreateTeamDto } from './dto/create-team.dto';
-import { Team } from './teams.types';
-import { createTeamSelect, generateJoinCode } from './teams.utils';
 
 @Injectable()
 export class TeamsService {

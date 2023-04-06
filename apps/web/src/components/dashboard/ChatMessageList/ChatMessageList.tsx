@@ -1,6 +1,6 @@
-import type { User } from '@/types';
-
 import { ChatMessage } from './ChatMessage';
+
+import type { User } from '@/types';
 
 const user: User = {
 	id: 1,

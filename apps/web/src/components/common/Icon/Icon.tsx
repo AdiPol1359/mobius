@@ -1,5 +1,6 @@
-import type { ReactNode } from 'react';
 import { twMerge } from 'tailwind-merge';
+
+import type { ReactNode } from 'react';
 
 const variants = {
 	blue: 'bg-blue-50 text-blue-600',

@@ -1,11 +1,12 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import type { ReactNode } from 'react';
 import { useEffect } from 'react';
 
 import { useUser } from '@/hooks/useUser';
 import { DASHBOARD_PATH, SIGN_IN_PATH } from '@/lib/constants';
+
+import type { ReactNode } from 'react';
 
 type PrivateRouteProps = Readonly<{
 	loggedIn?: boolean;

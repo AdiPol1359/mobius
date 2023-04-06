@@ -5,11 +5,6 @@ import {
 	ApiTags,
 } from '@nestjs/swagger';
 
-import { Auth } from '@/auth/auth.decorator';
-import { User } from '@/common/decorators/user.decorator';
-import { OpenAPIHttpException } from '@/common/exceptions/openapi-http.exception';
-import { AppUser } from '@/users/users.types';
-
 import { TeamRole } from './decorators/team-role.decorator';
 import { CreateTeamDto } from './dto/create-team.dto';
 import { DeleteTeamDto } from './dto/delete-team.dto';
@@ -17,6 +12,11 @@ import { JoinTeamDto } from './dto/join-team.dto';
 import { TeamDto } from './dto/team.dto';
 import { mapTeamsToTeamDtos, mapTeamToTeamDto } from './teams.mapper';
 import { TeamsService } from './teams.service';
+
+import { Auth } from '@/auth/auth.decorator';
+import { User } from '@/common/decorators/user.decorator';
+import { OpenAPIHttpException } from '@/common/exceptions/openapi-http.exception';
+import { AppUser } from '@/users/users.types';
 
 @Auth()
 @ApiTags('Teams')

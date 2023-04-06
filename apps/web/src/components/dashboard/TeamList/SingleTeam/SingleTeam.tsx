@@ -1,9 +1,10 @@
 import Link from 'next/link';
 
-import type { Team } from '@/types';
+import { SingleTeamMenu } from './SingleTeamMenu/SingleTeamMenu';
+
 import { getFirstLetter } from '@/utils/string';
 
-import { SingleTeamMenu } from './SingleTeamMenu/SingleTeamMenu';
+import type { Team } from '@/types';
 
 type TeamProps = Readonly<{
 	team: Team;

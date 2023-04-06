@@ -1,9 +1,10 @@
-import type { ReactNode } from 'react';
 import { forwardRef, useId } from 'react';
 import { twMerge } from 'tailwind-merge';
 
 import { ErrorMessage } from '../ErrorMessage';
 import { IconWrapper } from './IconWrapper';
+
+import type { ReactNode } from 'react';
 
 type InputProps = Readonly<{
 	label?: string;

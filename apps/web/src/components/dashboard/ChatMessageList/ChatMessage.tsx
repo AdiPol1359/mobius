@@ -2,6 +2,7 @@ import moment from 'moment';
 import { twMerge } from 'tailwind-merge';
 
 import { Avatar } from '@/components/common/Avatar/Avatar';
+
 import type { User } from '@/types';
 
 type ChatMessageProps = Readonly<{

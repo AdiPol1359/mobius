@@ -2,6 +2,7 @@ import moment from 'moment';
 import { MdTaskAlt } from 'react-icons/md';
 
 import { Icon } from '@/components/common/Icon/Icon';
+
 import type { Notification } from '@/types';
 
 type NotificationItemProps = Readonly<{

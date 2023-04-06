@@ -1,8 +1,9 @@
 import dynamic from 'next/dynamic';
-import type { ComponentProps } from 'react';
 
 import { Footer } from './Footer';
 import { Title } from './Title';
+
+import type { ComponentProps } from 'react';
 
 const BaseModal = dynamic(
 	() => import('./BaseModal').then(({ BaseModal }) => BaseModal),

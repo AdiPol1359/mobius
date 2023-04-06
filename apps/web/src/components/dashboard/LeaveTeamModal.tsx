@@ -1,9 +1,9 @@
-import type { ComponentProps } from 'react';
+import { ConfirmModal } from '../common/ConfirmModal';
 
 import { useTeams } from '@/hooks/useTeams';
 
-import { ConfirmModal } from '../common/ConfirmModal';
 import type { Modal } from '../common/Modal/Modal';
+import type { ComponentProps } from 'react';
 
 type LeaveTeamModalProps = Readonly<{
 	teamId: string;

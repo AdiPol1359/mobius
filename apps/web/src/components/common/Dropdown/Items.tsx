@@ -1,7 +1,8 @@
 import { Menu, Transition } from '@headlessui/react';
-import type { ReactNode } from 'react';
 import { Fragment } from 'react';
 import { twMerge } from 'tailwind-merge';
+
+import type { ReactNode } from 'react';
 
 type ItemsProps = Readonly<{
 	position: 'left' | 'right' | 'center';

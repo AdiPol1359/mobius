@@ -2,10 +2,10 @@
 
 import { RiNotificationLine } from 'react-icons/ri';
 
-import { Dropdown } from '@/components/common/Dropdown/Dropdown';
-
 import { LoadMoreButton } from './LoadMoreButton';
 import { NotificationList } from './NotificationList/NotificationList';
+
+import { Dropdown } from '@/components/common/Dropdown/Dropdown';
 
 export const NotificationsMenu = () => (
 	<Dropdown fullHeight>

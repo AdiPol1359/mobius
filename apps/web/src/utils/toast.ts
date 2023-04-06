@@ -1,6 +1,7 @@
+import { toast } from 'react-hot-toast';
+
 import type { components } from 'openapi-types';
 import type { TypedFetch } from 'openapi-typescript-fetch';
-import { toast } from 'react-hot-toast';
 
 interface OP {
 	readonly responses: Record<

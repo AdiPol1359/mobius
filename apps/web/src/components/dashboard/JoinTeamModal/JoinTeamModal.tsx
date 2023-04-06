@@ -1,9 +1,9 @@
-import type { ComponentProps } from 'react';
+import { JoinTeamForm } from './JoinTeamForm/JoinTeamForm';
 
 import { Button } from '@/components/common/Button/Button';
 import { Modal } from '@/components/common/Modal/Modal';
 
-import { JoinTeamForm } from './JoinTeamForm/JoinTeamForm';
+import type { ComponentProps } from 'react';
 
 type JoinTeamModalProps = Readonly<{
 	onButtonClick: () => void;

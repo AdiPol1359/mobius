@@ -1,9 +1,9 @@
 'use client';
 
-import { Dropdown } from '@/components/common/Dropdown/Dropdown';
-
 import { LogoutButton } from './LogoutButton';
 import { UserAvatar } from './UserAvatar';
+
+import { Dropdown } from '@/components/common/Dropdown/Dropdown';
 
 export const UserMenu = () => (
 	<Dropdown fullHeight>

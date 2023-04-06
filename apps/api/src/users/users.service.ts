@@ -8,13 +8,13 @@ import { ConfigService } from '@nestjs/config';
 import { Prisma, PrismaClient } from '@prisma/client';
 import * as bcrypt from 'bcrypt';
 
+import { CreateUserDto } from './dto/create-user.dto';
+import { AppUser } from './users.types';
+
 import { AppConfigService } from '@/app.configuration';
 import { PRISMA_TOKEN } from '@/prisma/prisma.module';
 import { isPrismaError } from '@/prisma/prisma.utils';
 import { prismaErrorCode } from '@/prisma/prisma-errors';
-
-import { CreateUserDto } from './dto/create-user.dto';
-import { AppUser } from './users.types';
 
 export const select = {
 	id: true,

@@ -1,9 +1,10 @@
-import type { ReactNode } from 'react';
-import type { IconType } from 'react-icons';
 import { MdError, MdTaskAlt } from 'react-icons/md';
 import { twMerge } from 'tailwind-merge';
 
 import { CloseButton } from '../CloseButton/CloseButton';
+
+import type { ReactNode } from 'react';
+import type { IconType } from 'react-icons';
 
 const variants = {
 	error: 'bg-red-50 text-red-700 [&>svg]:text-red-400',

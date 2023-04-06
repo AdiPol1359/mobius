@@ -6,12 +6,12 @@ import {
 import { ConfigService } from '@nestjs/config';
 import { Response } from 'express';
 
+import { CreateSessionDto } from './dto/create-session.dto';
+import { ExpressSession } from './sessions.types';
+
 import { AppConfigService } from '@/app.configuration';
 import { AuthService } from '@/auth/auth.service';
 import { AppUser } from '@/users/users.types';
-
-import { CreateSessionDto } from './dto/create-session.dto';
-import { ExpressSession } from './sessions.types';
 
 @Injectable()
 export class SessionsService {

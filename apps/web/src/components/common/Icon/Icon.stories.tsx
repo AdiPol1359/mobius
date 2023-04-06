@@ -1,7 +1,8 @@
-import type { Meta, StoryObj } from '@storybook/react';
 import { AiOutlineBell } from 'react-icons/ai';
 
 import { Icon } from './Icon';
+
+import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
 	title: 'Icon',
