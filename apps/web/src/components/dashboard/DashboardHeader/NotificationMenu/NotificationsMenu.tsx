@@ -4,6 +4,7 @@ import { RiNotificationLine } from 'react-icons/ri';
 
 import { Dropdown } from '@/components/common/Dropdown/Dropdown';
 
+import { LoadMoreButton } from './LoadMoreButton';
 import { NotificationList } from './NotificationList/NotificationList';
 
 export const NotificationsMenu = () => (
@@ -14,6 +15,7 @@ export const NotificationsMenu = () => (
 		</Dropdown.Button>
 		<Dropdown.Items position="right">
 			<NotificationList />
+			<LoadMoreButton />
 		</Dropdown.Items>
 	</Dropdown>
 );
