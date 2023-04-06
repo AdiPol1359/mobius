@@ -3,3 +3,7 @@
 body {
 	@apply flex h-screen flex-col;
 }
+
+.custom-scrollbar {
+	@apply pr-2 scrollbar scrollbar-thumb-neutral-400/80 scrollbar-thumb-rounded-md scrollbar-w-1.5;
+}

@@ -10,7 +10,7 @@ const user: User = {
 };
 
 export const ChatMessageList = () => (
-	<ol className="mt-2 flex-1 space-y-8 overflow-auto pb-4">
+	<ol className="custom-scrollbar mt-2 flex-1 space-y-8 overflow-auto pb-4">
 		<li>
 			<ChatMessage
 				user={user}
