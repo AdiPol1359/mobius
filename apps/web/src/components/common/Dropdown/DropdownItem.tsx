@@ -15,13 +15,17 @@ const activeStyles: Record<Variant, string> = {
 
 type Variant = 'default' | 'red';
 
-type ItemProps = Readonly<{
+type DropdownItemProps = Readonly<{
 	variant?: Variant;
 	onClick?: () => void;
 	children: ReactNode;
 }>;
 
-export const Item = ({ variant = 'default', onClick, children }: ItemProps) => (
+export const DropdownItem = ({
+	variant = 'default',
+	onClick,
+	children,
+}: DropdownItemProps) => (
 	<Menu.Item>
 		{({ active }) => (
 			<button

@@ -4,12 +4,12 @@ import { twMerge } from 'tailwind-merge';
 
 import type { ReactNode } from 'react';
 
-type ItemsProps = Readonly<{
+type DropdownItemsProps = Readonly<{
 	position: 'left' | 'right' | 'center';
 	children: ReactNode;
 }>;
 
-export const Items = ({ position, children }: ItemsProps) => (
+export const DropdownItems = ({ position, children }: DropdownItemsProps) => (
 	<Transition
 		as={Fragment}
 		enter="transition duration-150"

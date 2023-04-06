@@ -1,8 +1,8 @@
 import { Menu } from '@headlessui/react';
 import { twMerge } from 'tailwind-merge';
 
-import { Item } from './Item';
-import { Items } from './Items';
+import { DropdownItem } from './DropdownItem';
+import { DropdownItems } from './DropdownItems';
 
 import type { ReactNode } from 'react';
 
@@ -29,6 +29,6 @@ export const Dropdown = ({
 	</Menu>
 );
 
-Dropdown.Items = Items;
-Dropdown.Item = Item;
+Dropdown.Item = DropdownItem;
+Dropdown.Items = DropdownItems;
 Dropdown.Button = Menu.Button;

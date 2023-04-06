@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic';
 
-import { Footer } from './Footer';
-import { Title } from './Title';
+import { ModalFooter } from './ModalFooter';
+import { ModalTitle } from './ModalTitle';
 
 import type { ComponentProps } from 'react';
 
@@ -16,5 +16,5 @@ export const Modal = (props: ComponentProps<typeof BaseModal>) => (
 	<BaseModal {...props} />
 );
 
-Modal.Title = Title;
-Modal.Footer = Footer;
+Modal.Title = ModalTitle;
+Modal.Footer = ModalFooter;
