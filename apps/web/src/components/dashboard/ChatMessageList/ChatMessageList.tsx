@@ -10,7 +10,7 @@ const user: User = {
 };
 
 export const ChatMessageList = () => (
-	<ol className="mt-2 flex-1 space-y-8 overflow-auto pb-4">
+	<ol className="custom-scrollbar mt-2 flex-1 space-y-8 overflow-auto pb-4">
 		<li>
 			<ChatMessage
 				user={user}
@@ -24,6 +24,62 @@ export const ChatMessageList = () => (
 				user={user}
 				createdAt="2023-06-04T11:00:00"
 				content="message 2"
+			/>
+		</li>
+		<li>
+			<ChatMessage
+				user={user}
+				createdAt="2023-06-04T11:00:00"
+				content="message 3"
+			/>
+		</li>
+		<li>
+			<ChatMessage
+				user={user}
+				createdAt="2023-06-04T11:00:00"
+				content="message 3"
+			/>
+		</li>
+		<li>
+			<ChatMessage
+				user={user}
+				createdAt="2023-06-04T11:00:00"
+				content="message 3"
+			/>
+		</li>
+		<li>
+			<ChatMessage
+				user={user}
+				createdAt="2023-06-04T11:00:00"
+				content="message 3"
+			/>
+		</li>
+		<li>
+			<ChatMessage
+				user={user}
+				createdAt="2023-06-04T11:00:00"
+				content="message 3"
+			/>
+		</li>
+		<li>
+			<ChatMessage
+				user={user}
+				createdAt="2023-06-04T11:00:00"
+				content="message 3"
+			/>
+		</li>
+		<li>
+			<ChatMessage
+				user={user}
+				createdAt="2023-06-04T11:00:00"
+				content="message 3"
+			/>
+		</li>
+		<li>
+			<ChatMessage
+				user={user}
+				createdAt="2023-06-04T11:00:00"
+				content="message 3"
 			/>
 		</li>
 		<li>

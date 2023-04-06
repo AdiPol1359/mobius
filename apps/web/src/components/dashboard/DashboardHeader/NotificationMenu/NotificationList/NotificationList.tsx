@@ -10,7 +10,7 @@ export const NotificationList = () => {
 	}
 
 	return (
-		<ol className="max-h-96 overflow-auto">
+		<ol className="custom-scrollbar max-h-96 overflow-auto">
 			{notifications.map((notification) => (
 				<NotificationItem key={notification.id} notification={notification} />
 			))}
