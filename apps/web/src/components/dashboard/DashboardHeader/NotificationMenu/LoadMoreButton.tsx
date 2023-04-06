@@ -5,7 +5,7 @@ export const LoadMoreButton = () => {
 	const { hasNextPage, fetchNextPage } = useNotifications();
 
 	return hasNextPage ? (
-		<Button disabled={!hasNextPage} onClick={() => fetchNextPage()} fullWidth>
+		<Button onClick={() => fetchNextPage()} fullWidth>
 			Load more
 		</Button>
 	) : null;
