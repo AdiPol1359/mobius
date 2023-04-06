@@ -16,9 +16,13 @@ export const useTeams = () => {
 	const router = useRouter();
 	const queryClient = useQueryClient();
 
-	const result = useQuery({
+	const { data: teams, ...rest } = useQuery({
 		queryKey: QUERY_KEY,
-		queryFn: () => getAllTeams({}),
+		queryFn: async () => {
+			const { data } = await getAllTeams({});
+			return data;
+		},
+		initialData: [],
 	});
 
 	const navigateToTeam = (id: string) => {
@@ -54,11 +58,12 @@ export const useTeams = () => {
 	});
 
 	return {
+		teams,
 		navigateToTeam,
 		createTeamMutation,
 		joinTeamMutation,
 		deleteTeamMutation,
 		leaveTeamMutation,
-		...result,
+		...rest,
 	};
 };
