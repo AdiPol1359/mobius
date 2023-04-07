@@ -3,7 +3,7 @@ import { twMerge } from 'tailwind-merge';
 const variants = {
 	default: 'bg-white text-neutral-900 enabled:hover:bg-gray-50',
 	primary:
-		'border-indigo-500 bg-indigo-600 text-white enabled:hover:bg-indigo-700',
+		'border-primary-500 bg-primary text-white enabled:hover:bg-primary-700',
 } as const;
 
 type ButtonProps = Readonly<{
