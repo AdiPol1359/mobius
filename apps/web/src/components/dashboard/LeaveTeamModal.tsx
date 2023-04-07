@@ -23,6 +23,7 @@ export const LeaveTeamModal = ({ teamId, ...props }: LeaveTeamModalProps) => {
 		<ConfirmModal
 			title="Do you want to leave the team?"
 			onConfirm={handleModalConfirm}
+			disabled={leaveTeamMutation.isLoading}
 			{...props}
 		/>
 	);

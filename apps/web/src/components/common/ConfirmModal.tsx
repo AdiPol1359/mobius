@@ -5,12 +5,14 @@ import type { ComponentProps } from 'react';
 
 type ConfirmModalProps = Readonly<{
 	title: string;
+	disabled?: boolean;
 	onConfirm?: () => void;
 }> &
 	ComponentProps<typeof Modal>;
 
 export const ConfirmModal = ({
 	title,
+	disabled,
 	onConfirm,
 	...props
 }: ConfirmModalProps) => (
@@ -20,7 +22,12 @@ export const ConfirmModal = ({
 			<Button type="button" onClick={props.onClose}>
 				Cancel
 			</Button>
-			<Button type="button" variant="primary" onClick={onConfirm}>
+			<Button
+				type="button"
+				variant="primary"
+				disabled={disabled}
+				onClick={onConfirm}
+			>
 				Confirm
 			</Button>
 		</Modal.Footer>
