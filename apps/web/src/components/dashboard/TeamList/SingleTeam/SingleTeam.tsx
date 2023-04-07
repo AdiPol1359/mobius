@@ -23,7 +23,9 @@ export const SingleTeam = ({ team }: TeamProps) => {
 				<div className="flex h-20 w-20 items-center justify-center rounded-md bg-primary text-white">
 					{getFirstLetter(name)}
 				</div>
-				<h3 className="mt-2.5 text-lg font-medium">{name}</h3>
+				<h3 className="mt-2.5 w-48 overflow-hidden text-ellipsis whitespace-nowrap text-center text-lg font-medium">
+					{name}
+				</h3>
 			</Link>
 		</article>
 	);

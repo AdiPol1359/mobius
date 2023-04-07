@@ -18,7 +18,7 @@ export const NotificationItem = ({
 		<li className="flex w-72 gap-x-4 border-b bg-white px-2 py-3.5 last:border-none">
 			<Icon variant="green" icon={<MdTaskAlt />} />
 			<div className="flex-1 whitespace-normal">
-				<p>{content}</p>
+				<p className="break-all">{content}</p>
 				<time
 					dateTime={date.toISOString()}
 					className="mt-1 block text-gray-700"
