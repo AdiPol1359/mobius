@@ -30,6 +30,7 @@ export class TeamsService {
 	getAllTeams(user: AppUser): Promise<Team[]> {
 		return this.prisma.team.findMany({
 			where: { teamMember: { some: { userId: user.id } } },
+			orderBy: { createdAt: 'desc' },
 			select: createTeamSelect(user.id),
 		});
 	}
