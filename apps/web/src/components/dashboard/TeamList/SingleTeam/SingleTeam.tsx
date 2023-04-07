@@ -20,7 +20,7 @@ export const SingleTeam = ({ team }: TeamProps) => {
 				href={`/dashboard/teams/${id}`}
 				className="flex h-full flex-col items-center justify-center"
 			>
-				<div className="flex h-20 w-20 items-center justify-center rounded-md bg-indigo-600 text-white">
+				<div className="flex h-20 w-20 items-center justify-center rounded-md bg-primary text-white">
 					{getFirstLetter(name)}
 				</div>
 				<h3 className="mt-2.5 text-lg font-medium">{name}</h3>

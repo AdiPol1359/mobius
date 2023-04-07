@@ -11,7 +11,7 @@ const Item = ({ type = 'button', label, icon }: ItemProps) => (
 		<button
 			type={type}
 			aria-label={label}
-			className="text-xl text-gray-500 hover:text-indigo-600"
+			className="text-xl text-gray-500 hover:text-primary"
 		>
 			{icon}
 		</button>

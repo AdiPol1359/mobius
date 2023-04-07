@@ -44,8 +44,8 @@ export const DashboardNavigation = () => (
 					<ActiveLink
 						href={href}
 						aria-label={label}
-						className="flex aspect-square items-center justify-center border-l-2 border-transparent text-2xl text-gray-600 hover:text-indigo-600"
-						activeClassName="border-indigo-600 text-indigo-600"
+						className="flex aspect-square items-center justify-center border-l-2 border-transparent text-2xl text-gray-600 hover:text-primary"
+						activeClassName="border-primary text-primary"
 					>
 						{icon}
 					</ActiveLink>

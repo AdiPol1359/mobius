@@ -20,7 +20,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
 					className="peer hidden"
 					{...props}
 				/>
-				<div className="flex h-6 w-6 items-center justify-center rounded-md border bg-white text-white shadow-sm transition-colors duration-100 peer-checked:border-indigo-500 peer-checked:bg-indigo-600">
+				<div className="flex h-6 w-6 items-center justify-center rounded-md border bg-white text-white shadow-sm transition-colors duration-100 peer-checked:border-primary-500 peer-checked:bg-primary">
 					<FaCheck />
 				</div>
 				{label}
