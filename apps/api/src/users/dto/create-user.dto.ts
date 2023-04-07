@@ -1,7 +1,10 @@
-import { IsNotEmpty, IsString, Matches } from 'class-validator';
+import { IsNotEmpty, Matches } from 'class-validator';
 import {
 	EMAIL_ERROR_MESSAGE,
 	EMAIL_REGEX,
+	FIRST_NAME_ERROR_MESSAGE,
+	LAST_NAME_ERROR_MESSAGE,
+	NAME_REGEX,
 	PASSWORD_ERROR_MESSAGE,
 	PASSWORD_REGEX,
 } from 'common';
@@ -28,7 +31,7 @@ export class CreateUserDto {
 	 * @example John
 	 */
 	@IsNotEmpty()
-	@IsString()
+	@Matches(NAME_REGEX, { message: FIRST_NAME_ERROR_MESSAGE })
 	@Trim()
 	firstName: string;
 
@@ -36,7 +39,7 @@ export class CreateUserDto {
 	 * @example Burton
 	 */
 	@IsNotEmpty()
-	@IsString()
+	@Matches(NAME_REGEX, { message: LAST_NAME_ERROR_MESSAGE })
 	@Trim()
 	lastName: string;
 }
