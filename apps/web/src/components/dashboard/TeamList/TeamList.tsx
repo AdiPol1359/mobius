@@ -11,7 +11,7 @@ export const TeamList = () => {
 
 	if (isLoading) {
 		return (
-			<div className="my-auto flex items-center justify-center">
+			<div className="my-auto flex justify-center">
 				<Spinner />
 			</div>
 		);
