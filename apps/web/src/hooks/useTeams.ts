@@ -1,6 +1,8 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 
+import { useUser } from './useUser';
+
 import {
 	createTeam,
 	deleteTeam,
@@ -10,11 +12,12 @@ import {
 } from '@/services/teams.service';
 import { showAPIErrorToast } from '@/utils/toast';
 
-const QUERY_KEY = ['teams'];
-
 export const useTeams = () => {
+	const { user } = useUser();
 	const router = useRouter();
 	const queryClient = useQueryClient();
+
+	const QUERY_KEY = ['teams', user?.id];
 
 	const { data: teams, ...rest } = useQuery({
 		queryKey: QUERY_KEY,
@@ -22,6 +25,9 @@ export const useTeams = () => {
 			const { data } = await getAllTeams({});
 			return data;
 		},
+		staleTime: Infinity,
+		cacheTime: Infinity,
+		enabled: Boolean(user),
 	});
 
 	const navigateToTeam = (id: string) => {
