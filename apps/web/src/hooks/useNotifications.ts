@@ -20,7 +20,7 @@ export const useNotifications = () => {
 				: undefined,
 	});
 
-	const notifications = data?.pages?.flat() || [];
+	const notifications = data?.pages?.flat();
 
 	return { notifications, ...rest };
 };

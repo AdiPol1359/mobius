@@ -22,7 +22,6 @@ export const useTeams = () => {
 			const { data } = await getAllTeams({});
 			return data;
 		},
-		initialData: [],
 	});
 
 	const navigateToTeam = (id: string) => {
