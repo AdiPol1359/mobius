@@ -2,10 +2,14 @@ import { Button } from '@/components/common/Button/Button';
 import { useNotifications } from '@/hooks/useNotifications';
 
 export const LoadMoreButton = () => {
-	const { hasNextPage, fetchNextPage } = useNotifications();
+	const { isFetchingNextPage, hasNextPage, fetchNextPage } = useNotifications();
 
 	return hasNextPage ? (
-		<Button onClick={() => fetchNextPage()} fullWidth>
+		<Button
+			onClick={() => fetchNextPage()}
+			disabled={isFetchingNextPage}
+			fullWidth
+		>
 			Load more
 		</Button>
 	) : null;
