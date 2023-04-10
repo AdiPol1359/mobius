@@ -3,7 +3,7 @@ import { Reflector } from '@nestjs/core';
 import { TeamMemberRole } from '@prisma/client';
 import { Request } from 'express';
 
-import { TeamsService } from './teams.service';
+import { TeamsService } from '../teams.service';
 
 @Injectable()
 export class TeamGuard implements CanActivate {
@@ -25,6 +25,8 @@ export class TeamGuard implements CanActivate {
 
 		const member = await this.teamsService.getTeamMember(user.id, teamId);
 
-		return member.roles.some((role) => roles.includes(role));
+		return (
+			roles.length === 0 || member.roles.some((role) => roles.includes(role))
+		);
 	}
 }

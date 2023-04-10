@@ -27,6 +27,10 @@ export interface paths {
 	'/teams/{teamId}/leave': {
 		post: operations['TeamsController_leaveTeam'];
 	};
+	'/teams/{teamId}/messages': {
+		get: operations['TeamsController_getAllTeamMessages'];
+		post: operations['TeamsController_createTeamMessage'];
+	};
 	'/notifications': {
 		get: operations['NotificationsController_getAllNotifications'];
 	};
@@ -85,6 +89,27 @@ export interface components {
 		JoinTeamDto: {
 			/** @example ABCD1234 */
 			code: string;
+		};
+		AuthorDto: {
+			/** @example John */
+			firstName: string;
+			/** @example Burton */
+			lastName: string;
+		};
+		MessageDto: {
+			/** @example 10 */
+			id: number;
+			/** @example Hello! */
+			content: string;
+			/** @example 2023-06-04T12:00:00 */
+			createdAt: string;
+			/** @example 2023-06-05T15:00:00 */
+			updatedAt: string;
+			author: components['schemas']['AuthorDto'];
+		};
+		CreateMessageDto: {
+			/** @example Hello! */
+			content: string;
 		};
 		NotificationDto: {
 			/** @example 1 */
@@ -241,7 +266,7 @@ export interface operations {
 					'application/json': components['schemas']['OpenAPIHttpException'];
 				};
 			};
-			/** @description Team not found. */
+			/** @description Team member not found. */
 			404: {
 				content: {
 					'application/json': components['schemas']['OpenAPIHttpException'];
@@ -305,7 +330,80 @@ export interface operations {
 					'application/json': components['schemas']['OpenAPIHttpException'];
 				};
 			};
-			/** @description Team code not found. */
+			/** @description Team member not found. */
+			404: {
+				content: {
+					'application/json': components['schemas']['OpenAPIHttpException'];
+				};
+			};
+		};
+	};
+	TeamsController_getAllTeamMessages: {
+		parameters: {
+			query: {
+				offset?: number;
+				limit?: number;
+			};
+			path: {
+				teamId: string;
+			};
+		};
+		responses: {
+			200: {
+				content: {
+					'application/json': components['schemas']['MessageDto'][];
+				};
+			};
+			/** @description Incorrect authentication credentials. */
+			401: {
+				content: {
+					'application/json': components['schemas']['OpenAPIHttpException'];
+				};
+			};
+			/** @description Missing role in the team. */
+			403: {
+				content: {
+					'application/json': components['schemas']['OpenAPIHttpException'];
+				};
+			};
+			/** @description Team member not found. */
+			404: {
+				content: {
+					'application/json': components['schemas']['OpenAPIHttpException'];
+				};
+			};
+		};
+	};
+	TeamsController_createTeamMessage: {
+		parameters: {
+			path: {
+				teamId: string;
+			};
+		};
+		requestBody: {
+			content: {
+				'application/json': components['schemas']['CreateMessageDto'];
+			};
+		};
+		responses: {
+			201: {
+				content: {
+					'application/json': components['schemas']['MessageDto'];
+				};
+			};
+			/** @description Incorrect authentication credentials. */
+			401: {
+				content: {
+					'application/json': components['schemas']['OpenAPIHttpException'];
+				};
+			};
+			/** @description Missing role in the team. */
+			403: {
+				content: {
+					'application/json': components['schemas']['OpenAPIHttpException'];
+				};
+			};
+			/** @description Team member not found. */
 			404: {
 				content: {
 					'application/json': components['schemas']['OpenAPIHttpException'];
