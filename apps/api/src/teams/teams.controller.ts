@@ -116,15 +116,11 @@ export class TeamsController {
 	@TeamGuard()
 	async createTeamMessage(
 		@User() user: AppUser,
-		@Body() createTeamMessageDto: CreateMessageDto,
+		@Body() createMessageDto: CreateMessageDto,
 		@Param('teamId') teamId: string
 	): Promise<MessageDto> {
 		return mapMessageToMessageDto(
-			await this.messagesService.createMessage(
-				user,
-				createTeamMessageDto,
-				teamId
-			)
+			await this.messagesService.createMessage(user, createMessageDto, teamId)
 		);
 	}
 }
