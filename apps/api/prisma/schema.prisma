@@ -17,7 +17,7 @@ model User {
   updatedAt    DateTime       @updatedAt @map("updated_at")
   teamMember   TeamMember[]
   notification Notification[]
-  TeamMessage  TeamMessage[]
+  teamMessage  TeamMessage[]
 
   @@map("user")
 }
