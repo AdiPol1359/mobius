@@ -6,13 +6,13 @@ export const mapMessageToMessageDto = ({
 	content,
 	createdAt,
 	updatedAt,
-	user,
+	user: { id: userId, firstName, lastName },
 }: Message): MessageDto => ({
 	id,
 	content,
 	createdAt: createdAt.toISOString(),
 	updatedAt: updatedAt.toISOString(),
-	author: user,
+	author: { id: userId, firstName, lastName },
 });
 
 export const mapMessagesToMessageDtos = (messages: Message[]) =>

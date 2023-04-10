@@ -1,5 +1,10 @@
 class AuthorDto {
 	/**
+	 * @example 10
+	 */
+	id: number;
+
+	/**
 	 * @example John
 	 */
 	firstName: string;

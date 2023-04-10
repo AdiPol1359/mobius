@@ -91,6 +91,8 @@ export interface components {
 			code: string;
 		};
 		AuthorDto: {
+			/** @example 10 */
+			id: number;
 			/** @example John */
 			firstName: string;
 			/** @example Burton */

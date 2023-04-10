@@ -15,7 +15,7 @@ export const select = {
 	content: true,
 	createdAt: true,
 	updatedAt: true,
-	user: { select: { firstName: true, lastName: true } },
+	user: { select: { id: true, firstName: true, lastName: true } },
 } satisfies Prisma.TeamMessageSelect;
 
 @Injectable()
