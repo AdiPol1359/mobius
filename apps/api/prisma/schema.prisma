@@ -17,17 +17,19 @@ model User {
   updatedAt    DateTime       @updatedAt @map("updated_at")
   teamMember   TeamMember[]
   notification Notification[]
+  teamMessage  TeamMessage[]
 
   @@map("user")
 }
 
 model Team {
-  id         String       @id @default(uuid())
-  name       String
-  createdAt  DateTime     @default(now()) @map("created_at")
-  updatedAt  DateTime     @updatedAt @map("updated_at")
-  teamMember TeamMember[]
-  teamCode   TeamCode[]
+  id          String        @id @default(uuid())
+  name        String
+  createdAt   DateTime      @default(now()) @map("created_at")
+  updatedAt   DateTime      @updatedAt @map("updated_at")
+  teamMember  TeamMember[]
+  teamCode    TeamCode[]
+  teamMessage TeamMessage[]
 
   @@map("team")
 }
@@ -60,6 +62,19 @@ model Notification {
   createdAt DateTime @default(now()) @map("created_at")
 
   @@map("notification")
+}
+
+model TeamMessage {
+  id        Int      @id @default(autoincrement())
+  teamId    String   @map("team_id")
+  userId    Int      @map("user_id")
+  content   String
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+  team      Team     @relation(fields: [teamId], references: [id])
+  user      User     @relation(fields: [userId], references: [id])
+
+  @@map("team_message")
 }
 
 enum TeamMemberRole {

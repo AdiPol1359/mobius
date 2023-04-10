@@ -270,6 +270,9 @@ importers:
 
   packages/common:
     devDependencies:
+      openapi-types:
+        specifier: workspace:*
+        version: link:../openapi-types
       typescript:
         specifier: 4.9.5
         version: 4.9.5
