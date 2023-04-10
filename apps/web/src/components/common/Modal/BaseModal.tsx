@@ -32,7 +32,7 @@ export const BaseModal = ({ isOpen, children, onClose }: BaseModalProps) => {
 			role="dialog"
 			aria-modal="true"
 			onClick={onClose}
-			className="fixed top-0 left-0 z-50 h-full w-full overflow-auto bg-black/40 py-2"
+			className="fixed left-0 top-0 z-50 h-full w-full overflow-auto bg-black/40 py-2"
 		>
 			<div className="mx-auto flex min-h-full w-full max-w-xl items-center">
 				<Transition.Child
