@@ -17,4 +17,4 @@ export const TEAM_CODE_ERROR_MESSAGE =
 	'The team code must be 8 characters long';
 export const TEAM_NAME_ERROR_MESSAGE =
 	'The team name must be up to 40 characters long';
-export const TEAM_MESSAGE_ERROR_MESSAGE = 'The message is too long!';
+export const TEAM_MESSAGE_ERROR_MESSAGE = 'The message is too long';
