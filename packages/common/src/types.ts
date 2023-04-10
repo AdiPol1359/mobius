@@ -5,7 +5,7 @@ export type ServerToClientNotificationsEvents = {
 };
 
 export interface TeamsServerToClientEvents {
-	readonly message: (data: components['schemas']['MessageDto']) => void;
+	readonly message: (message: components['schemas']['MessageDto']) => void;
 }
 
 export interface TeamsClientToServerEvents {
