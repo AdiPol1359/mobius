@@ -7,19 +7,22 @@ import {
 } from 'react-icons/ai';
 
 import { ActionList } from './ActionList';
-import { sendMessageFormSchema } from './SendMessageForm.schemas';
+import { teamMessageFormSchema } from './TeamMessageForm.schemas';
 
 import { Input } from '@/components/common/Input/Input';
+import { useTeamMessages } from '@/hooks/useTeamMessages';
 import { useZodForm } from '@/hooks/useZodForm';
 
-export const SendMessageForm = () => {
+export const TeamMessageForm = () => {
+	const { createTeamMessageMutation } = useTeamMessages();
 	const {
 		handleFormSubmit,
 		register,
 		reset,
 		formState: { errors },
-	} = useZodForm(sendMessageFormSchema, {
-		onSubmit: () => {
+	} = useZodForm(teamMessageFormSchema, {
+		onSubmit: ({ message }) => {
+			createTeamMessageMutation.mutate(message);
 			reset();
 		},
 	});

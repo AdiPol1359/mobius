@@ -1,13 +1,13 @@
-import { ChatMessageList } from '@/components/dashboard/ChatMessageList/ChatMessageList';
 import { PageTitle } from '@/components/dashboard/PageTitle';
-import { SendMessageForm } from '@/components/dashboard/SendMessageForm/SendMessageForm';
+import { TeamMessageForm } from '@/components/dashboard/TeamMessageForm/TeamMessageForm';
+import { TeamMessages } from '@/components/dashboard/TeamMessages/TeamMessages';
 
 export default function DashboardTeamPage() {
 	return (
 		<>
 			<PageTitle>Single team</PageTitle>
-			<ChatMessageList />
-			<SendMessageForm />
+			<TeamMessages />
+			<TeamMessageForm />
 		</>
 	);
 }

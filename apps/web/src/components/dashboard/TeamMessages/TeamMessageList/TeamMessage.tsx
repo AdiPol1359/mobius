@@ -3,21 +3,21 @@ import { twMerge } from 'tailwind-merge';
 
 import { Avatar } from '@/components/common/Avatar/Avatar';
 
-import type { User } from '@/types';
+import type { Message } from '@/types';
 
-type ChatMessageProps = Readonly<{
-	user: User;
-	createdAt: string;
-	content: string;
+type TeamMessageProps = Readonly<{
+	message: Message;
 	me?: boolean;
 }>;
 
-export const ChatMessage = ({
-	user: { firstName, lastName },
-	createdAt,
-	content,
+export const TeamMessage = ({
+	message: {
+		author: { firstName, lastName },
+		createdAt,
+		content,
+	},
 	me,
-}: ChatMessageProps) => {
+}: TeamMessageProps) => {
 	const date = new Date(createdAt);
 
 	return (
@@ -30,7 +30,7 @@ export const ChatMessage = ({
 			<Avatar name={firstName} />
 			<div
 				className={twMerge(
-					'space-y-1 rounded-md bg-white p-3 shadow-sm',
+					'max-w-sm space-y-1 rounded-md bg-white p-3 shadow-sm',
 					me && 'bg-indigo-100'
 				)}
 			>
@@ -39,10 +39,10 @@ export const ChatMessage = ({
 						{firstName} {lastName}
 					</p>
 					<time dateTime={date.toISOString()} className="text-gray-700">
-						{moment(date).format('MM.DD.YYYY, h:mm:ss')}
+						{moment(date).format('MM.DD.YYYY, hh:mm:ss A')}
 					</time>
 				</div>
-				<p>{content}</p>
+				<p className="break-words">{content}</p>
 			</div>
 		</article>
 	);
