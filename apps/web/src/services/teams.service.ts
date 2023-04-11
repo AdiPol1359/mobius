@@ -11,3 +11,11 @@ export const leaveTeam = fetcher
 	.path('/teams/{teamId}/leave')
 	.method('post')
 	.create();
+export const getTeamMessages = fetcher
+	.path('/teams/{teamId}/messages')
+	.method('get')
+	.create();
+export const createTeamMessage = fetcher
+	.path('/teams/{teamId}/messages')
+	.method('post')
+	.create();
