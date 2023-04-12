@@ -1,6 +1,6 @@
 import type { components } from 'openapi-types';
 
-export type ServerToClientNotificationsEvents = {
+export type NotificationsServerToClientEvents = {
 	readonly [P in `notification:${number}`]: (content: string) => void;
 };
 
