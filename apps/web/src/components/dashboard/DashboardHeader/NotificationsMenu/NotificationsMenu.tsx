@@ -3,7 +3,7 @@
 import { RiNotificationLine } from 'react-icons/ri';
 
 import { LoadMoreButton } from './LoadMoreButton';
-import { NotificationList } from './NotificationList/NotificationList';
+import { UserNotifications } from './UserNotifications/UserNotifications';
 
 import { Dropdown } from '@/components/common/Dropdown/Dropdown';
 
@@ -14,7 +14,7 @@ export const NotificationsMenu = () => (
 			<div className="absolute right-0 top-0 h-2 w-2 rounded-full bg-red-600" />
 		</Dropdown.Button>
 		<Dropdown.Items position="right">
-			<NotificationList />
+			<UserNotifications />
 			<LoadMoreButton />
 		</Dropdown.Items>
 	</Dropdown>
