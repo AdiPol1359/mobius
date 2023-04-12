@@ -6,11 +6,11 @@ import { getFirstLetter } from '@/utils/string';
 
 import type { Team } from '@/types';
 
-type TeamProps = Readonly<{
+type SingleTeamProps = Readonly<{
 	team: Team;
 }>;
 
-export const SingleTeam = ({ team }: TeamProps) => {
+export const SingleTeam = ({ team }: SingleTeamProps) => {
 	const { id, name } = team;
 
 	return (

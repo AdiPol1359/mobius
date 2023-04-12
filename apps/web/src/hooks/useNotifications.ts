@@ -24,7 +24,7 @@ export const useNotifications = () => {
 		enabled: Boolean(user),
 	});
 
-	const notifications = data?.pages?.flat();
+	const notifications = data?.pages?.flat() || [];
 
 	return { notifications, ...rest };
 };

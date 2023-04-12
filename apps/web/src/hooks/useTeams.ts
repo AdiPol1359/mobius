@@ -19,7 +19,7 @@ export const useTeams = () => {
 
 	const QUERY_KEY = ['teams', user?.id];
 
-	const { data: teams, ...rest } = useQuery({
+	const { data: teams = [], ...rest } = useQuery({
 		queryKey: QUERY_KEY,
 		queryFn: async () => {
 			const { data } = await getAllTeams({});

@@ -1,4 +1,4 @@
-import { NotificationsMenu } from './NotificationMenu/NotificationsMenu';
+import { NotificationsMenu } from './NotificationsMenu/NotificationsMenu';
 import { UserMenu } from './UserMenu/UserMenu';
 
 export const DashboardHeader = () => (

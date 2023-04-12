@@ -1,7 +1,9 @@
 import { twMerge } from 'tailwind-merge';
 
+export type Size = 'sm' | 'md';
+
 type SpinnerProps = Readonly<{
-	size?: 'sm' | 'md';
+	size?: Size;
 }>;
 
 export const Spinner = ({ size = 'md' }: SpinnerProps) => (
