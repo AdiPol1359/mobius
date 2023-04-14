@@ -35,6 +35,10 @@ export class TeamsService {
 		});
 	}
 
+	getTeamById(id: string, user: AppUser): Promise<Team> {
+		return this.findTeam({ id }, user);
+	}
+
 	async createTeam(user: AppUser, { name }: CreateTeamDto): Promise<Team> {
 		const team = await this.prisma.team.create({
 			data: {
@@ -136,10 +140,13 @@ export class TeamsService {
 		return member;
 	}
 
-	private async findTeam(where: Prisma.TeamWhereInput): Promise<Team> {
+	private async findTeam(
+		where: Prisma.TeamWhereInput,
+		user?: AppUser
+	): Promise<Team> {
 		const team = await this.prisma.team.findFirst({
 			where,
-			select: createTeamSelect(),
+			select: createTeamSelect(user?.id),
 		});
 
 		if (!team) {
