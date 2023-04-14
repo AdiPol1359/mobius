@@ -1,10 +1,11 @@
 import { useMutation, useQuery } from '@tanstack/react-query';
-import { useParams } from 'next/navigation';
+
+import { useCurrentTeam } from './useCurrentTeam';
 
 import { createTeamMessage, getTeamMessages } from '@/services/teams.service';
 
 export const useTeamMessages = () => {
-	const { slug: teamId } = useParams();
+	const { teamId } = useCurrentTeam();
 	const { data: messages = [], ...rest } = useQuery({
 		queryKey: ['team', teamId, 'messages'],
 		queryFn: async () => {
