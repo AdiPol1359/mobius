@@ -48,6 +48,19 @@ export class TeamsController {
 		return mapTeamsToTeamDtos(await this.teamsService.getAllTeams(user));
 	}
 
+	@Get(':teamId')
+	@TeamGuard()
+	@ApiNotFoundResponse({
+		description: 'Team not found.',
+		type: OpenAPIHttpException,
+	})
+	async getTeamById(
+		@User() user: AppUser,
+		@Param('teamId') id: string
+	): Promise<TeamDto> {
+		return mapTeamToTeamDto(await this.teamsService.getTeamById(id, user));
+	}
+
 	@Post()
 	async createTeam(
 		@User() user: AppUser,

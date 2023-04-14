@@ -19,6 +19,7 @@ export interface paths {
 		post: operations['TeamsController_createTeam'];
 	};
 	'/teams/{teamId}': {
+		get: operations['TeamsController_getTeamById'];
 		delete: operations['TeamsController_deleteTeam'];
 	};
 	'/teams/join': {
@@ -233,6 +234,38 @@ export interface operations {
 			};
 			/** @description Incorrect authentication credentials. */
 			401: {
+				content: {
+					'application/json': components['schemas']['OpenAPIHttpException'];
+				};
+			};
+		};
+	};
+	TeamsController_getTeamById: {
+		parameters: {
+			path: {
+				teamId: string;
+			};
+		};
+		responses: {
+			200: {
+				content: {
+					'application/json': components['schemas']['TeamDto'];
+				};
+			};
+			/** @description Incorrect authentication credentials. */
+			401: {
+				content: {
+					'application/json': components['schemas']['OpenAPIHttpException'];
+				};
+			};
+			/** @description Missing role in the team. */
+			403: {
+				content: {
+					'application/json': components['schemas']['OpenAPIHttpException'];
+				};
+			};
+			/** @description Team member not found. */
+			404: {
 				content: {
 					'application/json': components['schemas']['OpenAPIHttpException'];
 				};
