@@ -59,7 +59,7 @@ model Notification {
   userId    Int      @map("user_id")
   content   String
   createdAt DateTime @default(now()) @map("created_at")
-  user      User     @relation(fields: [userId], references: [id])
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@map("notification")
 }
@@ -71,8 +71,8 @@ model TeamMessage {
   content   String
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
-  team      Team     @relation(fields: [teamId], references: [id])
-  user      User     @relation(fields: [userId], references: [id])
+  team      Team     @relation(fields: [teamId], references: [id], onDelete: Cascade)
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@map("team_message")
 }

@@ -11,7 +11,7 @@ CREATE TABLE "team_message" (
 );
 
 -- AddForeignKey
-ALTER TABLE "team_message" ADD CONSTRAINT "team_message_team_id_fkey" FOREIGN KEY ("team_id") REFERENCES "team"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "team_message" ADD CONSTRAINT "team_message_team_id_fkey" FOREIGN KEY ("team_id") REFERENCES "team"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "team_message" ADD CONSTRAINT "team_message_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "user"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "team_message" ADD CONSTRAINT "team_message_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "user"("id") ON DELETE CASCADE ON UPDATE CASCADE;
