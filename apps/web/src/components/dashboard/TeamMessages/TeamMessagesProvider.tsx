@@ -1,6 +1,6 @@
-import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
+import { useCurrentTeam } from '@/hooks/useCurrentTeam';
 import { createSafeContext } from '@/lib/createSafeContext';
 import { teamsSocket } from '@/lib/socket';
 
@@ -20,7 +20,7 @@ const TeamMessagesProvider = ({
 }: {
 	readonly children: ReactNode;
 }) => {
-	const { slug } = useParams();
+	const { teamId } = useCurrentTeam();
 	const [messages, setMessages] = useState<Message[]>([]);
 
 	useEffect(() => {
@@ -28,14 +28,14 @@ const TeamMessagesProvider = ({
 			setMessages((prev) => [message, ...prev]);
 		};
 
-		teamsSocket.emit('join', slug);
+		teamsSocket.emit('join', teamId);
 		teamsSocket.on('message', onMessageEvent);
 
 		return () => {
-			teamsSocket.emit('leave', slug);
+			teamsSocket.emit('leave', teamId);
 			teamsSocket.off('message', onMessageEvent);
 		};
-	}, [slug]);
+	}, [teamId]);
 
 	return (
 		<TeamMessagesContextProvider value={{ messages }}>

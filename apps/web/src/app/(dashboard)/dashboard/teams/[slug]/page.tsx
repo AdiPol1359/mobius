@@ -1,11 +1,11 @@
-import { PageTitle } from '@/components/dashboard/PageTitle';
+import { SingleTeamPageTitle } from '@/components/dashboard/SingleTeamPageTitle';
 import { TeamMessageForm } from '@/components/dashboard/TeamMessageForm/TeamMessageForm';
 import { TeamMessages } from '@/components/dashboard/TeamMessages/TeamMessages';
 
 export default function DashboardTeamPage() {
 	return (
 		<>
-			<PageTitle>Single team</PageTitle>
+			<SingleTeamPageTitle />
 			<TeamMessages />
 			<TeamMessageForm />
 		</>
