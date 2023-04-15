@@ -14,7 +14,7 @@ export const CreateTeamForm = ({ onSuccess }: CreateTeamFormProps) => {
 	const {
 		handleFormSubmit,
 		register,
-		formState: { errors, isSubmitted },
+		formState: { errors, isSubmitSuccessful },
 	} = useZodForm(createTeamFormSchema, {
 		onSubmit: ({ name }) => {
 			createTeamMutation.mutate(
@@ -32,7 +32,7 @@ export const CreateTeamForm = ({ onSuccess }: CreateTeamFormProps) => {
 	return (
 		<ModalForm
 			buttonText="Create a new team"
-			disabled={isSubmitted}
+			disabled={isSubmitSuccessful}
 			onSubmit={handleFormSubmit}
 		>
 			<Input

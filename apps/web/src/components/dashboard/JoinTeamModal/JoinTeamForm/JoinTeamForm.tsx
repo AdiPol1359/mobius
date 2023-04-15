@@ -14,7 +14,7 @@ export const JoinTeamForm = ({ onSuccess }: JoinTeamFormProps) => {
 	const {
 		handleFormSubmit,
 		register,
-		formState: { errors, isSubmitted },
+		formState: { errors, isSubmitSuccessful },
 	} = useZodForm(joinTeamFormSchema, {
 		onSubmit: ({ code }) => {
 			joinTeamMutation.mutate(
@@ -32,7 +32,7 @@ export const JoinTeamForm = ({ onSuccess }: JoinTeamFormProps) => {
 	return (
 		<ModalForm
 			buttonText="Join the team"
-			disabled={isSubmitted}
+			disabled={isSubmitSuccessful}
 			onSubmit={handleFormSubmit}
 		>
 			<Input

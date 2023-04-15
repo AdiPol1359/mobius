@@ -16,7 +16,7 @@ export const DeleteTeamForm = ({ teamId }: DeleteTeamFormProps) => {
 	const {
 		handleFormSubmit,
 		register,
-		formState: { errors, isSubmitted },
+		formState: { errors, isSubmitSuccessful },
 	} = useZodForm(deleteTeamFormSchema, {
 		onSubmit: ({ name }) => {
 			deleteTeamMutation.mutate({
@@ -29,7 +29,7 @@ export const DeleteTeamForm = ({ teamId }: DeleteTeamFormProps) => {
 	return (
 		<ModalForm
 			buttonText="Delete the team"
-			disabled={isSubmitted}
+			disabled={isSubmitSuccessful}
 			onSubmit={handleFormSubmit}
 		>
 			<Input
