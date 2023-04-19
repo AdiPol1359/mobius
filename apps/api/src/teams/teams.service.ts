@@ -80,7 +80,7 @@ export class TeamsService {
 
 	async joinTeam(code: string, user: AppUser): Promise<Team> {
 		const { id: teamId } = await this.findTeam({
-			teamCode: { some: { code } },
+			teamCode: { code },
 		});
 
 		try {

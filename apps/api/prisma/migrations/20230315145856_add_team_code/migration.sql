@@ -10,5 +10,8 @@ CREATE TABLE "team_code" (
 -- CreateIndex
 CREATE UNIQUE INDEX "team_code_code_key" ON "team_code"("code");
 
+-- CreateIndex
+CREATE UNIQUE INDEX "team_code_team_id_key" ON "team_code"("team_id");
+
 -- AddForeignKey
 ALTER TABLE "team_code" ADD CONSTRAINT "team_code_team_id_fkey" FOREIGN KEY ("team_id") REFERENCES "team"("id") ON DELETE CASCADE ON UPDATE CASCADE;

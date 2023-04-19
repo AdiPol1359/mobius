@@ -78,6 +78,8 @@ export interface components {
 			id: string;
 			/** @example FooTeam */
 			name: string;
+			/** @example ABCD1234 */
+			code?: string;
 		};
 		CreateTeamDto: {
 			/** @example FooTeam */
