@@ -12,6 +12,11 @@ export class TeamDto {
 	 */
 	name: string;
 
+	/**
+	 * @example ABCD1234
+	 */
+	code?: string;
+
 	@ApiPropertyOptional({ enum: TeamMemberRole, isArray: true })
 	roles?: TeamMemberRole[];
 }

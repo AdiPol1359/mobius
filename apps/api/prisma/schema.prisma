@@ -27,8 +27,8 @@ model Team {
   name        String
   createdAt   DateTime      @default(now()) @map("created_at")
   updatedAt   DateTime      @updatedAt @map("updated_at")
+  teamCode    TeamCode?
   teamMember  TeamMember[]
-  teamCode    TeamCode[]
   teamMessage TeamMessage[]
 
   @@map("team")
@@ -47,7 +47,7 @@ model TeamMember {
 
 model TeamCode {
   id     Int    @id @default(autoincrement())
-  teamId String @map("team_id")
+  teamId String @unique @map("team_id")
   code   String @unique
   team   Team   @relation(fields: [teamId], references: [id], onDelete: Cascade)
 

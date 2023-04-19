@@ -6,6 +6,7 @@ export const createTeamSelect = (userId?: number) =>
 	({
 		id: true,
 		name: true,
+		teamCode: { select: { code: true } },
 		...(userId && { teamMember: { where: { userId } } }),
 	} satisfies Prisma.TeamSelect);
 
