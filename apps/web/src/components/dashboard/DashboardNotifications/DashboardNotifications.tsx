@@ -7,9 +7,11 @@ import { Notification } from './Notification';
 
 import { useUser } from '@/hooks/useUser';
 import { notificationsSocket } from '@/lib/socket';
+import { useNotificationsContext } from '@/providers/NotificationsProvider';
 
 export const DashboardNotifications = () => {
 	const { user } = useUser();
+	const { enableIsUnread } = useNotificationsContext();
 
 	useEffect(() => {
 		if (!user) return;
@@ -18,6 +20,7 @@ export const DashboardNotifications = () => {
 			toast.custom(({ visible }) => (
 				<Notification isActive={visible} content={content} />
 			));
+			enableIsUnread();
 		};
 
 		notificationsSocket.on(`notification:${user.id}`, onNotificationEvent);
@@ -25,7 +28,7 @@ export const DashboardNotifications = () => {
 		return () => {
 			notificationsSocket.off(`notification:${user.id}`, onNotificationEvent);
 		};
-	}, [user]);
+	}, [user, enableIsUnread]);
 
 	return null;
 };
