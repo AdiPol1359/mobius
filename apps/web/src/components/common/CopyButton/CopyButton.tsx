@@ -1,6 +1,8 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
 
 import { Button } from '../Button/Button';
+
+import { useTimeout } from '@/hooks/useTimeout';
 
 type CopyButtonProps = Readonly<{
 	value: string;
@@ -10,28 +12,15 @@ type CopyButtonProps = Readonly<{
 
 export const CopyButton = ({ value, text, copiedText }: CopyButtonProps) => {
 	const [isCopied, setIsCopied] = useState(false);
+	const { startTimeout, stopTimeout } = useTimeout();
 
-	const ref = useRef<NodeJS.Timer | null>(null);
+	const handleButtonClick = async () => {
+		await navigator.clipboard.writeText(value);
 
-	const clearButtonTimeout = useCallback(() => {
-		if (ref.current) {
-			clearTimeout(ref.current);
-		}
-	}, []);
-
-	const handleButtonClick = () => {
-		clearButtonTimeout();
+		stopTimeout();
 		setIsCopied(true);
-
-		navigator.clipboard.writeText(value);
-		ref.current = setTimeout(() => setIsCopied(false), 1000);
+		startTimeout(() => setIsCopied(false), 1000);
 	};
-
-	useEffect(() => {
-		return () => {
-			clearButtonTimeout();
-		};
-	}, [clearButtonTimeout]);
 
 	return (
 		<Button variant="default" onClick={handleButtonClick}>
