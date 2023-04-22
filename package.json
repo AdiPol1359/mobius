@@ -12,15 +12,15 @@
 		"prepare": "husky install"
 	},
 	"devDependencies": {
-		"eslint": "8.38.0",
+		"eslint": "8.39.0",
 		"husky": "8.0.3",
 		"lint-staged": "13.2.1",
 		"prettier": "2.8.7",
 		"prettier-plugin-tailwindcss": "0.2.7",
-		"turbo": "1.8.8"
+		"turbo": "1.9.3"
 	},
 	"engines": {
 		"node": ">=18.0.0 <19"
 	},
-	"packageManager": "pnpm@7.29.0"
+	"packageManager": "pnpm@8.3.1"
 }
