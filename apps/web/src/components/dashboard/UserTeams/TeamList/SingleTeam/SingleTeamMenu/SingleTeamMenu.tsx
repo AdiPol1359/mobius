@@ -8,6 +8,7 @@ import { Dropdown } from '@/components/common/Dropdown/Dropdown';
 import { DeleteTeamModal } from '@/components/dashboard/DeleteTeamModal/DeleteTeamModal';
 import { LeaveTeamModal } from '@/components/dashboard/LeaveTeamModal';
 import { useModal } from '@/hooks/useModal';
+import { hasRole } from '@/utils/teams';
 
 import type { Team } from '@/types';
 
@@ -15,9 +16,7 @@ type SingleTeamMenuProps = Readonly<{
 	team: Team;
 }>;
 
-export const SingleTeamMenu = ({
-	team: { id, roles },
-}: SingleTeamMenuProps) => {
+export const SingleTeamMenu = ({ team }: SingleTeamMenuProps) => {
 	const {
 		isOpen: isDeleteTeamOpen,
 		openModal: openDeleteTeamModal,
@@ -35,21 +34,21 @@ export const SingleTeamMenu = ({
 			<Dropdown className="absolute right-3.5 top-3">
 				<SingleTeamMenuButton />
 				<Dropdown.Items position="center">
-					{roles?.includes('OWNER') && (
+					{hasRole(team, 'OWNER') && (
 						<DeleteTeamButton onClick={openDeleteTeamModal} />
 					)}
-					{roles?.includes('MEMBER') && (
+					{hasRole(team, 'MEMBER') && (
 						<LeaveTeamButton onClick={openLeaveTeamModal} />
 					)}
 				</Dropdown.Items>
 			</Dropdown>
 			<DeleteTeamModal
-				teamId={id}
+				teamId={team.id}
 				isOpen={isDeleteTeamOpen}
 				onClose={closeDeleteTeamModal}
 			/>
 			<LeaveTeamModal
-				teamId={id}
+				teamId={team.id}
 				isOpen={isLeaveTeamOpen}
 				onClose={closeLeaveTeamModal}
 			/>

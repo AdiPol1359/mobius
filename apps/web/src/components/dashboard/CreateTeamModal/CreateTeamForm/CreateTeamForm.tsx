@@ -10,7 +10,7 @@ type CreateTeamFormProps = Readonly<{
 }>;
 
 export const CreateTeamForm = ({ onSuccess }: CreateTeamFormProps) => {
-	const { createTeamMutation, navigateToTeam } = useTeams();
+	const { createTeamMutation } = useTeams();
 	const {
 		handleFormSubmit,
 		register,
@@ -20,9 +20,8 @@ export const CreateTeamForm = ({ onSuccess }: CreateTeamFormProps) => {
 			createTeamMutation.mutate(
 				{ name },
 				{
-					onSuccess: ({ data }) => {
+					onSuccess: () => {
 						onSuccess();
-						navigateToTeam(data.id);
 					},
 				}
 			);

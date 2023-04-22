@@ -10,7 +10,7 @@ type JoinTeamFormProps = Readonly<{
 }>;
 
 export const JoinTeamForm = ({ onSuccess }: JoinTeamFormProps) => {
-	const { joinTeamMutation, navigateToTeam } = useTeams();
+	const { joinTeamMutation } = useTeams();
 	const {
 		handleFormSubmit,
 		register,
@@ -20,9 +20,8 @@ export const JoinTeamForm = ({ onSuccess }: JoinTeamFormProps) => {
 			joinTeamMutation.mutate(
 				{ code },
 				{
-					onSuccess: ({ data }) => {
+					onSuccess: () => {
 						onSuccess();
-						navigateToTeam(data.id);
 					},
 				}
 			);

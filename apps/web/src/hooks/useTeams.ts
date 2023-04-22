@@ -34,37 +34,52 @@ export const useTeams = () => {
 		router.push(`/dashboard/teams/${id}`);
 	};
 
+	const navigateToTeamList = () => {
+		router.push('/dashboard/teams');
+	};
+
 	const invalidateTeams = () => {
 		queryClient.invalidateQueries({ queryKey: QUERY_KEY });
 	};
 
 	const createTeamMutation = useMutation({
 		mutationFn: createTeam,
-		onSuccess: invalidateTeams,
+		onSuccess: ({ data: { id } }) => {
+			navigateToTeam(id);
+			invalidateTeams();
+		},
 		onError: (err) => showAPIErrorToast(err, createTeam.Error),
 	});
 
 	const joinTeamMutation = useMutation({
 		mutationFn: joinTeam,
-		onSuccess: invalidateTeams,
+		onSuccess: ({ data: { id } }) => {
+			navigateToTeam(id);
+			invalidateTeams();
+		},
 		onError: (err) => showAPIErrorToast(err, joinTeam.Error),
 	});
 
 	const deleteTeamMutation = useMutation({
 		mutationFn: deleteTeam,
-		onSuccess: invalidateTeams,
+		onSuccess: () => {
+			navigateToTeamList();
+			invalidateTeams();
+		},
 		onError: (err) => showAPIErrorToast(err, deleteTeam.Error),
 	});
 
 	const leaveTeamMutation = useMutation({
 		mutationFn: leaveTeam,
-		onSuccess: invalidateTeams,
+		onSuccess: () => {
+			navigateToTeamList();
+			invalidateTeams();
+		},
 		onError: (err) => showAPIErrorToast(err, leaveTeam.Error),
 	});
 
 	return {
 		teams,
-		navigateToTeam,
 		createTeamMutation,
 		joinTeamMutation,
 		deleteTeamMutation,

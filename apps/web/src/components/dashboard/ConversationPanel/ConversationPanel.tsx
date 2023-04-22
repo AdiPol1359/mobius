@@ -7,7 +7,7 @@ import { SocketMessagesProvider } from './SocketMessagesProvider';
 import { Tabs } from '@/components/common/Tabs/Tabs';
 
 export const ConversationPanel = () => (
-	<Tabs.Panel className="flex flex-1 flex-col overflow-auto py-2.5">
+	<Tabs.Panel className="flex flex-1 flex-col overflow-auto pb-2.5">
 		<SocketMessagesProvider>
 			<ConversationMessages />
 		</SocketMessagesProvider>
