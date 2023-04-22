@@ -1,7 +1,7 @@
-import moment from 'moment';
 import { twMerge } from 'tailwind-merge';
 
 import { Avatar } from '@/components/common/Avatar/Avatar';
+import { format } from '@/utils/date';
 
 import type { Message } from '@/types';
 
@@ -39,7 +39,7 @@ export const SingleMessage = ({
 						{firstName} {lastName}
 					</p>
 					<time dateTime={date.toISOString()} className="text-gray-700">
-						{moment(date).format('MM.DD.YYYY, hh:mm:ss A')}
+						{format(date)}
 					</time>
 				</div>
 				<p className="break-words">{content}</p>

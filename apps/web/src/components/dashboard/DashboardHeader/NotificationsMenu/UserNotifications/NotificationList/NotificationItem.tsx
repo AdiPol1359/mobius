@@ -1,7 +1,7 @@
-import moment from 'moment';
 import { MdTaskAlt } from 'react-icons/md';
 
 import { Icon } from '@/components/common/Icon/Icon';
+import { fromNow } from '@/utils/date';
 
 import type { Notification } from '@/types';
 
@@ -23,7 +23,7 @@ export const NotificationItem = ({
 					dateTime={date.toISOString()}
 					className="mt-1 block text-gray-700"
 				>
-					{moment(date, 'YYYYMMDD').fromNow()}
+					{fromNow(date)}
 				</time>
 			</div>
 		</li>
