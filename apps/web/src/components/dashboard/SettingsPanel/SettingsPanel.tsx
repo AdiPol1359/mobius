@@ -12,7 +12,7 @@ export const SettingsPanel = () => {
 	const { team, teamId } = useCurrentTeam();
 
 	return (
-		<Tabs.Panel className="mt-3 space-y-3">
+		<Tabs.Panel className="space-y-3">
 			{team && hasRole(team, 'OWNER') && (
 				<>
 					<SettingsPanelForm team={team} />

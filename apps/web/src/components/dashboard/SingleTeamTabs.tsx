@@ -14,7 +14,7 @@ export const SingleTeamTabs = ({ children }: SingleTeamTabsProps) => (
 			<Tabs.Item>Conversation</Tabs.Item>
 			<Tabs.Item>Settings</Tabs.Item>
 		</Tabs.Items>
-		<Tabs.Panels className="flex flex-1 flex-col overflow-auto">
+		<Tabs.Panels className="mt-2.5 flex flex-1 flex-col overflow-auto">
 			{children}
 		</Tabs.Panels>
 	</Tabs>
