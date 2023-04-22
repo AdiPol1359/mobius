@@ -5,19 +5,19 @@ import { Avatar } from '@/components/common/Avatar/Avatar';
 
 import type { Message } from '@/types';
 
-type TeamMessageProps = Readonly<{
+type SingleMessageProps = Readonly<{
 	message: Message;
 	me?: boolean;
 }>;
 
-export const TeamMessage = ({
+export const SingleMessage = ({
 	message: {
 		author: { firstName, lastName },
 		createdAt,
 		content,
 	},
 	me,
-}: TeamMessageProps) => {
+}: SingleMessageProps) => {
 	const date = new Date(createdAt);
 
 	return (

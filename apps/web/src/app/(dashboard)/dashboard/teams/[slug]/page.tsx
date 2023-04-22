@@ -1,13 +1,16 @@
+import { ConversationPanel } from '@/components/dashboard/ConversationPanel/ConversationPanel';
+import { SettingsPanel } from '@/components/dashboard/SettingsPanel/SettingsPanel';
 import { SingleTeamHeader } from '@/components/dashboard/SingleTeamHeader';
-import { TeamMessageForm } from '@/components/dashboard/TeamMessageForm/TeamMessageForm';
-import { TeamMessages } from '@/components/dashboard/TeamMessages/TeamMessages';
+import { SingleTeamTabs } from '@/components/dashboard/SingleTeamTabs';
 
 export default function DashboardTeamPage() {
 	return (
 		<>
 			<SingleTeamHeader />
-			<TeamMessages />
-			<TeamMessageForm />
+			<SingleTeamTabs>
+				<ConversationPanel />
+				<SettingsPanel />
+			</SingleTeamTabs>
 		</>
 	);
 }
