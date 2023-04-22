@@ -2,6 +2,7 @@ import { twMerge } from 'tailwind-merge';
 
 const variants = {
 	default: 'bg-white text-neutral-900 enabled:hover:bg-gray-50',
+	danger: 'border-red-700 text-red-700',
 	primary:
 		'border-primary-500 bg-primary text-white enabled:hover:bg-primary-700',
 } as const;
