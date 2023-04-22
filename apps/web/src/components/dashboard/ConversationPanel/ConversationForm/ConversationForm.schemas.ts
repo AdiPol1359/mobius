@@ -1,7 +1,7 @@
 import { MAX_TEAM_MESSAGE_LENGTH, TEAM_MESSAGE_ERROR_MESSAGE } from 'common';
 import { z } from 'zod';
 
-export const teamMessageFormSchema = z.object({
+export const conversationFormSchema = z.object({
 	message: z
 		.string()
 		.trim()

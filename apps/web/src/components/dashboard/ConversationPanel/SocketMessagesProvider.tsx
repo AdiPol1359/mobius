@@ -8,14 +8,14 @@ import type { ReactNode } from 'react';
 
 import type { Message } from '@/types';
 
-interface TeamMessagesContextValue {
+interface SocketMessagesContextValue {
 	readonly messages: Message[];
 }
 
-const [TeamMessagesContextProvider, useTeamMessagesContext] =
-	createSafeContext<TeamMessagesContextValue>();
+const [SocketMessagesContextProvider, useSocketMessagesContext] =
+	createSafeContext<SocketMessagesContextValue>();
 
-const TeamMessagesProvider = ({
+const SocketMessagesProvider = ({
 	children,
 }: {
 	readonly children: ReactNode;
@@ -38,10 +38,10 @@ const TeamMessagesProvider = ({
 	}, [teamId]);
 
 	return (
-		<TeamMessagesContextProvider value={{ messages }}>
+		<SocketMessagesContextProvider value={{ messages }}>
 			{children}
-		</TeamMessagesContextProvider>
+		</SocketMessagesContextProvider>
 	);
 };
 
-export { TeamMessagesProvider, useTeamMessagesContext };
+export { SocketMessagesProvider, useSocketMessagesContext };
