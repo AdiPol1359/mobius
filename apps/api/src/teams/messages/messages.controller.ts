@@ -15,11 +15,11 @@ import { PaginationQueryDto } from '@/common/dto/pagination-query.dto';
 import { AppUser } from '@/users/users.types';
 
 @Auth()
-@Controller('teams')
+@Controller('teams/:teamId')
 export class MessagesContoller {
 	constructor(private readonly messagesService: MessagesService) {}
 
-	@Get(':teamId/messages')
+	@Get('messages')
 	@TeamGuard()
 	async getAllMessages(
 		@Param('teamId') teamId: string,
@@ -30,7 +30,7 @@ export class MessagesContoller {
 		);
 	}
 
-	@Post(':teamId/messages')
+	@Post('messages')
 	@TeamGuard()
 	async createMessage(
 		@Param('teamId') teamId: string,
