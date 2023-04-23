@@ -30,7 +30,7 @@ export class MembersService {
 		teamId: string,
 		userId: number,
 		{ roles }: UpdateMemberDto
-	) {
+	): Promise<Member> {
 		try {
 			return await this.prisma.teamMember.update({
 				where: { userId_teamId: { teamId, userId } },
