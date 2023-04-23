@@ -18,7 +18,7 @@ export const ActiveLink = ({
 	...props
 }: ActiveLinkProps) => {
 	const pathname = usePathname();
-	const isActive = pathname === href.toString();
+	const isActive = pathname.startsWith(href.toString());
 
 	return (
 		<Link
