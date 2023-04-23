@@ -2,7 +2,7 @@ import { Inject, Injectable } from '@nestjs/common';
 import { Prisma, PrismaClient } from '@prisma/client';
 
 import { UpdateMemberDto } from './dto/update-member.dto';
-import { MemberNotFounException } from './exceptions/member-not-found.exception';
+import { MemberNotFoundException } from './exceptions/member-not-found.exception';
 import { Member } from './member.types';
 
 import { PRISMA_TOKEN } from '@/prisma/prisma.module';
@@ -41,7 +41,7 @@ export class MembersService {
 				isPrismaError(err) &&
 				err.code === prismaErrorCode.RecordRequiredButNotFound
 			) {
-				throw new MemberNotFounException();
+				throw new MemberNotFoundException();
 			}
 
 			throw err;
@@ -59,7 +59,7 @@ export class MembersService {
 				isPrismaError(err) &&
 				err.code === prismaErrorCode.RecordRequiredButNotFound
 			) {
-				throw new MemberNotFounException();
+				throw new MemberNotFoundException();
 			}
 
 			throw err;

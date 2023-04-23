@@ -1,6 +1,6 @@
 import { NotFoundException } from '@nestjs/common';
 
-export class MemberNotFounException extends NotFoundException {
+export class MemberNotFoundException extends NotFoundException {
 	constructor() {
 		super('Member not found.');
 	}
