@@ -39,9 +39,9 @@ export class MessagesService {
 	}
 
 	async createMessage(
+		teamId: string,
 		user: AppUser,
-		{ content }: CreateMessageDto,
-		teamId: string
+		{ content }: CreateMessageDto
 	): Promise<Message> {
 		const message = await this.prisma.teamMessage.create({
 			data: { userId: user.id, teamId, content },
