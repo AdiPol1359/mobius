@@ -1,4 +1,5 @@
 import { Body, Controller, Get, Param, Post, Query } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 
 import { TeamGuard } from '../decorators/team-guard.decorator';
 import { CreateMessageDto } from './dto/create-message.dto';
@@ -15,6 +16,7 @@ import { PaginationQueryDto } from '@/common/dto/pagination-query.dto';
 import { AppUser } from '@/users/users.types';
 
 @Auth()
+@ApiTags('Teams')
 @Controller('teams/:teamId')
 export class MessagesContoller {
 	constructor(private readonly messagesService: MessagesService) {}
