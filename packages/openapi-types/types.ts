@@ -30,8 +30,15 @@ export interface paths {
 		post: operations['TeamsController_leaveTeam'];
 	};
 	'/teams/{teamId}/messages': {
-		get: operations['TeamsController_getAllTeamMessages'];
-		post: operations['TeamsController_createTeamMessage'];
+		get: operations['MessagesContoller_getAllMessages'];
+		post: operations['MessagesContoller_createMessage'];
+	};
+	'/teams/{teamId}/members': {
+		get: operations['MembersController_getAllMembers'];
+	};
+	'/teams/{teamId}/members/{userId}': {
+		delete: operations['MembersController_deleteTeamMember'];
+		patch: operations['MembersController_updateTeamMember'];
 	};
 	'/notifications': {
 		get: operations['NotificationsController_getAllNotifications'];
@@ -120,6 +127,15 @@ export interface components {
 		CreateMessageDto: {
 			/** @example Hello! */
 			content: string;
+		};
+		MemberDto: {
+			roles: ('OWNER' | 'MEMBER')[];
+			id: number;
+			firstName: string;
+			lastName: string;
+		};
+		UpdateMemberDto: {
+			roles?: ('OWNER' | 'MEMBER')[];
 		};
 		NotificationDto: {
 			/** @example 1 */
@@ -417,7 +433,7 @@ export interface operations {
 			};
 		};
 	};
-	TeamsController_getAllTeamMessages: {
+	MessagesContoller_getAllMessages: {
 		parameters: {
 			query: {
 				offset?: number;
@@ -453,7 +469,7 @@ export interface operations {
 			};
 		};
 	};
-	TeamsController_createTeamMessage: {
+	MessagesContoller_createMessage: {
 		parameters: {
 			path: {
 				teamId: string;
@@ -468,6 +484,109 @@ export interface operations {
 			201: {
 				content: {
 					'application/json': components['schemas']['MessageDto'];
+				};
+			};
+			/** @description Incorrect authentication credentials. */
+			401: {
+				content: {
+					'application/json': components['schemas']['OpenAPIHttpException'];
+				};
+			};
+			/** @description Missing role in the team. */
+			403: {
+				content: {
+					'application/json': components['schemas']['OpenAPIHttpException'];
+				};
+			};
+			/** @description Team member not found. */
+			404: {
+				content: {
+					'application/json': components['schemas']['OpenAPIHttpException'];
+				};
+			};
+		};
+	};
+	MembersController_getAllMembers: {
+		parameters: {
+			path: {
+				teamId: string;
+			};
+		};
+		responses: {
+			200: {
+				content: {
+					'application/json': components['schemas']['MemberDto'][];
+				};
+			};
+			/** @description Incorrect authentication credentials. */
+			401: {
+				content: {
+					'application/json': components['schemas']['OpenAPIHttpException'];
+				};
+			};
+			/** @description Missing role in the team. */
+			403: {
+				content: {
+					'application/json': components['schemas']['OpenAPIHttpException'];
+				};
+			};
+			/** @description Team member not found. */
+			404: {
+				content: {
+					'application/json': components['schemas']['OpenAPIHttpException'];
+				};
+			};
+		};
+	};
+	MembersController_deleteTeamMember: {
+		parameters: {
+			path: {
+				teamId: string;
+				userId: number;
+			};
+		};
+		responses: {
+			200: {
+				content: {
+					'application/json': components['schemas']['MemberDto'];
+				};
+			};
+			/** @description Incorrect authentication credentials. */
+			401: {
+				content: {
+					'application/json': components['schemas']['OpenAPIHttpException'];
+				};
+			};
+			/** @description Missing role in the team. */
+			403: {
+				content: {
+					'application/json': components['schemas']['OpenAPIHttpException'];
+				};
+			};
+			/** @description Team member not found. */
+			404: {
+				content: {
+					'application/json': components['schemas']['OpenAPIHttpException'];
+				};
+			};
+		};
+	};
+	MembersController_updateTeamMember: {
+		parameters: {
+			path: {
+				teamId: string;
+				userId: number;
+			};
+		};
+		requestBody: {
+			content: {
+				'application/json': components['schemas']['UpdateMemberDto'];
+			};
+		};
+		responses: {
+			200: {
+				content: {
+					'application/json': components['schemas']['MemberDto'];
 				};
 			};
 			/** @description Incorrect authentication credentials. */
