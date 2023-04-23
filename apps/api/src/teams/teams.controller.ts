@@ -6,7 +6,6 @@ import {
 	Param,
 	Patch,
 	Post,
-	Query,
 } from '@nestjs/common';
 import {
 	ApiConflictResponse,
@@ -20,19 +19,12 @@ import { DeleteTeamDto } from './dto/delete-team.dto';
 import { JoinTeamDto } from './dto/join-team.dto';
 import { TeamDto } from './dto/team.dto';
 import { UpdateTeamDto } from './dto/update-team.dto';
-import { CreateMessageDto } from './messages/dto/create-message.dto';
-import { MessageDto } from './messages/dto/message.dto';
-import {
-	mapMessagesToMessageDtos,
-	mapMessageToMessageDto,
-} from './messages/messages.mapper';
 import { MessagesService } from './messages/messages.service';
 import { mapTeamsToTeamDtos, mapTeamToTeamDto } from './teams.mapper';
 import { TeamsService } from './teams.service';
 
 import { Auth } from '@/auth/auth.decorator';
 import { User } from '@/common/decorators/user.decorator';
-import { PaginationQueryDto } from '@/common/dto/pagination-query.dto';
 import { OpenAPIHttpException } from '@/common/exceptions/openapi-http.exception';
 import { AppUser } from '@/users/users.types';
 
@@ -126,28 +118,5 @@ export class TeamsController {
 		@Param('teamId') id: string
 	): Promise<TeamDto> {
 		return mapTeamToTeamDto(await this.teamsService.leaveTeam(id, user));
-	}
-
-	@Get(':teamId/messages')
-	@TeamGuard()
-	async getAllTeamMessages(
-		@Param('teamId') teamId: string,
-		@Query() pagination: PaginationQueryDto
-	): Promise<MessageDto[]> {
-		return mapMessagesToMessageDtos(
-			await this.messagesService.getAllMessages(teamId, pagination)
-		);
-	}
-
-	@Post(':teamId/messages')
-	@TeamGuard()
-	async createTeamMessage(
-		@User() user: AppUser,
-		@Body() createMessageDto: CreateMessageDto,
-		@Param('teamId') teamId: string
-	): Promise<MessageDto> {
-		return mapMessageToMessageDto(
-			await this.messagesService.createMessage(user, createMessageDto, teamId)
-		);
 	}
 }
