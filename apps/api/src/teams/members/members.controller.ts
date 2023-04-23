@@ -24,7 +24,6 @@ export class MembersController {
 	constructor(private readonly membersService: MembersService) {}
 
 	@Get('members')
-	@TeamGuard()
 	async getAllMembers(@Param('teamId') teamId: string): Promise<MemberDto[]> {
 		return mapMembersToMemberDtos(
 			await this.membersService.getAllMembers(teamId)

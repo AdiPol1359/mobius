@@ -21,6 +21,7 @@ export class MembersService {
 	getAllMembers(teamId: string): Promise<Member[]> {
 		return this.prisma.teamMember.findMany({
 			where: { teamId },
+			orderBy: { roles: 'asc' },
 			select,
 		});
 	}
