@@ -36,7 +36,7 @@ export class MembersController {
 		@Param('teamId') teamId: string,
 		@Param('userId', ParseIntPipe) userId: number,
 		@Body() updateMemberDto: UpdateMemberDto
-	) {
+	): Promise<MemberDto> {
 		return mapMemberToMemberDto(
 			await this.membersService.updateTeamMember(
 				teamId,
