@@ -21,6 +21,7 @@ export interface paths {
 	'/teams/{teamId}': {
 		get: operations['TeamsController_getTeamById'];
 		delete: operations['TeamsController_deleteTeam'];
+		patch: operations['TeamsController_updateTeam'];
 	};
 	'/teams/join': {
 		post: operations['TeamsController_joinTeam'];
@@ -84,6 +85,10 @@ export interface components {
 		CreateTeamDto: {
 			/** @example FooTeam */
 			name: string;
+		};
+		UpdateTeamDto: {
+			/** @example FooTeam */
+			name?: string;
 		};
 		DeleteTeamDto: {
 			/** @example FooTeam */
@@ -283,6 +288,43 @@ export interface operations {
 		requestBody: {
 			content: {
 				'application/json': components['schemas']['DeleteTeamDto'];
+			};
+		};
+		responses: {
+			200: {
+				content: {
+					'application/json': components['schemas']['TeamDto'];
+				};
+			};
+			/** @description Incorrect authentication credentials. */
+			401: {
+				content: {
+					'application/json': components['schemas']['OpenAPIHttpException'];
+				};
+			};
+			/** @description Missing role in the team. */
+			403: {
+				content: {
+					'application/json': components['schemas']['OpenAPIHttpException'];
+				};
+			};
+			/** @description Team member not found. */
+			404: {
+				content: {
+					'application/json': components['schemas']['OpenAPIHttpException'];
+				};
+			};
+		};
+	};
+	TeamsController_updateTeam: {
+		parameters: {
+			path: {
+				teamId: string;
+			};
+		};
+		requestBody: {
+			content: {
+				'application/json': components['schemas']['UpdateTeamDto'];
 			};
 		};
 		responses: {

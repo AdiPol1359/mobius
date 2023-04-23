@@ -4,6 +4,7 @@ import {
 	Delete,
 	Get,
 	Param,
+	Patch,
 	Post,
 	Query,
 } from '@nestjs/common';
@@ -18,6 +19,7 @@ import { CreateTeamDto } from './dto/create-team.dto';
 import { DeleteTeamDto } from './dto/delete-team.dto';
 import { JoinTeamDto } from './dto/join-team.dto';
 import { TeamDto } from './dto/team.dto';
+import { UpdateTeamDto } from './dto/update-team.dto';
 import { CreateMessageDto } from './messages/dto/create-message.dto';
 import { MessageDto } from './messages/dto/message.dto';
 import {
@@ -68,6 +70,18 @@ export class TeamsController {
 	): Promise<TeamDto> {
 		return mapTeamToTeamDto(
 			await this.teamsService.createTeam(user, createTeamDto)
+		);
+	}
+
+	@Patch(':teamId')
+	@TeamGuard('OWNER')
+	async updateTeam(
+		@Param('teamId') teamId: string,
+		@User() user: AppUser,
+		@Body() updateTeamDto: UpdateTeamDto
+	): Promise<TeamDto> {
+		return mapTeamToTeamDto(
+			await this.teamsService.updateTeam(teamId, user, updateTeamDto)
 		);
 	}
 

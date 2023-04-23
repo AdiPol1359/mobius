@@ -8,6 +8,7 @@ import { EventEmitter2 } from '@nestjs/event-emitter';
 import { Prisma, PrismaClient, TeamMember } from '@prisma/client';
 
 import { CreateTeamDto } from './dto/create-team.dto';
+import { UpdateTeamDto } from './dto/update-team.dto';
 import { Team } from './teams.types';
 import { createTeamSelect, generateJoinCode } from './teams.utils';
 
@@ -58,6 +59,18 @@ export class TeamsService {
 		);
 
 		return team;
+	}
+
+	updateTeam(
+		id: string,
+		user: AppUser,
+		{ name }: UpdateTeamDto
+	): Promise<Team> {
+		return this.prisma.team.update({
+			where: { id },
+			data: { name },
+			select: createTeamSelect(user.id),
+		});
 	}
 
 	async deleteTeam(user: AppUser, id: string, name: string): Promise<Team> {
