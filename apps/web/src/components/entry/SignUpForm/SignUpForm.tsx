@@ -1,47 +1,33 @@
 'use client';
 
 import { EntryForm } from '../EntryForm';
-import { signUpFormSchema } from './SignUpForm.schemas';
+import { useSignUpForm } from './useSignUpForm';
 
 import { Alert } from '@/components/common/Alert/Alert';
 import { Checkbox } from '@/components/common/Checkbox/Checkbox';
 import { Input } from '@/components/common/Input/Input';
 import { PasswordInput } from '@/components/common/PasswordInput/PasswordInput';
 import { useAlert } from '@/hooks/useAlert';
-import { useUser } from '@/hooks/useUser';
-import { useZodForm } from '@/hooks/useZodForm';
-import { createUser } from '@/services/users.service';
 
 export const SignUpForm = () => {
 	const { alert, showAlert, hideAlert } = useAlert();
-	const { registerMutation } = useUser();
 	const {
+		isLoading,
 		handleFormSubmit,
 		register,
-		reset,
 		formState: { errors },
-	} = useZodForm(signUpFormSchema, {
-		onSubmit: ({ email, password, firstName, lastName }) => {
-			registerMutation.mutate(
-				{ email, password, firstName, lastName },
-				{
-					onSuccess: () => {
-						reset();
-						showAlert({
-							variant: 'success',
-							content: 'Your account has been successfully created!',
-						});
-					},
-					onError: (err) => {
-						if (err instanceof createUser.Error) {
-							showAlert({
-								variant: 'error',
-								content: err.getActualType().data.message,
-							});
-						}
-					},
-				}
-			);
+	} = useSignUpForm({
+		onSuccess: () => {
+			showAlert({
+				variant: 'success',
+				content: 'Your account has been successfully created!',
+			});
+		},
+		onError: ({ data: { message } }) => {
+			showAlert({
+				variant: 'error',
+				content: message,
+			});
 		},
 	});
 
@@ -55,7 +41,7 @@ export const SignUpForm = () => {
 			<EntryForm
 				title="Sign up"
 				onSubmit={handleFormSubmit}
-				isLoading={registerMutation.isLoading}
+				isLoading={isLoading}
 			>
 				<Input
 					type="text"

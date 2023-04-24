@@ -1,38 +1,26 @@
 'use client';
 
 import { EntryForm } from '../EntryForm';
-import { signInFormSchema } from './SignInForm.schemas';
+import { useSignInForm } from './useSignInForm';
 
 import { Alert } from '@/components/common/Alert/Alert';
 import { Input } from '@/components/common/Input/Input';
 import { PasswordInput } from '@/components/common/PasswordInput/PasswordInput';
 import { useAlert } from '@/hooks/useAlert';
-import { useUser } from '@/hooks/useUser';
-import { useZodForm } from '@/hooks/useZodForm';
-import { createSession } from '@/services/sessions.service';
 
 export const SignInForm = () => {
 	const { alert, showAlert, hideAlert } = useAlert();
-	const { loginMutation } = useUser();
 	const {
+		isLoading,
 		handleFormSubmit,
 		register,
 		formState: { errors },
-	} = useZodForm(signInFormSchema, {
-		onSubmit: ({ email, password }) => {
-			loginMutation.mutate(
-				{ email, password },
-				{
-					onError: (err) => {
-						if (err instanceof createSession.Error) {
-							showAlert({
-								variant: 'error',
-								content: err.getActualType().data.message,
-							});
-						}
-					},
-				}
-			);
+	} = useSignInForm({
+		onError: ({ data: { message } }) => {
+			showAlert({
+				variant: 'error',
+				content: message,
+			});
 		},
 	});
 
@@ -46,7 +34,7 @@ export const SignInForm = () => {
 			<EntryForm
 				title="Sign in"
 				onSubmit={handleFormSubmit}
-				isLoading={loginMutation.isLoading}
+				isLoading={isLoading}
 			>
 				<Input
 					type="text"

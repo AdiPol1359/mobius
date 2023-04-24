@@ -1,30 +1,20 @@
 'use client';
 
 import { ModalForm } from '../../ModalForm';
-import { deleteTeamFormSchema } from './DeleteTeamForm.schemas';
+import { useDeleteTeamForm } from './useDeleteTeamForm';
 
 import { Input } from '@/components/common/Input/Input';
-import { useTeams } from '@/hooks/useTeams';
-import { useZodForm } from '@/hooks/useZodForm';
 
 type DeleteTeamFormProps = Readonly<{
 	teamId: string;
 }>;
 
 export const DeleteTeamForm = ({ teamId }: DeleteTeamFormProps) => {
-	const { deleteTeamMutation } = useTeams();
 	const {
 		handleFormSubmit,
 		register,
 		formState: { errors, isSubmitSuccessful },
-	} = useZodForm(deleteTeamFormSchema, {
-		onSubmit: ({ name }) => {
-			deleteTeamMutation.mutate({
-				teamId,
-				name,
-			});
-		},
-	});
+	} = useDeleteTeamForm({ teamId });
 
 	return (
 		<ModalForm

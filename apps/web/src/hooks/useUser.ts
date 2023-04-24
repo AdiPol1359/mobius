@@ -31,11 +31,11 @@ export const useUser = () => {
 		staleTime: Infinity,
 	});
 
-	const registerMutation = useMutation({
+	const createUserMutation = useMutation({
 		mutationFn: createUser,
 	});
 
-	const loginMutation = useMutation({
+	const createSessionMutation = useMutation({
 		mutationFn: createSession,
 		onSuccess: ({ data }) => {
 			queryClient.setQueryData(QUERY_KEY, data);
@@ -49,5 +49,11 @@ export const useUser = () => {
 		},
 	});
 
-	return { user, registerMutation, loginMutation, logoutMutation, ...rest };
+	return {
+		user,
+		createUserMutation,
+		createSessionMutation,
+		logoutMutation,
+		...rest,
+	};
 };
