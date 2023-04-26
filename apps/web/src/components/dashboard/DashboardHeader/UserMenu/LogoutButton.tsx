@@ -3,15 +3,15 @@
 import { BiLogOut } from 'react-icons/bi';
 
 import { Dropdown } from '@/components/common/Dropdown/Dropdown';
-import { useUser } from '@/hooks/useUser';
+import { useSession } from '@/hooks/useSession';
 
 export const LogoutButton = () => {
-	const { logoutMutation } = useUser();
+	const { deleteSessionMutation } = useSession();
 
 	return (
 		<Dropdown.Item
 			onClick={() => {
-				logoutMutation.mutate({});
+				deleteSessionMutation.mutate({});
 			}}
 		>
 			<BiLogOut />

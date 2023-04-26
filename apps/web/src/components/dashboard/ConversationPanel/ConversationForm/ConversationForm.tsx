@@ -1,24 +1,15 @@
 import { AiOutlineSend } from 'react-icons/ai';
 
-import { conversationFormSchema } from './ConversationForm.schemas';
+import { useConversationForm } from './useConversationForm';
 
 import { Input } from '@/components/common/Input/Input';
-import { useTeamMessages } from '@/hooks/useTeamMessages';
-import { useZodForm } from '@/hooks/useZodForm';
 
 export const ConversationForm = () => {
-	const { createTeamMessageMutation } = useTeamMessages();
 	const {
 		handleFormSubmit,
 		register,
-		reset,
 		formState: { errors },
-	} = useZodForm(conversationFormSchema, {
-		onSubmit: ({ message }) => {
-			createTeamMessageMutation.mutate(message);
-			reset();
-		},
-	});
+	} = useConversationForm();
 
 	return (
 		<form onSubmit={handleFormSubmit} className="flex flex-col space-y-2.5">

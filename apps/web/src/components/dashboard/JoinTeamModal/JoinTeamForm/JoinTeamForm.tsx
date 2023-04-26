@@ -1,32 +1,18 @@
 import { ModalForm } from '../../ModalForm';
-import { joinTeamFormSchema } from './JoinTeamForm.schemas';
+import { useJoinTeamForm } from './useJoinTeamForm';
 
 import { Input } from '@/components/common/Input/Input';
-import { useTeams } from '@/hooks/useTeams';
-import { useZodForm } from '@/hooks/useZodForm';
 
 type JoinTeamFormProps = Readonly<{
 	onSuccess: () => void;
 }>;
 
 export const JoinTeamForm = ({ onSuccess }: JoinTeamFormProps) => {
-	const { joinTeamMutation } = useTeams();
 	const {
 		handleFormSubmit,
 		register,
 		formState: { errors, isSubmitSuccessful },
-	} = useZodForm(joinTeamFormSchema, {
-		onSubmit: ({ code }) => {
-			joinTeamMutation.mutate(
-				{ code },
-				{
-					onSuccess: () => {
-						onSuccess();
-					},
-				}
-			);
-		},
-	});
+	} = useJoinTeamForm({ onSuccess });
 
 	return (
 		<ModalForm
