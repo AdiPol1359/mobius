@@ -17,16 +17,12 @@ export const SignUpForm = () => {
 		register,
 		formState: { errors },
 	} = useSignUpForm({
-		onSuccess: () => {
+		onSubmit: (err) => {
 			showAlert({
-				variant: 'success',
-				content: 'Your account has been successfully created!',
-			});
-		},
-		onError: ({ data: { message } }) => {
-			showAlert({
-				variant: 'error',
-				content: message,
+				variant: err ? 'error' : 'success',
+				content: err
+					? err.data.message
+					: 'Your account has been successfully created!',
 			});
 		},
 	});
