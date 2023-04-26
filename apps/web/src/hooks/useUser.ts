@@ -1,16 +1,11 @@
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 
-import {
-	createSession,
-	deleteMeSession,
-	getMeSession,
-} from '@/services/sessions.service';
+import { getMeSession } from '@/services/sessions.service';
 import { createUser } from '@/services/users.service';
 
-const QUERY_KEY = ['user'];
+export const QUERY_KEY = ['user'];
 
 export const useUser = () => {
-	const queryClient = useQueryClient();
 	const { data: user, ...rest } = useQuery({
 		queryKey: QUERY_KEY,
 		queryFn: async () => {
@@ -35,25 +30,9 @@ export const useUser = () => {
 		mutationFn: createUser,
 	});
 
-	const createSessionMutation = useMutation({
-		mutationFn: createSession,
-		onSuccess: ({ data }) => {
-			queryClient.setQueryData(QUERY_KEY, data);
-		},
-	});
-
-	const logoutMutation = useMutation({
-		mutationFn: deleteMeSession,
-		onSuccess: () => {
-			queryClient.setQueryData(QUERY_KEY, null);
-		},
-	});
-
 	return {
 		user,
 		createUserMutation,
-		createSessionMutation,
-		logoutMutation,
 		...rest,
 	};
 };

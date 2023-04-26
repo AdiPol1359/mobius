@@ -1,6 +1,6 @@
 import { signInFormSchema } from './SignInForm.schemas';
 
-import { useUser } from '@/hooks/useUser';
+import { useSession } from '@/hooks/useSession';
 import { useZodForm } from '@/hooks/useZodForm';
 import { createSession } from '@/services/sessions.service';
 
@@ -11,7 +11,7 @@ interface Options {
 }
 
 export const useSignInForm = ({ onError }: Options) => {
-	const { createSessionMutation } = useUser();
+	const { createSessionMutation } = useSession();
 	const result = useZodForm(signInFormSchema, {
 		onSubmit: ({ email, password }) => {
 			createSessionMutation.mutate(
