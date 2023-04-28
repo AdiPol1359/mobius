@@ -25,8 +25,6 @@ export const useTeams = () => {
 			const { data } = await getAllTeams({});
 			return data;
 		},
-		staleTime: Infinity,
-		cacheTime: Infinity,
 		enabled: Boolean(user),
 	});
 

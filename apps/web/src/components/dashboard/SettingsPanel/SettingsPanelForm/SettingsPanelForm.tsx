@@ -1,8 +1,9 @@
-import { settingsPanelFormSchema } from './SettingsPanelForm.schemas';
+import { toast } from 'react-hot-toast';
+
+import { useSettingsPanelForm } from './useSettingsPanelForm';
 
 import { Button } from '@/components/common/Button/Button';
 import { Input } from '@/components/common/Input/Input';
-import { useZodForm } from '@/hooks/useZodForm';
 
 import type { Team } from '@/types';
 
@@ -14,18 +15,18 @@ export const SettingsPanelForm = ({
 	team: { name },
 }: SettingsPanelFormProps) => {
 	const {
+		isLoading,
 		handleFormSubmit,
 		register,
-		formState: { errors },
-	} = useZodForm(
-		settingsPanelFormSchema,
-		{
-			onSubmit: () => {
-				console.log('update the team...');
-			},
+		formState: { errors, dirtyFields, isDirty },
+	} = useSettingsPanelForm({
+		name,
+		onSuccess: () => {
+			toast.success('The team has been successfully updated!');
 		},
-		{ defaultValues: { name } }
-	);
+	});
+
+	console.log(isDirty);
 
 	return (
 		<form onSubmit={handleFormSubmit} className="space-y-2.5">
@@ -36,7 +37,12 @@ export const SettingsPanelForm = ({
 				error={errors.name?.message}
 				{...register('name')}
 			/>
-			<Button type="submit" variant="primary" fullWidth>
+			<Button
+				type="submit"
+				variant="primary"
+				disabled={isLoading || !dirtyFields.name}
+				fullWidth
+			>
 				Update the team
 			</Button>
 		</form>
