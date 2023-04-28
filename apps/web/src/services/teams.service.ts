@@ -23,3 +23,7 @@ export const createTeamMessage = fetcher
 	.path('/teams/{teamId}/messages')
 	.method('post')
 	.create();
+export const updateTeam = fetcher
+	.path('/teams/{teamId}')
+	.method('patch')
+	.create();
