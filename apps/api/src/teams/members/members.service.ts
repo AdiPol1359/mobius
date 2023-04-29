@@ -10,7 +10,7 @@ import { isPrismaError } from '@/prisma/prisma.utils';
 import { prismaErrorCode } from '@/prisma/prisma-errors';
 
 export const select = {
-	roles: true,
+	role: true,
 	user: { select: { id: true, firstName: true, lastName: true } },
 } satisfies Prisma.TeamMemberSelect;
 
@@ -21,7 +21,7 @@ export class MembersService {
 	getAllMembers(teamId: string): Promise<Member[]> {
 		return this.prisma.teamMember.findMany({
 			where: { teamId },
-			orderBy: { roles: 'asc' },
+			orderBy: { role: 'asc' },
 			select,
 		});
 	}
@@ -29,12 +29,12 @@ export class MembersService {
 	async updateTeamMember(
 		teamId: string,
 		userId: number,
-		{ roles }: UpdateMemberDto
+		{ role }: UpdateMemberDto
 	): Promise<Member> {
 		try {
 			return await this.prisma.teamMember.update({
 				where: { userId_teamId: { teamId, userId } },
-				data: { ...(roles && { roles: { set: roles } }) },
+				data: { ...(role && { role }) },
 				select,
 			});
 		} catch (err) {

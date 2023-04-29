@@ -10,7 +10,7 @@ export const mapTeamToTeamDto = ({
 	id,
 	name,
 	code: teamCode?.code,
-	roles: teamMember?.flatMap(({ roles }) => roles),
+	role: teamMember?.[0].role,
 });
 
 export const mapTeamsToTeamDtos = (teams: Team[]) =>

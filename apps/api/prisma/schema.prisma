@@ -35,11 +35,11 @@ model Team {
 }
 
 model TeamMember {
-  userId Int              @map("user_id")
-  teamId String           @map("team_id")
-  user   User             @relation(fields: [userId], references: [id], onDelete: Cascade)
-  team   Team             @relation(fields: [teamId], references: [id], onDelete: Cascade)
-  roles  TeamMemberRole[]
+  userId Int            @map("user_id")
+  teamId String         @map("team_id")
+  user   User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  team   Team           @relation(fields: [teamId], references: [id], onDelete: Cascade)
+  role   TeamMemberRole
 
   @@id([userId, teamId])
   @@map("team_member")

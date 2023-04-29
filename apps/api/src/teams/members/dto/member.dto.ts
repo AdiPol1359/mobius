@@ -17,6 +17,6 @@ export class MemberDto {
 	 */
 	lastName: string;
 
-	@ApiProperty({ enum: TeamMemberRole, isArray: true })
-	roles: TeamMemberRole[];
+	@ApiProperty({ enum: TeamMemberRole })
+	role: TeamMemberRole;
 }

@@ -17,6 +17,6 @@ export class TeamDto {
 	 */
 	code?: string;
 
-	@ApiPropertyOptional({ enum: TeamMemberRole, isArray: true })
-	roles?: TeamMemberRole[];
+	@ApiPropertyOptional({ enum: TeamMemberRole })
+	role?: TeamMemberRole;
 }

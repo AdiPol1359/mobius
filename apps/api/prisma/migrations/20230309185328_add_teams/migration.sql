@@ -15,7 +15,7 @@ CREATE TABLE "team" (
 CREATE TABLE "team_member" (
     "user_id" INTEGER NOT NULL,
     "team_id" TEXT NOT NULL,
-    "roles" "team_member_role"[],
+    "role" "team_member_role" NOT NULL,
 
     CONSTRAINT "team_member_pkey" PRIMARY KEY ("user_id","team_id")
 );

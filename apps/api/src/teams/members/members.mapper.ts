@@ -3,12 +3,12 @@ import { Member } from './member.types';
 
 export const mapMemberToMemberDto = ({
 	user: { id, firstName, lastName },
-	roles,
+	role,
 }: Member): MemberDto => ({
 	id,
 	firstName,
 	lastName,
-	roles,
+	role,
 });
 
 export const mapMembersToMemberDtos = (members: Member[]) =>

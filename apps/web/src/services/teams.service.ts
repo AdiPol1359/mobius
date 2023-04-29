@@ -1,6 +1,7 @@
 import { fetcher } from '@/lib/fetcher';
 
 export const getAllTeams = fetcher.path('/teams').method('get').create();
+
 export const getTeamById = fetcher
 	.path('/teams/{teamId}')
 	.method('get')
@@ -26,4 +27,16 @@ export const createTeamMessage = fetcher
 export const updateTeam = fetcher
 	.path('/teams/{teamId}')
 	.method('patch')
+	.create();
+export const getTeamMembers = fetcher
+	.path('/teams/{teamId}/members')
+	.method('get')
+	.create();
+export const updateTeamMember = fetcher
+	.path('/teams/{teamId}/members/{userId}')
+	.method('patch')
+	.create();
+export const deleteTeamMember = fetcher
+	.path('/teams/{teamId}/members/{userId}')
+	.method('delete')
 	.create();

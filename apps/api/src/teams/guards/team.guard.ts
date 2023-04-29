@@ -25,8 +25,6 @@ export class TeamGuard implements CanActivate {
 
 		const member = await this.teamsService.getTeamMember(user.id, teamId);
 
-		return (
-			roles.length === 0 || member.roles.some((role) => roles.includes(role))
-		);
+		return roles.length === 0 || roles.includes(member.role);
 	}
 }

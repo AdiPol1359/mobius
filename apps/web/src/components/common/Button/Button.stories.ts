@@ -25,3 +25,15 @@ export const Primary: Story = {
 		variant: 'primary',
 	},
 };
+
+export const Danger: Story = {
+	args: {
+		variant: 'danger',
+	},
+};
+
+export const Text: Story = {
+	args: {
+		variant: 'text',
+	},
+};

@@ -5,6 +5,7 @@ const variants = {
 	danger: 'border-red-700 text-red-700',
 	primary:
 		'border-primary-500 bg-primary text-white enabled:hover:bg-primary-700',
+	text: 'border-transparent shadow-none text-primary font-medium enabled:hover:text-primary-700',
 } as const;
 
 type ButtonProps = Readonly<{

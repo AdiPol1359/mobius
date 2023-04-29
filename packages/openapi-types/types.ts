@@ -81,7 +81,8 @@ export interface components {
 			password: string;
 		};
 		TeamDto: {
-			roles?: ('OWNER' | 'MEMBER')[];
+			/** @enum {string} */
+			role?: 'OWNER' | 'MEMBER';
 			/** @example be756869-0cbe-4be9-8e28-4abbde7bc3fa */
 			id: string;
 			/** @example FooTeam */
@@ -129,13 +130,18 @@ export interface components {
 			content: string;
 		};
 		MemberDto: {
-			roles: ('OWNER' | 'MEMBER')[];
+			/** @enum {string} */
+			role: 'OWNER' | 'MEMBER';
+			/** @example 1 */
 			id: number;
+			/** @example John */
 			firstName: string;
+			/** @example Burton */
 			lastName: string;
 		};
 		UpdateMemberDto: {
-			roles?: ('OWNER' | 'MEMBER')[];
+			/** @enum {string} */
+			role?: 'OWNER' | 'MEMBER';
 		};
 		NotificationDto: {
 			/** @example 1 */
@@ -520,18 +526,6 @@ export interface operations {
 			};
 			/** @description Incorrect authentication credentials. */
 			401: {
-				content: {
-					'application/json': components['schemas']['OpenAPIHttpException'];
-				};
-			};
-			/** @description Missing role in the team. */
-			403: {
-				content: {
-					'application/json': components['schemas']['OpenAPIHttpException'];
-				};
-			};
-			/** @description Team member not found. */
-			404: {
 				content: {
 					'application/json': components['schemas']['OpenAPIHttpException'];
 				};

@@ -44,7 +44,7 @@ export class TeamsService {
 		const team = await this.prisma.team.create({
 			data: {
 				name,
-				teamMember: { create: { userId: user.id, roles: ['OWNER'] } },
+				teamMember: { create: { userId: user.id, role: 'OWNER' } },
 				teamCode: { create: { code: generateJoinCode() } },
 			},
 			select: createTeamSelect(user.id),
@@ -98,7 +98,7 @@ export class TeamsService {
 
 		try {
 			const { team } = await this.prisma.teamMember.create({
-				data: { teamId, userId: user.id, roles: ['MEMBER'] },
+				data: { teamId, userId: user.id, role: 'MEMBER' },
 				select: { team: { select: createTeamSelect(user.id) } },
 			});
 
