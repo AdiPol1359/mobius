@@ -19,17 +19,10 @@ export const useSettingsPanelForm = ({ name, onSuccess }: Options) => {
 			onSubmit: (data) => {
 				const { name } = getDirtyData(formState.dirtyFields, data);
 
-				updateTeamMutation.mutate(
-					{ teamId, name },
-					{
-						onSuccess,
-					}
-				);
+				updateTeamMutation.mutate({ teamId, name }, { onSuccess });
 			},
 		},
-		{
-			defaultValues: { name },
-		}
+		{ defaultValues: { name } }
 	);
 
 	useEffect(() => {
