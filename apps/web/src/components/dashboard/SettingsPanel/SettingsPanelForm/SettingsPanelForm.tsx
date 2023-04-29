@@ -18,15 +18,13 @@ export const SettingsPanelForm = ({
 		isLoading,
 		handleFormSubmit,
 		register,
-		formState: { errors, dirtyFields, isDirty },
+		formState: { errors, isDirty },
 	} = useSettingsPanelForm({
 		name,
 		onSuccess: () => {
-			toast.success('The team has been successfully updated!');
+			toast.success('Team updated successfully!');
 		},
 	});
-
-	console.log(isDirty);
 
 	return (
 		<form onSubmit={handleFormSubmit} className="space-y-2.5">
@@ -40,7 +38,7 @@ export const SettingsPanelForm = ({
 			<Button
 				type="submit"
 				variant="primary"
-				disabled={isLoading || !dirtyFields.name}
+				disabled={isLoading || !isDirty}
 				fullWidth
 			>
 				Update the team

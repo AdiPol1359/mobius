@@ -8,5 +8,5 @@ export const getDirtyData = <T extends Schema, D extends TypeOf<T> = TypeOf<T>>(
 	const keys = Object.keys(dirtyFields);
 	const entries = keys.map((key) => [key, data[key]]);
 
-	return Object.fromEntries(entries) as Partial<Record<keyof D, string>>;
+	return Object.fromEntries(entries) as Partial<D>;
 };
