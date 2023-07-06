@@ -36,6 +36,20 @@ const nextConfig = {
 
 		return config;
 	},
+	async redirects() {
+		return [
+			{
+				source: '/',
+				destination: '/sign-in',
+				permanent: false,
+			},
+			{
+				source: '/dashboard',
+				destination: '/dashboard/teams',
+				permanent: false,
+			},
+		];
+	},
 };
 
 module.exports = nextConfig;
