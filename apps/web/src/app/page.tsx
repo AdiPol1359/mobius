@@ -1,3 +1,5 @@
-export default function Page() {
-	return <div className="text-red-400">page</div>;
+import { redirect } from 'next/navigation';
+
+export default function IndexPage() {
+	return redirect('/sign-in');
 }
