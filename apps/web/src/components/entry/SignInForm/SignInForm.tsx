@@ -1,5 +1,7 @@
 'use client';
 
+import Link from 'next/link';
+
 import { EntryForm } from '../EntryForm';
 import { useSignInForm } from './useSignInForm';
 
@@ -49,6 +51,12 @@ export const SignInForm = () => {
 					error={errors.password?.message}
 					{...register('password')}
 				/>
+				<Link
+					href="/sign-up"
+					className="block text-sm text-primary hover:underline"
+				>
+					You don&apos;t have an account yet?
+				</Link>
 			</EntryForm>
 		</>
 	);
